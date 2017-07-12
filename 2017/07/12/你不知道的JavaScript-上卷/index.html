@@ -5,16 +5,16 @@
   
   <title>你不知道的JavaScript(上卷) | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="欺骗作用域的两种方法，欺骗词法作用域会导致性能下降，所以不推荐使用 eval(..)  new Function(..) 函数的行为也很类似，最后一个参数可以接受代码字符串，并将其转化为动态生成的函数（前面的参数是这个新生成的函数的形参）。这种构建函数的语法比eval(..) 略微安全一些，但也要尽量避免使用。严格模式下，eval()无法修改所在的作用域。  with(..)  尽管with块可以">
+  <meta name="description" content="欺骗作用域欺骗作用域的两种方法分别是：test  eval(..)  new Function(..) 函数的行为也很类似，最后一个参数可以接受代码字符串，并将其转化为动态生成的函数（前面的参数是这个新生成的函数的形参）。这种构建函数的语法比eval(..) 略微安全一些，但也要尽量避免使用。严格模式下，eval()无法修改所在的作用域。  with(..)  尽管with块可以将一个对象处理为词">
 <meta property="og:type" content="article">
 <meta property="og:title" content="你不知道的JavaScript(上卷)">
 <meta property="og:url" content="http://yoursite.com/2017/07/12/你不知道的JavaScript-上卷/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="欺骗作用域的两种方法，欺骗词法作用域会导致性能下降，所以不推荐使用 eval(..)  new Function(..) 函数的行为也很类似，最后一个参数可以接受代码字符串，并将其转化为动态生成的函数（前面的参数是这个新生成的函数的形参）。这种构建函数的语法比eval(..) 略微安全一些，但也要尽量避免使用。严格模式下，eval()无法修改所在的作用域。  with(..)  尽管with块可以">
-<meta property="og:updated_time" content="2017-07-12T07:50:08.741Z">
+<meta property="og:description" content="欺骗作用域欺骗作用域的两种方法分别是：test  eval(..)  new Function(..) 函数的行为也很类似，最后一个参数可以接受代码字符串，并将其转化为动态生成的函数（前面的参数是这个新生成的函数的形参）。这种构建函数的语法比eval(..) 略微安全一些，但也要尽量避免使用。严格模式下，eval()无法修改所在的作用域。  with(..)  尽管with块可以将一个对象处理为词">
+<meta property="og:updated_time" content="2017-07-12T08:50:03.549Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="你不知道的JavaScript(上卷)">
-<meta name="twitter:description" content="欺骗作用域的两种方法，欺骗词法作用域会导致性能下降，所以不推荐使用 eval(..)  new Function(..) 函数的行为也很类似，最后一个参数可以接受代码字符串，并将其转化为动态生成的函数（前面的参数是这个新生成的函数的形参）。这种构建函数的语法比eval(..) 略微安全一些，但也要尽量避免使用。严格模式下，eval()无法修改所在的作用域。  with(..)  尽管with块可以">
+<meta name="twitter:description" content="欺骗作用域欺骗作用域的两种方法分别是：test  eval(..)  new Function(..) 函数的行为也很类似，最后一个参数可以接受代码字符串，并将其转化为动态生成的函数（前面的参数是这个新生成的函数的形参）。这种构建函数的语法比eval(..) 略微安全一些，但也要尽量避免使用。严格模式下，eval()无法修改所在的作用域。  with(..)  尽管with块可以将一个对象处理为词">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -66,7 +66,7 @@
         <section id="main"><article id="post-你不知道的JavaScript-上卷" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/07/12/你不知道的JavaScript-上卷/" class="article-date">
-  <time datetime="2017-07-12T03:30:33.000Z" itemprop="datePublished">2017-07-12</time>
+  <time datetime="2017-07-12T08:50:03.543Z" itemprop="datePublished">2017-07-12</time>
 </a>
     
   </div>
@@ -85,7 +85,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="欺骗作用域的两种方法，欺骗词法作用域会导致性能下降，所以不推荐使用"><a href="#欺骗作用域的两种方法，欺骗词法作用域会导致性能下降，所以不推荐使用" class="headerlink" title="欺骗作用域的两种方法，欺骗词法作用域会导致性能下降，所以不推荐使用"></a>欺骗作用域的两种方法，欺骗词法作用域会导致性能下降，所以不推荐使用</h3><ul>
+        <h3 id="欺骗作用域"><a href="#欺骗作用域" class="headerlink" title="欺骗作用域"></a>欺骗作用域</h3><p>欺骗作用域的两种方法分别是：test</p>
+<ul>
 <li>eval(..)</li>
 </ul>
 <p>new Function(..) 函数的行为也很类似，最后一个参数可以接受代码字符串，并将其转化为动态生成的函数（前面的参数是这个新生成的函数的形参）。这种构建函数的语法比eval(..) 略微安全一些，但也要尽量避免使用。<br>严格模式下，eval()无法修改所在的作用域。</p>
@@ -93,6 +94,23 @@
 <li>with(..)</li>
 </ul>
 <p>尽管with块可以将一个对象处理为词法作用域，但是这个块内部正常的var声明并不会被限制在这个块的作用域中，而是被添加到with 所处的函数作用域中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">with (obj) &#123;</div><div class="line">    a = 2;</div><div class="line">&#125;</div><div class="line">// obj.a如果存在，值会修改为“2”.如果a不存在会在全局变量新增window.a = &quot;2&quot;.</div></pre></td></tr></table></figure></p>
+<p>欺骗词法作用域会导致性能下降，所以不推荐使用</p>
+<blockquote>
+<p>扩展 严格模式 IE10包括IE10以上支持</p>
+<ul>
+<li>消除javascript语法的一些不合理、不严谨之处，减少一些怪异行为;</li>
+<li>消除代码运行的一些不安全之处，保证代码运行的安全；</li>
+<li>提高编译器效率，增加运行速度；</li>
+<li>为未来新版本的Javascript做好铺垫。</li>
+</ul>
+</blockquote>
+<p>严格模式带来的语法和行为改变</p>
+<ul>
+<li>禁止this关键字指向全局对象</li>
+<li>禁止使用arguments.callee</li>
+<li>函数必须声明在顶层<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&quot;use strict&quot;;</div><div class="line">// 函数必须声明在顶层</div><div class="line">if (true) &#123;</div><div class="line">    function f() &#123; &#125; // 语法错误</div><div class="line">&#125;</div><div class="line">for (var i = 0; i &lt; 5; i++) &#123;</div><div class="line">    function f2() &#123; &#125; // 语法错误</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
 <h3 id="编辑阶段，函数声明会优先于变量声明优先提升"><a href="#编辑阶段，函数声明会优先于变量声明优先提升" class="headerlink" title="编辑阶段，函数声明会优先于变量声明优先提升"></a>编辑阶段，函数声明会优先于变量声明优先提升</h3><p><strong>小tip： 函数表达式不会提升。</strong><br>避免以下<code>代码</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">foo(); // &quot;b&quot;</div><div class="line">var a = true;</div><div class="line">if (a) &#123;</div><div class="line">    function foo() &#123; console.log(&quot;a&quot;); &#125;</div><div class="line">&#125;</div><div class="line">else &#123;</div><div class="line">    function foo() &#123; console.log(&quot;b&quot;); &#125;</div><div class="line">&#125;</div><div class="line">// 经测试，新的谷歌浏览器反馈是Uncaught TypeError。一个博客主分析是因为foo()被认为是函数表达式了，foo变量名提升了。</div></pre></td></tr></table></figure></p>
 <p><strong>好的代码习惯： 避免重复声明,先声明后执行。</strong></p>
 <h3 id="闭包的概念"><a href="#闭包的概念" class="headerlink" title="闭包的概念"></a>闭包的概念</h3><p>函数执行可使用函数所在的词法作用域变量即视为闭包。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">// 常见闭包</div><div class="line">function foo() &#123;</div><div class="line">    var a = 2;</div><div class="line">    function bar() &#123;</div><div class="line">        console.log(a);</div><div class="line">    &#125;</div><div class="line">    return bar;</div><div class="line">&#125;</div><div class="line">var baz = foo();</div><div class="line">baz();</div><div class="line"></div><div class="line">//方式二</div><div class="line">function foo() &#123;</div><div class="line">    var a = 2;</div><div class="line">    function baz() &#123;</div><div class="line">        console.log( a ); // 2</div><div class="line">    &#125;</div><div class="line">    bar( baz );</div><div class="line">&#125;</div><div class="line">function bar(fn) &#123;</div><div class="line">    fn(); // 妈妈快看呀，这就是闭包！</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 方式三</div><div class="line">var fn;</div><div class="line">function foo() &#123;</div><div class="line">    var a = 2;</div><div class="line">    function baz() &#123;</div><div class="line">        console.log( a );</div><div class="line">    &#125;</div><div class="line">    fn = baz; // 将baz 分配给全局变量</div><div class="line">&#125;</div><div class="line">function bar() &#123;</div><div class="line">    fn(); // 妈妈快看呀，这就是闭包！</div><div class="line">&#125;</div><div class="line">foo();</div><div class="line">bar();</div><div class="line"></div><div class="line">// 方式四</div><div class="line">function wait(message) &#123;</div><div class="line">    setTimeout( function timer() &#123;</div><div class="line">        console.log( message );</div><div class="line">    &#125;, 1000 );</div><div class="line">&#125;</div><div class="line">wait( &quot;Hello, closure!&quot; );</div></pre></td></tr></table></figure></p>
@@ -101,7 +119,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/12/你不知道的JavaScript-上卷/" data-id="cj50ph0710001bko00goiod9x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/12/你不知道的JavaScript-上卷/" data-id="cj50rlyi30000e0o0p67kb05w" class="article-share-link">Share</a>
       
       
     </footer>
