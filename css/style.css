@@ -566,7 +566,7 @@ a.article-title:hover {
 .article-entry p,
 .article-entry table {
   line-height: 1.6em;
-  margin: 1.6em 0;
+  margin-bottom: 1.2em;
 }
 .article-entry h1,
 .article-entry h2,
@@ -583,7 +583,8 @@ a.article-title:hover {
 .article-entry h5,
 .article-entry h6 {
   line-height: 1.1em;
-  margin: 1.1em 0;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 .article-entry a {
   color: #258fb8;
@@ -595,8 +596,7 @@ a.article-title:hover {
 .article-entry ul,
 .article-entry ol,
 .article-entry dl {
-  margin-top: 1.6em;
-  margin-bottom: 1.6em;
+  margin-bottom: 1.2em;
 }
 .article-entry img,
 .article-entry video {
