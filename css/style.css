@@ -124,7 +124,7 @@ body,
 }
 body {
   background: #eee;
-  font: 14px "\5FAE\8F6F\96C5\9ED1","Helvetica Neue", Helvetica, STHeiTi,Arial,sans-serif;
+  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-text-size-adjust: 100%;
 }
 .outer {
@@ -566,7 +566,7 @@ a.article-title:hover {
 .article-entry p,
 .article-entry table {
   line-height: 1.6em;
-  margin-bottom: 1.2em;
+  margin: 1.6em 0;
 }
 .article-entry h1,
 .article-entry h2,
@@ -583,8 +583,7 @@ a.article-title:hover {
 .article-entry h5,
 .article-entry h6 {
   line-height: 1.1em;
-  margin-top: 20px;
-  margin-bottom: 10px;
+  margin: 1.1em 0;
 }
 .article-entry a {
   color: #258fb8;
@@ -596,7 +595,8 @@ a.article-title:hover {
 .article-entry ul,
 .article-entry ol,
 .article-entry dl {
-  margin-bottom: 1.2em;
+  margin-top: 1.6em;
+  margin-bottom: 1.6em;
 }
 .article-entry img,
 .article-entry video {
