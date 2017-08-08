@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>你不知道的JavaScript-中卷 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="第一部分 类型和语法数字较小的数值JavaScript采用二进制浮点数，二进制浮点数最大的问题会出现如下情况10.1 + 0.2 === 0.3; // false 所以处理整数时是绝对安全的，处理小数最常见的方法是设置一个误差范围值，通常称为“机器精度”（machine epsilon）， 对JavaScript 的数字来说，这个值通常是2^-52 (2.220446049250313e-16)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="你不知道的JavaScript-中卷">
+<meta property="og:url" content="http://yoursite.com/2017/07/19/你不知道的JavaScript-中卷/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="第一部分 类型和语法数字较小的数值JavaScript采用二进制浮点数，二进制浮点数最大的问题会出现如下情况10.1 + 0.2 === 0.3; // false 所以处理整数时是绝对安全的，处理小数最常见的方法是设置一个误差范围值，通常称为“机器精度”（machine epsilon）， 对JavaScript 的数字来说，这个值通常是2^-52 (2.220446049250313e-16)">
+<meta property="og:updated_time" content="2017-07-19T09:25:46.533Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="你不知道的JavaScript-中卷">
+<meta name="twitter:description" content="第一部分 类型和语法数字较小的数值JavaScript采用二进制浮点数，二进制浮点数最大的问题会出现如下情况10.1 + 0.2 === 0.3; // false 所以处理整数时是绝对安全的，处理小数最常见的方法是设置一个误差范围值，通常称为“机器精度”（machine epsilon）， 对JavaScript 的数字来说，这个值通常是2^-52 (2.220446049250313e-16)">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-你不知道的JavaScript-中卷" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/19/你不知道的JavaScript-中卷/" class="article-date">
+  <time datetime="2017-07-19T09:25:46.531Z" itemprop="datePublished">2017-07-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      你不知道的JavaScript-中卷
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="第一部分-类型和语法"><a href="#第一部分-类型和语法" class="headerlink" title="第一部分 类型和语法"></a>第一部分 类型和语法</h2><h3 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h3><h4 id="较小的数值"><a href="#较小的数值" class="headerlink" title="较小的数值"></a>较小的数值</h4><p>JavaScript采用二进制浮点数，二进制浮点数最大的问题会出现如下情况<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0.1 + 0.2 === 0.3; // false</div></pre></td></tr></table></figure></p>
+<p>所以处理整数时是绝对安全的，处理小数最常见的方法是设置一个误差范围值，通常称为“机器精度”（machine epsilon）， 对JavaScript 的数字来说，这个值通常是2^-52 (2.220446049250313e-16)。<br>从ES6 开始，该值定义在Number.EPSILON 中，我们可以直接拿来用，也可以为ES6 之前的版本写polyfill：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// polyfill</div><div class="line">if (!Number.EPSILON) &#123;</div><div class="line">Number.EPSILON = Math.pow(2,-52);</div><div class="line">&#125;</div><div class="line">function numbersCloseEnoughToEqual(n1,n2) &#123;</div><div class="line">return Math.abs( n1 - n2 ) &lt; Number.EPSILON;</div><div class="line">&#125;</div><div class="line">var a = 0.1 + 0.2;</div><div class="line">var b = 0.3;</div><div class="line">numbersCloseEnoughToEqual( a, b ); // true</div><div class="line">numbersCloseEnoughToEqual( 0.0000001, 0.0000002 ); // false</div></pre></td></tr></table></figure></p>
+<h4 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h4><p>NaN 意指“不是一个数字”（not a number），这个名字容易引起误会,它仍是一个数字类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">var a = 2 / &quot;foo&quot;;</div><div class="line">var b = &quot;foo&quot;;</div><div class="line">a; // NaN</div><div class="line">b; &quot;foo&quot;</div><div class="line">window.isNaN( a ); // true</div><div class="line">window.isNaN( b ); // true——晕！</div><div class="line"></div><div class="line">if (!Number.isNaN) &#123;</div><div class="line">    Number.isNaN = function(n) &#123;</div><div class="line">        return (</div><div class="line">            typeof n === &quot;number&quot; &amp;&amp; window.isNaN( n )</div><div class="line">        );</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line">var a = 2 / &quot;foo&quot;;</div><div class="line">var b = &quot;foo&quot;;</div><div class="line">Number.isNaN( a ); // true</div><div class="line">Number.isNaN( b ); // false——好！</div></pre></td></tr></table></figure>
+<p><strong>尽量使用Number.isNaN(..)</strong></p>
+<p><strong>能使用== 和===时就尽量不要使用Object.is(..)，因为前者效率更高、更为通用。Object.is(..) 主要用来处理那些特殊的相等比较。</strong></p>
+<h3 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h3><h4 id="显示强制类型转换"><a href="#显示强制类型转换" class="headerlink" title="显示强制类型转换"></a>显示强制类型转换</h4><p>根据ToPrimitive 抽象操作规则，a(Object) + “” 会对a 调用valueOf() 方法，然后通过ToString 抽象操作将返回值转换为字符串。而String(a) 则是直接调用ToString()。</p>
+<p><strong>== 允许在相等比较中进行强制类型转换，而=== 不允许。</strong><br><strong>建议不要使用 == true 和 == false。（Boolean类型会首先转换为数字）</strong><br><strong>安全运用隐式强制类型转换</strong></p>
+<ul>
+<li>如果两边的值中有true 或者false，千万不要使用==。</li>
+<li>如果两边的值中有[]、”” 或者0，尽量不要使用==。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/07/19/你不知道的JavaScript-中卷/" data-id="cj5asthkt0001ugo0g98bsga3" class="article-share-link">Delen</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/07/18/你不知道的JavaScript-上卷/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ouder</strong>
+      <div class="article-nav-title">你不知道的JavaScript(上卷)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archieven</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recente berichten</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/07/19/你不知道的JavaScript-中卷/">你不知道的JavaScript-中卷</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/18/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/12/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

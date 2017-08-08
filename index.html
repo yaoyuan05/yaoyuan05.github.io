@@ -63,8 +63,8 @@
   
     <article id="post-你不知道的JavaScript-上卷" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/07/14/你不知道的JavaScript-上卷/" class="article-date">
-  <time datetime="2017-07-14T04:21:26.619Z" itemprop="datePublished">2017-07-14</time>
+    <a href="/2017/08/08/你不知道的JavaScript-上卷/" class="article-date">
+  <time datetime="2017-08-08T13:48:39.848Z" itemprop="datePublished">2017-08-08</time>
 </a>
     
   </div>
@@ -75,7 +75,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/14/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
+      <a class="article-title" href="/2017/08/08/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
     </h1>
   
 
@@ -83,7 +83,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="欺骗作用域"><a href="#欺骗作用域" class="headerlink" title="欺骗作用域"></a>欺骗作用域</h3><p>欺骗作用域的两种方法分别是：</p>
+        <h2 id="作用域是什么"><a href="#作用域是什么" class="headerlink" title="作用域是什么"></a>作用域是什么</h2><p>两个问题：</p>
+<ul>
+<li>变量存储在那里？</li>
+<li>程序如何找到它？</li>
+</ul>
+<p>作用域是一套规则，用于确定在何处以及如何查找变量（标识符）。</p>
+<p>任何JavaScript 代码片段都要经过两个阶段，编译阶段和执行阶段。</p>
+<p>遍历嵌套作用域链的规则很简单：引擎从当前的执行作用域开始查找变量，如果找不到，就向上一级继续查找。当抵达最外层的全局作用域时，无论找到还是没找到，查找过程都会停止。</p>
+<p>小tip: ReferenceError 同作用域判别失败相关，而TypeError 则代表作用域判别成功了，但是对结果的操作是非法或不合理的。</p>
+<h2 id="词法作用域"><a href="#词法作用域" class="headerlink" title="词法作用域"></a>词法作用域</h2><p>作用域共有两种主要的工作模型。第一种是最为普遍的，被大多数编程语言所采用的词法作用域，另外一种叫作动态作用域，仍有一些编程语言在使用（比如Bash 脚本、Perl 中的一些模式等）。<br>作用域查找始终从运行时所处的最内部作用域开始，逐级向外或者说向上进行，直到遇见第一个匹配的标识符为止。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var a = 0;</div><div class="line">function foo()&#123;</div><div class="line">    var a = &quot;test&quot;         // 会形成“遮蔽效应”（内部的标识符“遮蔽”了外部的标识符）</div><div class="line">    console.log(a);</div><div class="line">    console.log(window.a)  // 间接访问那些被同名变量所遮蔽的全局变量</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>无论函数在哪里被调用，也无论它如何被调用，它的词法作用域都只由函数被声明时所处的位置决定。</strong></p>
+<h4 id="欺骗词法作用域"><a href="#欺骗词法作用域" class="headerlink" title="欺骗词法作用域"></a>欺骗词法作用域</h4><p>怎样才能在运行时来“修改”（也可以说欺骗）词法作用域呢？欺骗作用域的两种方法分别是：</p>
 <ul>
 <li>eval(..)</li>
 </ul>
@@ -92,7 +103,7 @@
 <li>with(..)</li>
 </ul>
 <p>尽管with块可以将一个对象处理为词法作用域，但是这个块内部正常的var声明并不会被限制在这个块的作用域中，而是被添加到with 所处的函数作用域中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">with (obj) &#123;</div><div class="line">    a = 2;</div><div class="line">&#125;</div><div class="line">// obj.a如果存在，值会修改为“2”.如果a不存在会在全局变量新增window.a = &quot;2&quot;.</div></pre></td></tr></table></figure></p>
-<p><strong>欺骗词法作用域会导致性能下降，所以不推荐使用</strong></p>
+<p><strong>欺骗词法作用域会导致性能下降，所以不推荐使用，还有一个原因是会被严格模式所影响（限制）。</strong></p>
 <blockquote>
 <p>扩展 严格模式 IE10包括IE10以上支持</p>
 </blockquote>
@@ -109,7 +120,14 @@
 <li>函数必须声明在顶层<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&quot;use strict&quot;;</div><div class="line">// 函数必须声明在顶层</div><div class="line">if (true) &#123;</div><div class="line">    function f() &#123; &#125; // 语法错误</div><div class="line">&#125;</div><div class="line">for (var i = 0; i &lt; 5; i++) &#123;</div><div class="line">    function f2() &#123; &#125; // 语法错误</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="编辑阶段，函数声明会优先于变量声明优先提升"><a href="#编辑阶段，函数声明会优先于变量声明优先提升" class="headerlink" title="编辑阶段，函数声明会优先于变量声明优先提升"></a>编辑阶段，函数声明会优先于变量声明优先提升</h3><p><strong>小tip： 函数表达式不会提升。</strong><br>避免以下<code>代码</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">foo(); // &quot;b&quot;</div><div class="line">var a = true;</div><div class="line">if (a) &#123;</div><div class="line">    function foo() &#123; console.log(&quot;a&quot;); &#125;</div><div class="line">&#125;</div><div class="line">else &#123;</div><div class="line">    function foo() &#123; console.log(&quot;b&quot;); &#125;</div><div class="line">&#125;</div><div class="line">// 经测试，新的谷歌浏览器反馈是Uncaught TypeError。一个博客主分析是因为foo()被认为是函数表达式了，foo变量名提升了。</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>扩展资料：</p>
+<ul>
+<li>编辑阶段，函数声明会优先于变量声明优先提升。</li>
+<li>函数表达式不会提升。</li>
+</ul>
+</blockquote>
+<p>避免以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">foo(); // &quot;b&quot; 旧的谷歌浏览器</div><div class="line">var a = true;</div><div class="line">if (a) &#123;</div><div class="line">    function foo() &#123; console.log(&quot;a&quot;); &#125;</div><div class="line">&#125;</div><div class="line">else &#123;</div><div class="line">    function foo() &#123; console.log(&quot;b&quot;); &#125;</div><div class="line">&#125;</div><div class="line">// 经测试，新的谷歌浏览器反馈是Uncaught TypeError。一个博客主分析是因为foo()被认为是函数表达式了，foo变量名提升了。</div></pre></td></tr></table></figure></p>
 <p><strong>好的代码习惯： 避免重复声明,先声明后执行。</strong></p>
 <h3 id="闭包的概念"><a href="#闭包的概念" class="headerlink" title="闭包的概念"></a>闭包的概念</h3><p>函数执行可使用函数所在的词法作用域变量即视为闭包。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">// 常见闭包</div><div class="line">function foo() &#123;</div><div class="line">    var a = 2;</div><div class="line">    function bar() &#123;</div><div class="line">        console.log(a);</div><div class="line">    &#125;</div><div class="line">    return bar;</div><div class="line">&#125;</div><div class="line">var baz = foo();</div><div class="line">baz();</div><div class="line"></div><div class="line">//方式二</div><div class="line">function foo() &#123;</div><div class="line">    var a = 2;</div><div class="line">    function baz() &#123;</div><div class="line">        console.log( a ); // 2</div><div class="line">    &#125;</div><div class="line">    bar( baz );</div><div class="line">&#125;</div><div class="line">function bar(fn) &#123;</div><div class="line">    fn(); // 妈妈快看呀，这就是闭包！</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 方式三</div><div class="line">var fn;</div><div class="line">function foo() &#123;</div><div class="line">    var a = 2;</div><div class="line">    function baz() &#123;</div><div class="line">        console.log( a );</div><div class="line">    &#125;</div><div class="line">    fn = baz; // 将baz 分配给全局变量</div><div class="line">&#125;</div><div class="line">function bar() &#123;</div><div class="line">    fn(); // 妈妈快看呀，这就是闭包！</div><div class="line">&#125;</div><div class="line">foo();</div><div class="line">bar();</div><div class="line"></div><div class="line">// 方式四</div><div class="line">function wait(message) &#123;</div><div class="line">    setTimeout( function timer() &#123;</div><div class="line">        console.log( message );</div><div class="line">    &#125;, 1000 );</div><div class="line">&#125;</div><div class="line">wait( &quot;Hello, closure!&quot; );</div></pre></td></tr></table></figure></p>
 <h3 id="this全面解析"><a href="#this全面解析" class="headerlink" title="this全面解析"></a>this全面解析</h3><p><strong>关于this的误解</strong></p>
@@ -117,11 +135,141 @@
 <p><strong>this到底是什么</strong></p>
 <p>this是在运行时进行绑定的，并不是在编写时绑定，它的上下文取决于函数调用时的各种条件。this 的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式。<br>当一个函数被调用时，会创建一个活动记录（有时候也称为执行上下文）。这个记录会包含函数在哪里被调用（调用栈）、函数的调用方法、传入的参数等信息。this 就是记录的其中一个属性，会在函数执行的过程中用到。</p>
 <p><strong>常见错误：隐式丢失</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">    console.log( this.a );</div><div class="line">&#125;</div><div class="line">var obj = &#123;</div><div class="line">    a: 2,</div><div class="line">    foo: foo</div><div class="line">&#125;;</div><div class="line">var bar = obj.foo; // 函数别名！</div><div class="line">var a = &quot;oops, global&quot;; // a 是全局对象的属性</div><div class="line">bar(); // &quot;oops, global&quot;</div><div class="line">//虽然bar 是obj.foo 的一个引用，但是实际上，它引用的是foo 函数本身,因此此时的bar() 其实是一个不带任何修饰的函数调用，因此应用了默认绑定。</div><div class="line">//另一种情况是将函数传入回调函数中，doFoo(obj.foo).</div><div class="line">function doFoo(fn)&#123;</div><div class="line">    fn();//fn引用的是foo</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>判断一个运行中函数的this 绑定</strong></p>
+<p>四条规则来判断this 的绑定对象：</p>
+<ol>
+<li>由new 调用？绑定到新创建的对象。</li>
+<li>由call 或者apply（或者bind）调用？绑定到指定的对象。</li>
+<li>由上下文对象调用？绑定到那个上下文对象。</li>
+<li>默认：在严格模式下绑定到undefined，否则绑定到全局对象。</li>
+</ol>
+<p><strong>建议</strong></p>
+<p>如果你经常编写this风格的代码，但是绝大部分时候都会使用self = this 或者箭头函数来否定this 机制，那你或许应当：</p>
+<ol>
+<li>只使用词法作用域并完全抛弃错误this 风格的代码；</li>
+<li>完全采用this 风格，在必要时使用bind(..)，尽量避免使用self = this 和箭头函数。</li>
+</ol>
+<p>当然，包含这两种代码风格的程序可以正常运行，但是在同一个函数或者同一个程序中混合使用这两种风格通常会使代码更难维护，并且可能也会更难编写。</p>
+<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><p><strong>设置对象的属性不可改变（都是浅不变形）</strong></p>
+<p>4种方法：</p>
+<ol>
+<li>结合writable:false 和configurable:false 就可以创建一个真正的常量属性（不可修改、<br>重定义或者删除）:</li>
+<li>禁止扩展：Object.preventExtensions( myObject );</li>
+<li>密封: Object.seal(..);</li>
+<li>冻结: Object.freeze(..)</li>
+</ol>
+<p><strong>存在性</strong></p>
+<p>in 和hasOwnProperty(..) 的区别在于是否查找[[Prototype]] 链，然而，Object.keys(..)和Object.getOwnPropertyNames(..) 都只会查找对象直接包含的属性。</p>
+<h3 id="行为委托"><a href="#行为委托" class="headerlink" title="行为委托"></a>行为委托</h3><p><strong>面向委托的设计 对象关联</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">Task = &#123;</div><div class="line">    setID: function(ID) &#123; this.id = ID; &#125;,</div><div class="line">    outputID: function() &#123; console.log( this.id ); &#125;</div><div class="line">&#125;;</div><div class="line">// 让XYZ 委托Task</div><div class="line">XYZ = Object.create( Task );</div><div class="line">XYZ.prepareTask = function(ID,Label) &#123;</div><div class="line">    this.setID( ID );</div><div class="line">    this.label = Label;</div><div class="line">&#125;;</div><div class="line">XYZ.outputTaskDetails = function() &#123;</div><div class="line">    this.outputID();</div><div class="line">    console.log( this.label );</div><div class="line">&#125;;</div><div class="line"></div><div class="line">XYZ.prepareTask(&quot;cc&quot;,&quot;test&quot;); //id = cc , label = test</div><div class="line">XYZ.outputTaskDetails();</div></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/14/你不知道的JavaScript-上卷/" data-id="cj50snden0001l4o0ta2vjym8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/08/08/你不知道的JavaScript-上卷/" data-id="cj5x8tpwy0002cso0eqwilz0h" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-bootstrap学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/08/bootstrap学习笔记/" class="article-date">
+  <time datetime="2017-08-08T06:23:37.610Z" itemprop="datePublished">2017-08-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/08/bootstrap学习笔记/">bootstrap学习笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="tab-js"><a href="#tab-js" class="headerlink" title="tab.js"></a>tab.js</h3><p>Bootstrap: tab.js 内用$.Event()实现回调。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$previous.trigger(&#123;</div><div class="line">    type: &apos;hidden.bs.tab&apos;,</div><div class="line">    relatedTarget: $this[0]</div><div class="line">&#125;)</div><div class="line">$this.trigger(&#123;</div><div class="line">    type: &apos;shown.bs.tab&apos;,</div><div class="line">    relatedTarget: $previous[0]</div><div class="line">&#125;)</div><div class="line"></div><div class="line">// 利用事件冒泡，可将回调函数绑定在.nav-tabs a 的父元素。 例：</div><div class="line">$(&quot;.nav-tabs li a&quot;).on(&quot;shown.bs.tab&quot;,function (event) &#123;</div><div class="line">   console.log(event.relatedTarget);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h3 id="affix-js"><a href="#affix-js" class="headerlink" title="affix.js"></a>affix.js</h3><p>$.proxy(this.checkPosition, this),返回一个新函数，并且这个函数始终保持了特定的作用域<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">this.$target = $(this.options.target)</div><div class="line">      .on(&apos;scroll.bs.affix.data-api&apos;, $.proxy(this.checkPosition, this))</div><div class="line">      .on(&apos;click.bs.affix.data-api&apos;,  $.proxy(this.checkPositionWithEventLoop, this))</div></pre></td></tr></table></figure></p>
+<h3 id="carousel-js"><a href="#carousel-js" class="headerlink" title="carousel.js"></a>carousel.js</h3><p>大图轮播列表循环实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var delta = direction == &apos;prev&apos; ? -1 : 1</div><div class="line">var itemIndex = (activeIndex + delta) % this.$items.length</div><div class="line">return this.$items.eq(itemIndex)</div><div class="line">// 技术点 求余得到下一位index</div><div class="line">// eq()负数则从集合中的最后一个元素往回计数。</div></pre></td></tr></table></figure></p>
+<h3 id="collapse-js"><a href="#collapse-js" class="headerlink" title="collapse.js"></a>collapse.js</h3><p>Accordion example,需固定的结构，子级trigger元素需包含data-parent=”#xx”,parent &gt; 子元素包含”.panel”类.<br>实现原理:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 要实现关联操作，如果一个元素需要执行show()方法，一定会有另一个元素执行hide()方法</div><div class="line">if (actives &amp;&amp; actives.length) &#123;</div><div class="line">    Plugin.call(actives, &apos;hide&apos;)</div><div class="line">    activesData || actives.data(&apos;bs.collapse&apos;, null)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="dropdown-js"><a href="#dropdown-js" class="headerlink" title="dropdown.js"></a>dropdown.js</h3><p>clearMenus(),用于复位初始状态。执行任何方法前先执行复位操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">//原理: </div><div class="line">Dropdown.prototype.toggle = function (e) &#123;</div><div class="line"></div><div class="line">    var isActive = $parent.hasClass(&apos;open&apos;);</div><div class="line">    clearMenus()；</div><div class="line">    if(!isActive)&#123;</div><div class="line">        // 执行状态</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;  </div><div class="line">$(document)</div><div class="line">  .on(&apos;click.bs.dropdown.data-api&apos;, clearMenus)</div><div class="line">  .on(&apos;click.bs.dropdown.data-api&apos;, &apos;.dropdown form&apos;, function (e) &#123; e.stopPropagation() &#125;)</div><div class="line">  .on(&apos;click.bs.dropdown.data-api&apos;, toggle, Dropdown.prototype.toggle)</div><div class="line">  .on(&apos;keydown.bs.dropdown.data-api&apos;, toggle, Dropdown.prototype.keydown)</div><div class="line">  .on(&apos;keydown.bs.dropdown.data-api&apos;, &apos;.dropdown-menu&apos;, Dropdown.prototype.keydown)</div></pre></td></tr></table></figure></p>
+<h3 id="modal-js"><a href="#modal-js" class="headerlink" title="modal.js"></a>modal.js</h3><ul>
+<li><code>window.innerWidth</code> IE8不支持的解决方案<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// getBoundingClientRect()取得的数值都是参照视口的左上角位置而言的。</div><div class="line">var fullWindowWidth = window.innerWidth</div><div class="line">if (!fullWindowWidth) &#123; // workaround for missing window.innerWidth in IE8</div><div class="line">  var documentElementRect = document.documentElement.getBoundingClientRect()</div><div class="line">  fullWindowWidth = documentElementRect.right - Math.abs(documentElementRect.left)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>扩展： <code>$(window).width()</code>获取的是return window.document.documentElement[ “clientWidth” ];<br>区别在于clientWidth获取可见区域宽（不包含滚动条宽度），window.innerWidth获取当前窗口的宽度（包含滚动条宽度），如果两数修值存在，相减得到滚动条宽度。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/08/bootstrap学习笔记/" data-id="cj5x8tpwy0001cso096bcixl2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-你不知道的JavaScript-中卷" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/02/你不知道的JavaScript-中卷/" class="article-date">
+  <time datetime="2017-08-02T06:36:47.702Z" itemprop="datePublished">2017-08-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/02/你不知道的JavaScript-中卷/">你不知道的JavaScript-中卷</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="第一部分-类型和语法"><a href="#第一部分-类型和语法" class="headerlink" title="第一部分 类型和语法"></a>第一部分 类型和语法</h2><h3 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h3><h4 id="较小的数值"><a href="#较小的数值" class="headerlink" title="较小的数值"></a>较小的数值</h4><p>JavaScript采用二进制浮点数，二进制浮点数最大的问题会出现如下情况<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0.1 + 0.2 === 0.3; // false</div></pre></td></tr></table></figure></p>
+<p>所以处理整数时是绝对安全的，处理小数最常见的方法是设置一个误差范围值，通常称为“机器精度”（machine epsilon）， 对JavaScript 的数字来说，这个值通常是2^-52 (2.220446049250313e-16)。<br>从ES6 开始，该值定义在Number.EPSILON 中，我们可以直接拿来用，也可以为ES6 之前的版本写polyfill：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// polyfill</div><div class="line">if (!Number.EPSILON) &#123;</div><div class="line">Number.EPSILON = Math.pow(2,-52);</div><div class="line">&#125;</div><div class="line">function numbersCloseEnoughToEqual(n1,n2) &#123;</div><div class="line">return Math.abs( n1 - n2 ) &lt; Number.EPSILON;</div><div class="line">&#125;</div><div class="line">var a = 0.1 + 0.2;</div><div class="line">var b = 0.3;</div><div class="line">numbersCloseEnoughToEqual( a, b ); // true</div><div class="line">numbersCloseEnoughToEqual( 0.0000001, 0.0000002 ); // false</div></pre></td></tr></table></figure></p>
+<h4 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h4><p>NaN 意指“不是一个数字”（not a number），这个名字容易引起误会,它仍是一个数字类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">var a = 2 / &quot;foo&quot;;</div><div class="line">var b = &quot;foo&quot;;</div><div class="line">a; // NaN</div><div class="line">b; &quot;foo&quot;</div><div class="line">window.isNaN( a ); // true</div><div class="line">window.isNaN( b ); // true——晕！</div><div class="line"></div><div class="line">if (!Number.isNaN) &#123;</div><div class="line">    Number.isNaN = function(n) &#123;</div><div class="line">        return (</div><div class="line">            typeof n === &quot;number&quot; &amp;&amp; window.isNaN( n )</div><div class="line">        );</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line">var a = 2 / &quot;foo&quot;;</div><div class="line">var b = &quot;foo&quot;;</div><div class="line">Number.isNaN( a ); // true</div><div class="line">Number.isNaN( b ); // false——好！</div></pre></td></tr></table></figure>
+<p><strong>尽量使用Number.isNaN(..)</strong></p>
+<p><strong>能使用== 和===时就尽量不要使用Object.is(..)，因为前者效率更高、更为通用。Object.is(..) 主要用来处理那些特殊的相等比较。</strong></p>
+<h3 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h3><h4 id="显示强制类型转换"><a href="#显示强制类型转换" class="headerlink" title="显示强制类型转换"></a>显示强制类型转换</h4><p>根据ToPrimitive 抽象操作规则，a(Object) + “” 会对a 调用valueOf() 方法，然后通过ToString 抽象操作将返回值转换为字符串。而String(a) 则是直接调用ToString()。</p>
+<p><strong>== 允许在相等比较中进行强制类型转换，而=== 不允许。</strong><br><strong>建议不要使用 == true 和 == false。（Boolean类型会首先转换为数字）</strong><br><strong>安全运用隐式强制类型转换</strong></p>
+<ul>
+<li>如果两边的值中有true 或者false，千万不要使用==。</li>
+<li>如果两边的值中有[]、”” 或者0，尽量不要使用==。</li>
+</ul>
+<h2 id="第二部分-异步和性能"><a href="#第二部分-异步和性能" class="headerlink" title="第二部分 异步和性能"></a>第二部分 异步和性能</h2><h3 id="同步与异步"><a href="#同步与异步" class="headerlink" title="同步与异步"></a>同步与异步</h3><p>一般而言，操作分为：发出调用和得到结果两步。发出调用，立即得到结果是为同步。发出调用，但无法立即得到结果，需要额外的操作才能得到预期的结果是为异步。同步就是调用之后一直等待，直到返回结果。异步则是调用之后，不能直接拿到结果，通过一系列的手段才最终拿到结果（调用之后，拿到结果中间的时间可以介入其他任务）。<br>原理：【定时器并不是特例。到达时间点后，会形成一个事件（timeout事件）。不同的是一般事件是靠底层系统或者线程池之类的产生事件，但定时器事件是靠事件循环不停检查系统时间来判定是否到达时间点来产生事件】<br>原理：【ajax请求是在主线程里面执行，浏览器就会设置侦听来自网络的响应，ajax请求完成事件（异步）放入Event queue】</p>
+<h4 id="Deffered和Promise的差异"><a href="#Deffered和Promise的差异" class="headerlink" title="Deffered和Promise的差异"></a>Deffered和Promise的差异</h4><ul>
+<li>Deffered触发resolve或reject</li>
+<li>Promise中申明resolve或reject后应该做什么（回调）</li>
+</ul>
+<h3 id="生成器-Generator和Iterator"><a href="#生成器-Generator和Iterator" class="headerlink" title="生成器 (Generator和Iterator)"></a>生成器 (Generator和Iterator)</h3><p><strong>具体的用法，这个很乱，去找点视频来看。</strong></p>
+<p>异步迭代生成器用例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div></pre></td><td class="code"><pre><div class="line">// 常用异步回调方法</div><div class="line">function foo(x,y,cb) &#123;</div><div class="line">    ajax(</div><div class="line">    &quot;http://some.url.1/?x=&quot; + x + &quot;&amp;y=&quot; + y,</div><div class="line">    cb</div><div class="line">    );</div><div class="line">&#125;</div><div class="line">foo( 11, 31, function(err,text) &#123;</div><div class="line">    if (err) &#123;</div><div class="line">        console.error( err );</div><div class="line">    &#125;</div><div class="line">    else &#123;</div><div class="line">        console.log( text );</div><div class="line">    &#125;</div><div class="line">&#125; );</div><div class="line"></div><div class="line">// 生成器表达同样的任务流程控制</div><div class="line">function foo(x,y) &#123;</div><div class="line">    ajax(</div><div class="line">        &quot;http://some.url.1/?x=&quot; + x + &quot;&amp;y=&quot; + y,</div><div class="line">        function(err,data)&#123;</div><div class="line">            if (err) &#123;</div><div class="line">                // 向*main()抛出一个错误</div><div class="line">                it.throw( err );</div><div class="line">            &#125;</div><div class="line">            else &#123;</div><div class="line">                // 用收到的data恢复*main()</div><div class="line">                it.next( data );</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    );</div><div class="line">&#125;</div><div class="line"></div><div class="line">function *main() &#123;</div><div class="line">    try &#123;</div><div class="line">        var text = yield foo( 11, 31 );</div><div class="line">        console.log( text );</div><div class="line">    &#125;</div><div class="line">    catch (err) &#123;</div><div class="line">        console.error( err );</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var it = main();</div><div class="line">it.next();</div><div class="line"></div><div class="line"></div><div class="line">// 生成器+ Promise</div><div class="line">function foo(x,y) &#123;</div><div class="line">    return request(</div><div class="line">        &quot;http://some.url.1/?x=&quot; + x + &quot;&amp;y=&quot; + y</div><div class="line">    );</div><div class="line">&#125;</div><div class="line">function *main() &#123;</div><div class="line">    try &#123;</div><div class="line">        var text = yield foo( 11, 31 );</div><div class="line">        console.log( text );</div><div class="line">    &#125;</div><div class="line">    catch (err) &#123;</div><div class="line">        console.error( err );</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var it = main();</div><div class="line">var p = it.next().value;</div><div class="line"></div><div class="line">p.then(</div><div class="line">    function(text)&#123;</div><div class="line">        it.next( text );</div><div class="line">    &#125;,</div><div class="line">    function(err)&#123;</div><div class="line">        it.throw( err );</div><div class="line">    &#125;</div><div class="line">);</div></pre></td></tr></table></figure></p>
+<h3 id="性能测试与调优"><a href="#性能测试与调优" class="headerlink" title="性能测试与调优"></a>性能测试与调优</h3><p>工具：Benchmark.js</p>
+<h4 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h4><p>原理： 调用一个新的函数需要额外的一块预留内存来管理调用栈，称为栈帧。如果是在尾部调用一个新的函数，它就不需要创建一个新的栈帧，而是可以重用已有的bar(..) 的栈帧。这样不仅速度更快，也更节省内存。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">// 常用递归 factorial</div><div class="line">function factorial(num)&#123;</div><div class="line">      if (num &lt; 0) &#123; </div><div class="line">          return -1; </div><div class="line">      &#125; else if (num === 0 || num === 1) &#123; </div><div class="line">          return 1; </div><div class="line">      &#125; else &#123; </div><div class="line">          return (num * factorial(num - 1)); </div><div class="line">      &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 尾调用优化</div><div class="line">function factorial(num,sum)&#123;</div><div class="line">      if(num &lt; 2 ) &#123;</div><div class="line">          return sum;</div><div class="line">      &#125;else &#123;</div><div class="line">          return factorial(num-1,num*sum)</div><div class="line">      &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/02/你不知道的JavaScript-中卷/" data-id="cj5x8tpzz0003cso0v5y89ahg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -166,7 +314,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/12/hello-world/" data-id="cj50sndec0000l4o0whvfxjm3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/12/hello-world/" data-id="cj5x8tpwi0000cso0bddm2mmp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -193,7 +341,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
     </div>
   </div>
 
@@ -206,7 +354,15 @@
       <ul>
         
           <li>
-            <a href="/2017/07/14/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
+            <a href="/2017/08/08/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/08/bootstrap学习笔记/">bootstrap学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/02/你不知道的JavaScript-中卷/">你不知道的JavaScript-中卷</a>
           </li>
         
           <li>

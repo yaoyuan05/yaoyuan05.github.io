@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>bootstrap学习笔记 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="tab.jsBootstrap: tab.js 内用$.Event()实现回调。12345678910111213$previous.trigger(&amp;#123;    type: &amp;apos;hidden.bs.tab&amp;apos;,    relatedTarget: $this[0]&amp;#125;)$this.trigger(&amp;#123;    type: &amp;apos;shown.bs.tab&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bootstrap学习笔记">
+<meta property="og:url" content="http://yoursite.com/2017/08/08/bootstrap学习笔记/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="tab.jsBootstrap: tab.js 内用$.Event()实现回调。12345678910111213$previous.trigger(&amp;#123;    type: &amp;apos;hidden.bs.tab&amp;apos;,    relatedTarget: $this[0]&amp;#125;)$this.trigger(&amp;#123;    type: &amp;apos;shown.bs.tab&amp;">
+<meta property="og:updated_time" content="2017-08-08T06:23:37.611Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="bootstrap学习笔记">
+<meta name="twitter:description" content="tab.jsBootstrap: tab.js 内用$.Event()实现回调。12345678910111213$previous.trigger(&amp;#123;    type: &amp;apos;hidden.bs.tab&amp;apos;,    relatedTarget: $this[0]&amp;#125;)$this.trigger(&amp;#123;    type: &amp;apos;shown.bs.tab&amp;">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-bootstrap学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/08/bootstrap学习笔记/" class="article-date">
+  <time datetime="2017-08-08T06:23:37.610Z" itemprop="datePublished">2017-08-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      bootstrap学习笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="tab-js"><a href="#tab-js" class="headerlink" title="tab.js"></a>tab.js</h3><p>Bootstrap: tab.js 内用$.Event()实现回调。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$previous.trigger(&#123;</div><div class="line">    type: &apos;hidden.bs.tab&apos;,</div><div class="line">    relatedTarget: $this[0]</div><div class="line">&#125;)</div><div class="line">$this.trigger(&#123;</div><div class="line">    type: &apos;shown.bs.tab&apos;,</div><div class="line">    relatedTarget: $previous[0]</div><div class="line">&#125;)</div><div class="line"></div><div class="line">// 利用事件冒泡，可将回调函数绑定在.nav-tabs a 的父元素。 例：</div><div class="line">$(&quot;.nav-tabs li a&quot;).on(&quot;shown.bs.tab&quot;,function (event) &#123;</div><div class="line">   console.log(event.relatedTarget);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h3 id="affix-js"><a href="#affix-js" class="headerlink" title="affix.js"></a>affix.js</h3><p>$.proxy(this.checkPosition, this),返回一个新函数，并且这个函数始终保持了特定的作用域<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">this.$target = $(this.options.target)</div><div class="line">      .on(&apos;scroll.bs.affix.data-api&apos;, $.proxy(this.checkPosition, this))</div><div class="line">      .on(&apos;click.bs.affix.data-api&apos;,  $.proxy(this.checkPositionWithEventLoop, this))</div></pre></td></tr></table></figure></p>
+<h3 id="carousel-js"><a href="#carousel-js" class="headerlink" title="carousel.js"></a>carousel.js</h3><p>大图轮播列表循环实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var delta = direction == &apos;prev&apos; ? -1 : 1</div><div class="line">var itemIndex = (activeIndex + delta) % this.$items.length</div><div class="line">return this.$items.eq(itemIndex)</div><div class="line">// 技术点 求余得到下一位index</div><div class="line">// eq()负数则从集合中的最后一个元素往回计数。</div></pre></td></tr></table></figure></p>
+<h3 id="collapse-js"><a href="#collapse-js" class="headerlink" title="collapse.js"></a>collapse.js</h3><p>Accordion example,需固定的结构，子级trigger元素需包含data-parent=”#xx”,parent &gt; 子元素包含”.panel”类.<br>实现原理:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 要实现关联操作，如果一个元素需要执行show()方法，一定会有另一个元素执行hide()方法</div><div class="line">if (actives &amp;&amp; actives.length) &#123;</div><div class="line">    Plugin.call(actives, &apos;hide&apos;)</div><div class="line">    activesData || actives.data(&apos;bs.collapse&apos;, null)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="dropdown-js"><a href="#dropdown-js" class="headerlink" title="dropdown.js"></a>dropdown.js</h3><p>clearMenus(),用于复位初始状态。执行任何方法前先执行复位操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">//原理: </div><div class="line">Dropdown.prototype.toggle = function (e) &#123;</div><div class="line"></div><div class="line">    var isActive = $parent.hasClass(&apos;open&apos;);</div><div class="line">    clearMenus()；</div><div class="line">    if(!isActive)&#123;</div><div class="line">        // 执行状态</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;  </div><div class="line">$(document)</div><div class="line">  .on(&apos;click.bs.dropdown.data-api&apos;, clearMenus)</div><div class="line">  .on(&apos;click.bs.dropdown.data-api&apos;, &apos;.dropdown form&apos;, function (e) &#123; e.stopPropagation() &#125;)</div><div class="line">  .on(&apos;click.bs.dropdown.data-api&apos;, toggle, Dropdown.prototype.toggle)</div><div class="line">  .on(&apos;keydown.bs.dropdown.data-api&apos;, toggle, Dropdown.prototype.keydown)</div><div class="line">  .on(&apos;keydown.bs.dropdown.data-api&apos;, &apos;.dropdown-menu&apos;, Dropdown.prototype.keydown)</div></pre></td></tr></table></figure></p>
+<h3 id="modal-js"><a href="#modal-js" class="headerlink" title="modal.js"></a>modal.js</h3><ul>
+<li><code>window.innerWidth</code> IE8不支持的解决方案<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// getBoundingClientRect()取得的数值都是参照视口的左上角位置而言的。</div><div class="line">var fullWindowWidth = window.innerWidth</div><div class="line">if (!fullWindowWidth) &#123; // workaround for missing window.innerWidth in IE8</div><div class="line">  var documentElementRect = document.documentElement.getBoundingClientRect()</div><div class="line">  fullWindowWidth = documentElementRect.right - Math.abs(documentElementRect.left)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>扩展： <code>$(window).width()</code>获取的是return window.document.documentElement[ “clientWidth” ];<br>区别在于clientWidth获取可见区域宽（不包含滚动条宽度），window.innerWidth获取当前窗口的宽度（包含滚动条宽度），如果两数修值存在，相减得到滚动条宽度。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/08/bootstrap学习笔记/" data-id="cj5x8tpwy0001cso096bcixl2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/08/你不知道的JavaScript-上卷/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          你不知道的JavaScript(上卷)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/02/你不知道的JavaScript-中卷/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">你不知道的JavaScript-中卷</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/08/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/08/bootstrap学习笔记/">bootstrap学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/02/你不知道的JavaScript-中卷/">你不知道的JavaScript-中卷</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/12/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

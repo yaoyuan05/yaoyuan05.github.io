@@ -8,10 +8,10 @@
   <meta name="description" content="欺骗作用域欺骗作用域的两种方法分别是：  eval(..)  new Function(..) 函数的行为也很类似，最后一个参数可以接受代码字符串，并将其转化为动态生成的函数（前面的参数是这个新生成的函数的形参）。这种构建函数的语法比eval(..) 略微安全一些，但也要尽量避免使用。严格模式下，eval()无法修改所在的作用域。  with(..)  尽管with块可以将一个对象处理为词法作用域">
 <meta property="og:type" content="article">
 <meta property="og:title" content="你不知道的JavaScript(上卷)">
-<meta property="og:url" content="http://yoursite.com/2017/07/14/你不知道的JavaScript-上卷/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/07/17/你不知道的JavaScript-上卷/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="欺骗作用域欺骗作用域的两种方法分别是：  eval(..)  new Function(..) 函数的行为也很类似，最后一个参数可以接受代码字符串，并将其转化为动态生成的函数（前面的参数是这个新生成的函数的形参）。这种构建函数的语法比eval(..) 略微安全一些，但也要尽量避免使用。严格模式下，eval()无法修改所在的作用域。  with(..)  尽管with块可以将一个对象处理为词法作用域">
-<meta property="og:updated_time" content="2017-07-14T04:21:26.619Z">
+<meta property="og:updated_time" content="2017-07-17T02:09:23.603Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="你不知道的JavaScript(上卷)">
 <meta name="twitter:description" content="欺骗作用域欺骗作用域的两种方法分别是：  eval(..)  new Function(..) 函数的行为也很类似，最后一个参数可以接受代码字符串，并将其转化为动态生成的函数（前面的参数是这个新生成的函数的形参）。这种构建函数的语法比eval(..) 略微安全一些，但也要尽量避免使用。严格模式下，eval()无法修改所在的作用域。  with(..)  尽管with块可以将一个对象处理为词法作用域">
@@ -65,8 +65,8 @@
       <div class="outer">
         <section id="main"><article id="post-你不知道的JavaScript-上卷" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/07/14/你不知道的JavaScript-上卷/" class="article-date">
-  <time datetime="2017-07-14T04:21:26.619Z" itemprop="datePublished">2017-07-14</time>
+    <a href="/2017/07/17/你不知道的JavaScript-上卷/" class="article-date">
+  <time datetime="2017-07-17T02:09:23.603Z" itemprop="datePublished">2017-07-17</time>
 </a>
     
   </div>
@@ -119,11 +119,36 @@
 <p><strong>this到底是什么</strong></p>
 <p>this是在运行时进行绑定的，并不是在编写时绑定，它的上下文取决于函数调用时的各种条件。this 的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式。<br>当一个函数被调用时，会创建一个活动记录（有时候也称为执行上下文）。这个记录会包含函数在哪里被调用（调用栈）、函数的调用方法、传入的参数等信息。this 就是记录的其中一个属性，会在函数执行的过程中用到。</p>
 <p><strong>常见错误：隐式丢失</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">    console.log( this.a );</div><div class="line">&#125;</div><div class="line">var obj = &#123;</div><div class="line">    a: 2,</div><div class="line">    foo: foo</div><div class="line">&#125;;</div><div class="line">var bar = obj.foo; // 函数别名！</div><div class="line">var a = &quot;oops, global&quot;; // a 是全局对象的属性</div><div class="line">bar(); // &quot;oops, global&quot;</div><div class="line">//虽然bar 是obj.foo 的一个引用，但是实际上，它引用的是foo 函数本身,因此此时的bar() 其实是一个不带任何修饰的函数调用，因此应用了默认绑定。</div><div class="line">//另一种情况是将函数传入回调函数中，doFoo(obj.foo).</div><div class="line">function doFoo(fn)&#123;</div><div class="line">    fn();//fn引用的是foo</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>判断一个运行中函数的this 绑定</strong></p>
+<p>四条规则来判断this 的绑定对象：</p>
+<ol>
+<li>由new 调用？绑定到新创建的对象。</li>
+<li>由call 或者apply（或者bind）调用？绑定到指定的对象。</li>
+<li>由上下文对象调用？绑定到那个上下文对象。</li>
+<li>默认：在严格模式下绑定到undefined，否则绑定到全局对象。</li>
+</ol>
+<p><strong>建议</strong></p>
+<p>如果你经常编写this风格的代码，但是绝大部分时候都会使用self = this 或者箭头函数来否定this 机制，那你或许应当：</p>
+<ol>
+<li>只使用词法作用域并完全抛弃错误this 风格的代码；</li>
+<li>完全采用this 风格，在必要时使用bind(..)，尽量避免使用self = this 和箭头函数。</li>
+</ol>
+<p>当然，包含这两种代码风格的程序可以正常运行，但是在同一个函数或者同一个程序中混合使用这两种风格通常会使代码更难维护，并且可能也会更难编写。</p>
+<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><p><strong>设置对象的属性不可改变（都是浅不变形）</strong></p>
+<p>4种方法：</p>
+<ol>
+<li>结合writable:false 和configurable:false 就可以创建一个真正的常量属性（不可修改、<br>重定义或者删除）:</li>
+<li>禁止扩展：Object.preventExtensions( myObject );</li>
+<li>密封: Object.seal(..);</li>
+<li>冻结: Object.freeze(..)</li>
+</ol>
+<p><strong>存在性</strong></p>
+<p>in 和hasOwnProperty(..) 的区别在于是否查找[[Prototype]] 链，然而，Object.keys(..)和Object.getOwnPropertyNames(..) 都只会查找对象直接包含的属性。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/14/你不知道的JavaScript-上卷/" data-id="cj50snden0001l4o0ta2vjym8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/17/你不知道的JavaScript-上卷/" data-id="cj53mvky500002ko08jviji6d" class="article-share-link">Share</a>
       
       
     </footer>
@@ -172,7 +197,7 @@
       <ul>
         
           <li>
-            <a href="/2017/07/14/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
+            <a href="/2017/07/17/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
           </li>
         
           <li>

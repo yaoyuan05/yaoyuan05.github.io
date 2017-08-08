@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>你不知道的JavaScript(上卷) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="作用域是什么两个问题：  变量存储在那里？ 程序如何找到它？  作用域是一套规则，用于确定在何处以及如何查找变量（标识符）。 任何JavaScript 代码片段都要经过两个阶段，编译阶段和执行阶段。 遍历嵌套作用域链的规则很简单：引擎从当前的执行作用域开始查找变量，如果找不到，就向上一级继续查找。当抵达最外层的全局作用域时，无论找到还是没找到，查找过程都会停止。 小tip: ReferenceEr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="你不知道的JavaScript(上卷)">
+<meta property="og:url" content="http://yoursite.com/2017/08/08/你不知道的JavaScript-上卷/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="作用域是什么两个问题：  变量存储在那里？ 程序如何找到它？  作用域是一套规则，用于确定在何处以及如何查找变量（标识符）。 任何JavaScript 代码片段都要经过两个阶段，编译阶段和执行阶段。 遍历嵌套作用域链的规则很简单：引擎从当前的执行作用域开始查找变量，如果找不到，就向上一级继续查找。当抵达最外层的全局作用域时，无论找到还是没找到，查找过程都会停止。 小tip: ReferenceEr">
+<meta property="og:updated_time" content="2017-08-08T13:48:39.848Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="你不知道的JavaScript(上卷)">
+<meta name="twitter:description" content="作用域是什么两个问题：  变量存储在那里？ 程序如何找到它？  作用域是一套规则，用于确定在何处以及如何查找变量（标识符）。 任何JavaScript 代码片段都要经过两个阶段，编译阶段和执行阶段。 遍历嵌套作用域链的规则很简单：引擎从当前的执行作用域开始查找变量，如果找不到，就向上一级继续查找。当抵达最外层的全局作用域时，无论找到还是没找到，查找过程都会停止。 小tip: ReferenceEr">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-你不知道的JavaScript-上卷" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/08/你不知道的JavaScript-上卷/" class="article-date">
+  <time datetime="2017-08-08T13:48:39.848Z" itemprop="datePublished">2017-08-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      你不知道的JavaScript(上卷)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="作用域是什么"><a href="#作用域是什么" class="headerlink" title="作用域是什么"></a>作用域是什么</h2><p>两个问题：</p>
+<ul>
+<li>变量存储在那里？</li>
+<li>程序如何找到它？</li>
+</ul>
+<p>作用域是一套规则，用于确定在何处以及如何查找变量（标识符）。</p>
+<p>任何JavaScript 代码片段都要经过两个阶段，编译阶段和执行阶段。</p>
+<p>遍历嵌套作用域链的规则很简单：引擎从当前的执行作用域开始查找变量，如果找不到，就向上一级继续查找。当抵达最外层的全局作用域时，无论找到还是没找到，查找过程都会停止。</p>
+<p>小tip: ReferenceError 同作用域判别失败相关，而TypeError 则代表作用域判别成功了，但是对结果的操作是非法或不合理的。</p>
+<h2 id="词法作用域"><a href="#词法作用域" class="headerlink" title="词法作用域"></a>词法作用域</h2><p>作用域共有两种主要的工作模型。第一种是最为普遍的，被大多数编程语言所采用的词法作用域，另外一种叫作动态作用域，仍有一些编程语言在使用（比如Bash 脚本、Perl 中的一些模式等）。<br>作用域查找始终从运行时所处的最内部作用域开始，逐级向外或者说向上进行，直到遇见第一个匹配的标识符为止。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var a = 0;</div><div class="line">function foo()&#123;</div><div class="line">    var a = &quot;test&quot;         // 会形成“遮蔽效应”（内部的标识符“遮蔽”了外部的标识符）</div><div class="line">    console.log(a);</div><div class="line">    console.log(window.a)  // 间接访问那些被同名变量所遮蔽的全局变量</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>无论函数在哪里被调用，也无论它如何被调用，它的词法作用域都只由函数被声明时所处的位置决定。</strong></p>
+<h4 id="欺骗词法作用域"><a href="#欺骗词法作用域" class="headerlink" title="欺骗词法作用域"></a>欺骗词法作用域</h4><p>怎样才能在运行时来“修改”（也可以说欺骗）词法作用域呢？欺骗作用域的两种方法分别是：</p>
+<ul>
+<li>eval(..)</li>
+</ul>
+<p>new Function(..) 函数的行为也很类似，最后一个参数可以接受代码字符串，并将其转化为动态生成的函数（前面的参数是这个新生成的函数的形参）。这种构建函数的语法比eval(..) 略微安全一些，但也要尽量避免使用。<br>严格模式下，eval()无法修改所在的作用域。</p>
+<ul>
+<li>with(..)</li>
+</ul>
+<p>尽管with块可以将一个对象处理为词法作用域，但是这个块内部正常的var声明并不会被限制在这个块的作用域中，而是被添加到with 所处的函数作用域中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">with (obj) &#123;</div><div class="line">    a = 2;</div><div class="line">&#125;</div><div class="line">// obj.a如果存在，值会修改为“2”.如果a不存在会在全局变量新增window.a = &quot;2&quot;.</div></pre></td></tr></table></figure></p>
+<p><strong>欺骗词法作用域会导致性能下降，所以不推荐使用，还有一个原因是会被严格模式所影响（限制）。</strong></p>
+<blockquote>
+<p>扩展 严格模式 IE10包括IE10以上支持</p>
+</blockquote>
+<ul>
+<li>消除javascript语法的一些不合理、不严谨之处，减少一些怪异行为;</li>
+<li>消除代码运行的一些不安全之处，保证代码运行的安全；</li>
+<li>提高编译器效率，增加运行速度；</li>
+<li>为未来新版本的Javascript做好铺垫。</li>
+</ul>
+<p>严格模式带来的语法和行为改变</p>
+<ul>
+<li>禁止this关键字指向全局对象</li>
+<li>禁止使用arguments.callee</li>
+<li>函数必须声明在顶层<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&quot;use strict&quot;;</div><div class="line">// 函数必须声明在顶层</div><div class="line">if (true) &#123;</div><div class="line">    function f() &#123; &#125; // 语法错误</div><div class="line">&#125;</div><div class="line">for (var i = 0; i &lt; 5; i++) &#123;</div><div class="line">    function f2() &#123; &#125; // 语法错误</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>扩展资料：</p>
+<ul>
+<li>编辑阶段，函数声明会优先于变量声明优先提升。</li>
+<li>函数表达式不会提升。</li>
+</ul>
+</blockquote>
+<p>避免以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">foo(); // &quot;b&quot; 旧的谷歌浏览器</div><div class="line">var a = true;</div><div class="line">if (a) &#123;</div><div class="line">    function foo() &#123; console.log(&quot;a&quot;); &#125;</div><div class="line">&#125;</div><div class="line">else &#123;</div><div class="line">    function foo() &#123; console.log(&quot;b&quot;); &#125;</div><div class="line">&#125;</div><div class="line">// 经测试，新的谷歌浏览器反馈是Uncaught TypeError。一个博客主分析是因为foo()被认为是函数表达式了，foo变量名提升了。</div></pre></td></tr></table></figure></p>
+<p><strong>好的代码习惯： 避免重复声明,先声明后执行。</strong></p>
+<h3 id="闭包的概念"><a href="#闭包的概念" class="headerlink" title="闭包的概念"></a>闭包的概念</h3><p>函数执行可使用函数所在的词法作用域变量即视为闭包。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">// 常见闭包</div><div class="line">function foo() &#123;</div><div class="line">    var a = 2;</div><div class="line">    function bar() &#123;</div><div class="line">        console.log(a);</div><div class="line">    &#125;</div><div class="line">    return bar;</div><div class="line">&#125;</div><div class="line">var baz = foo();</div><div class="line">baz();</div><div class="line"></div><div class="line">//方式二</div><div class="line">function foo() &#123;</div><div class="line">    var a = 2;</div><div class="line">    function baz() &#123;</div><div class="line">        console.log( a ); // 2</div><div class="line">    &#125;</div><div class="line">    bar( baz );</div><div class="line">&#125;</div><div class="line">function bar(fn) &#123;</div><div class="line">    fn(); // 妈妈快看呀，这就是闭包！</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 方式三</div><div class="line">var fn;</div><div class="line">function foo() &#123;</div><div class="line">    var a = 2;</div><div class="line">    function baz() &#123;</div><div class="line">        console.log( a );</div><div class="line">    &#125;</div><div class="line">    fn = baz; // 将baz 分配给全局变量</div><div class="line">&#125;</div><div class="line">function bar() &#123;</div><div class="line">    fn(); // 妈妈快看呀，这就是闭包！</div><div class="line">&#125;</div><div class="line">foo();</div><div class="line">bar();</div><div class="line"></div><div class="line">// 方式四</div><div class="line">function wait(message) &#123;</div><div class="line">    setTimeout( function timer() &#123;</div><div class="line">        console.log( message );</div><div class="line">    &#125;, 1000 );</div><div class="line">&#125;</div><div class="line">wait( &quot;Hello, closure!&quot; );</div></pre></td></tr></table></figure></p>
+<h3 id="this全面解析"><a href="#this全面解析" class="headerlink" title="this全面解析"></a>this全面解析</h3><p><strong>关于this的误解</strong></p>
+<p>学习this 的第一步是明白this 既不指向函数自身也不指向函数的词法作用域。</p>
+<p><strong>this到底是什么</strong></p>
+<p>this是在运行时进行绑定的，并不是在编写时绑定，它的上下文取决于函数调用时的各种条件。this 的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式。<br>当一个函数被调用时，会创建一个活动记录（有时候也称为执行上下文）。这个记录会包含函数在哪里被调用（调用栈）、函数的调用方法、传入的参数等信息。this 就是记录的其中一个属性，会在函数执行的过程中用到。</p>
+<p><strong>常见错误：隐式丢失</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">    console.log( this.a );</div><div class="line">&#125;</div><div class="line">var obj = &#123;</div><div class="line">    a: 2,</div><div class="line">    foo: foo</div><div class="line">&#125;;</div><div class="line">var bar = obj.foo; // 函数别名！</div><div class="line">var a = &quot;oops, global&quot;; // a 是全局对象的属性</div><div class="line">bar(); // &quot;oops, global&quot;</div><div class="line">//虽然bar 是obj.foo 的一个引用，但是实际上，它引用的是foo 函数本身,因此此时的bar() 其实是一个不带任何修饰的函数调用，因此应用了默认绑定。</div><div class="line">//另一种情况是将函数传入回调函数中，doFoo(obj.foo).</div><div class="line">function doFoo(fn)&#123;</div><div class="line">    fn();//fn引用的是foo</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>判断一个运行中函数的this 绑定</strong></p>
+<p>四条规则来判断this 的绑定对象：</p>
+<ol>
+<li>由new 调用？绑定到新创建的对象。</li>
+<li>由call 或者apply（或者bind）调用？绑定到指定的对象。</li>
+<li>由上下文对象调用？绑定到那个上下文对象。</li>
+<li>默认：在严格模式下绑定到undefined，否则绑定到全局对象。</li>
+</ol>
+<p><strong>建议</strong></p>
+<p>如果你经常编写this风格的代码，但是绝大部分时候都会使用self = this 或者箭头函数来否定this 机制，那你或许应当：</p>
+<ol>
+<li>只使用词法作用域并完全抛弃错误this 风格的代码；</li>
+<li>完全采用this 风格，在必要时使用bind(..)，尽量避免使用self = this 和箭头函数。</li>
+</ol>
+<p>当然，包含这两种代码风格的程序可以正常运行，但是在同一个函数或者同一个程序中混合使用这两种风格通常会使代码更难维护，并且可能也会更难编写。</p>
+<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><p><strong>设置对象的属性不可改变（都是浅不变形）</strong></p>
+<p>4种方法：</p>
+<ol>
+<li>结合writable:false 和configurable:false 就可以创建一个真正的常量属性（不可修改、<br>重定义或者删除）:</li>
+<li>禁止扩展：Object.preventExtensions( myObject );</li>
+<li>密封: Object.seal(..);</li>
+<li>冻结: Object.freeze(..)</li>
+</ol>
+<p><strong>存在性</strong></p>
+<p>in 和hasOwnProperty(..) 的区别在于是否查找[[Prototype]] 链，然而，Object.keys(..)和Object.getOwnPropertyNames(..) 都只会查找对象直接包含的属性。</p>
+<h3 id="行为委托"><a href="#行为委托" class="headerlink" title="行为委托"></a>行为委托</h3><p><strong>面向委托的设计 对象关联</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">Task = &#123;</div><div class="line">    setID: function(ID) &#123; this.id = ID; &#125;,</div><div class="line">    outputID: function() &#123; console.log( this.id ); &#125;</div><div class="line">&#125;;</div><div class="line">// 让XYZ 委托Task</div><div class="line">XYZ = Object.create( Task );</div><div class="line">XYZ.prepareTask = function(ID,Label) &#123;</div><div class="line">    this.setID( ID );</div><div class="line">    this.label = Label;</div><div class="line">&#125;;</div><div class="line">XYZ.outputTaskDetails = function() &#123;</div><div class="line">    this.outputID();</div><div class="line">    console.log( this.label );</div><div class="line">&#125;;</div><div class="line"></div><div class="line">XYZ.prepareTask(&quot;cc&quot;,&quot;test&quot;); //id = cc , label = test</div><div class="line">XYZ.outputTaskDetails();</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/08/你不知道的JavaScript-上卷/" data-id="cj5x8tpwy0002cso0eqwilz0h" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/08/08/bootstrap学习笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">bootstrap学习笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/08/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/08/bootstrap学习笔记/">bootstrap学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/02/你不知道的JavaScript-中卷/">你不知道的JavaScript-中卷</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/12/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
