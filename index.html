@@ -48,9 +48,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -61,10 +61,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-你不知道的JavaScript-上卷" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Professional-JavaScript-fof-Web-Developers-3rd-Edition" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/08/08/你不知道的JavaScript-上卷/" class="article-date">
-  <time datetime="2017-08-08T13:48:39.848Z" itemprop="datePublished">2017-08-08</time>
+    <a href="/2017/08/09/Professional-JavaScript-fof-Web-Developers-3rd-Edition/" class="article-date">
+  <time datetime="2017-08-09T06:34:09.003Z" itemprop="datePublished">2017-08-09</time>
 </a>
     
   </div>
@@ -75,7 +75,52 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/08/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
+      <a class="article-title" href="/2017/08/09/Professional-JavaScript-fof-Web-Developers-3rd-Edition/">JavaScript高级程序设计（3rd Edition）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="第2章-在HTML中使用JavaScript"><a href="#第2章-在HTML中使用JavaScript" class="headerlink" title="第2章 在HTML中使用JavaScript"></a>第2章 在HTML中使用JavaScript</h2><h4 id="2-1-lt-script-gt-元素"><a href="#2-1-lt-script-gt-元素" class="headerlink" title="2.1 &lt;script&gt; 元素"></a>2.1 &lt;script&gt; 元素</h4><p>带有src属性的<code> &lt;script&gt;</code>不应该在标签之间再包含额外的JavaScript代码，嵌入的代码会被忽略</p>
+<p><code> &lt;script&gt;</code>标签打开defer或async属性，脚本就会异步加载。渲染引擎遇到这一行命令，就会开始下载外部脚本，但不会等它下载和执行，而是直接执行后面的命令。</p>
+<p>defer与async的区别是：前者要等到整个页面正常渲染结束，才会执行；后者一旦下载完，渲染引擎就会中断渲染，执行这个脚本以后，再继续渲染。一句话，defer是“渲染完再执行”，async是“下载完就执行”。另外，如果有多个defer脚本，会按照它们在页面出现的顺序加载，而多个async脚本是不能保证加载顺序的。</p>
+<h4 id="2-3-文档模式"><a href="#2-3-文档模式" class="headerlink" title="2.3 文档模式"></a>2.3 文档模式</h4><p>最初的两种文档模式：</p>
+<ul>
+<li>混杂模式(quirks mode),让IE的行为与IE5相同。</li>
+<li>标准模式(standards mode),让IE的行为更接近标准行为。</li>
+</ul>
+<p>这两种模式主要影响CSS内容的呈现(盒模型等)，现在基本兼容IE8以上，所以文档模型都采用HTML 5声明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;!-- HTML 5 --&gt;</div><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line"></div><div class="line">// css样式怪异显示，先查看有没有此声明</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/09/Professional-JavaScript-fof-Web-Developers-3rd-Edition/" data-id="cj63o3tq40000z4o0kff8av3y" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-你不知道的JavaScript-上卷" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/09/你不知道的JavaScript-上卷/" class="article-date">
+  <time datetime="2017-08-09T04:19:51.663Z" itemprop="datePublished">2017-08-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/09/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
     </h1>
   
 
@@ -92,8 +137,8 @@
 <p>任何JavaScript 代码片段都要经过两个阶段，编译阶段和执行阶段。</p>
 <p>遍历嵌套作用域链的规则很简单：引擎从当前的执行作用域开始查找变量，如果找不到，就向上一级继续查找。当抵达最外层的全局作用域时，无论找到还是没找到，查找过程都会停止。</p>
 <p>小tip: ReferenceError 同作用域判别失败相关，而TypeError 则代表作用域判别成功了，但是对结果的操作是非法或不合理的。</p>
-<h2 id="词法作用域"><a href="#词法作用域" class="headerlink" title="词法作用域"></a>词法作用域</h2><p>作用域共有两种主要的工作模型。第一种是最为普遍的，被大多数编程语言所采用的词法作用域，另外一种叫作动态作用域，仍有一些编程语言在使用（比如Bash 脚本、Perl 中的一些模式等）。<br>作用域查找始终从运行时所处的最内部作用域开始，逐级向外或者说向上进行，直到遇见第一个匹配的标识符为止。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var a = 0;</div><div class="line">function foo()&#123;</div><div class="line">    var a = &quot;test&quot;         // 会形成“遮蔽效应”（内部的标识符“遮蔽”了外部的标识符）</div><div class="line">    console.log(a);</div><div class="line">    console.log(window.a)  // 间接访问那些被同名变量所遮蔽的全局变量</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><strong>无论函数在哪里被调用，也无论它如何被调用，它的词法作用域都只由函数被声明时所处的位置决定。</strong></p>
+<h2 id="词法作用域"><a href="#词法作用域" class="headerlink" title="词法作用域"></a>词法作用域</h2><p>作用域共有两种主要的工作模型。第一种是最为普遍的，被大多数编程语言所采用的词法作用域，另外一种叫作动态作用域(参见附录)，仍有一些编程语言在使用（比如Bash 脚本、Perl 中的一些模式等）。<br>作用域查找始终从运行时所处的最内部作用域开始，逐级向外或者说向上进行，直到遇见第一个匹配的标识符为止。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var a = 0;</div><div class="line">function foo()&#123;</div><div class="line">    var a = &quot;test&quot;         // 会形成“遮蔽效应”（内部的标识符“遮蔽”了外部的标识符）</div><div class="line">    console.log(a);</div><div class="line">    console.log(window.a)  // 间接访问那些被同名变量所遮蔽的全局变量</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>无论函数在哪里被调用，也无论它如何被调用，它的词法作用域都只由函数被声明时所处的位置决定。</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">    console.log( a ); // 2</div><div class="line">&#125;</div><div class="line">function bar() &#123;</div><div class="line">    var a = 3;</div><div class="line">    foo();</div><div class="line">&#125;</div><div class="line">var a = 2;</div><div class="line">bar();</div></pre></td></tr></table></figure></p>
 <h4 id="欺骗词法作用域"><a href="#欺骗词法作用域" class="headerlink" title="欺骗词法作用域"></a>欺骗词法作用域</h4><p>怎样才能在运行时来“修改”（也可以说欺骗）词法作用域呢？欺骗作用域的两种方法分别是：</p>
 <ul>
 <li>eval(..)</li>
@@ -120,17 +165,38 @@
 <li>函数必须声明在顶层<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&quot;use strict&quot;;</div><div class="line">// 函数必须声明在顶层</div><div class="line">if (true) &#123;</div><div class="line">    function f() &#123; &#125; // 语法错误</div><div class="line">&#125;</div><div class="line">for (var i = 0; i &lt; 5; i++) &#123;</div><div class="line">    function f2() &#123; &#125; // 语法错误</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<blockquote>
-<p>扩展资料：</p>
+<h4 id="附录-动态作用域"><a href="#附录-动态作用域" class="headerlink" title="附录 动态作用域"></a>附录 动态作用域</h4><p>主要区别：词法作用域是在写代码或者说定义时确定的，而动态作用域是在运行时确定的。（this 也是！）词法作用域关注函数在何处声明，而动态作用域关注函数从何处调用。</p>
+<h2 id="函数作用域和块作用域"><a href="#函数作用域和块作用域" class="headerlink" title="函数作用域和块作用域"></a>函数作用域和块作用域</h2><p>函数作用域的含义是指，属于这个函数的全部变量都可以在整个函数的范围内使用及复用（事实上在嵌套的作用域中也可以使用）。这种设计方案是非常有用的，能充分利用JavaScript 变量可以根据需要改变值类型的“动态”特性。</p>
+<p>为了避免暴露过多的变量和函数和规避冲突，我们可以用以下两种解决方案：</p>
 <ul>
-<li>编辑阶段，函数声明会优先于变量声明优先提升。</li>
-<li>函数表达式不会提升。</li>
+<li>立即执行函数(IIFE)</li>
+<li>除JavaScript外的很多编程语言都支持块作用域。ES6提出了let关键字,const关键字绑定到所在的任意作用域中（通常是{ .. } 内部）。</li>
 </ul>
-</blockquote>
-<p>避免以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">foo(); // &quot;b&quot; 旧的谷歌浏览器</div><div class="line">var a = true;</div><div class="line">if (a) &#123;</div><div class="line">    function foo() &#123; console.log(&quot;a&quot;); &#125;</div><div class="line">&#125;</div><div class="line">else &#123;</div><div class="line">    function foo() &#123; console.log(&quot;b&quot;); &#125;</div><div class="line">&#125;</div><div class="line">// 经测试，新的谷歌浏览器反馈是Uncaught TypeError。一个博客主分析是因为foo()被认为是函数表达式了，foo变量名提升了。</div></pre></td></tr></table></figure></p>
+<p>JavaScript 的ES3 规范中规定try/catch 的catch 分句会创建一个块作用域，其中声明的变量仅在catch 内部有效。</p>
+<p>编码建议： 始终给函数表达式命名是一个最佳实践。</p>
+<h4 id="附录-块作用域的替代方案"><a href="#附录-块作用域的替代方案" class="headerlink" title="附录 块作用域的替代方案"></a>附录 块作用域的替代方案</h4><p>使用代码转换工具来对ES6 代码进行处理，生成兼容ES5的代码。</p>
+<ol>
+<li>Traceur</li>
+</ol>
+<h2 id="提升"><a href="#提升" class="headerlink" title="提升"></a>提升</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 说明变量提升的例子</div><div class="line">a = 2;</div><div class="line">var a;</div><div class="line">console.log( a );  // 2</div></pre></td></tr></table></figure>
+<p>注意两个提升细节：</p>
+<ul>
+<li>函数表达式不会提升。</li>
+<li>编辑阶段，函数声明会优先于变量声明优先提升。</li>
+</ul>
+<p>编码建议：避免以下代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">foo(); // &quot;b&quot; 旧的谷歌浏览器</div><div class="line">var a = true;</div><div class="line">if (a) &#123;</div><div class="line">    function foo() &#123; console.log(&quot;a&quot;); &#125;</div><div class="line">&#125;</div><div class="line">else &#123;</div><div class="line">    function foo() &#123; console.log(&quot;b&quot;); &#125;</div><div class="line">&#125;</div><div class="line">// 经测试，新的谷歌浏览器反馈是Uncaught TypeError。一个博客主分析是因为foo()被认为是函数表达式了，foo变量名提升了。</div></pre></td></tr></table></figure></p>
 <p><strong>好的代码习惯： 避免重复声明,先声明后执行。</strong></p>
-<h3 id="闭包的概念"><a href="#闭包的概念" class="headerlink" title="闭包的概念"></a>闭包的概念</h3><p>函数执行可使用函数所在的词法作用域变量即视为闭包。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">// 常见闭包</div><div class="line">function foo() &#123;</div><div class="line">    var a = 2;</div><div class="line">    function bar() &#123;</div><div class="line">        console.log(a);</div><div class="line">    &#125;</div><div class="line">    return bar;</div><div class="line">&#125;</div><div class="line">var baz = foo();</div><div class="line">baz();</div><div class="line"></div><div class="line">//方式二</div><div class="line">function foo() &#123;</div><div class="line">    var a = 2;</div><div class="line">    function baz() &#123;</div><div class="line">        console.log( a ); // 2</div><div class="line">    &#125;</div><div class="line">    bar( baz );</div><div class="line">&#125;</div><div class="line">function bar(fn) &#123;</div><div class="line">    fn(); // 妈妈快看呀，这就是闭包！</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 方式三</div><div class="line">var fn;</div><div class="line">function foo() &#123;</div><div class="line">    var a = 2;</div><div class="line">    function baz() &#123;</div><div class="line">        console.log( a );</div><div class="line">    &#125;</div><div class="line">    fn = baz; // 将baz 分配给全局变量</div><div class="line">&#125;</div><div class="line">function bar() &#123;</div><div class="line">    fn(); // 妈妈快看呀，这就是闭包！</div><div class="line">&#125;</div><div class="line">foo();</div><div class="line">bar();</div><div class="line"></div><div class="line">// 方式四</div><div class="line">function wait(message) &#123;</div><div class="line">    setTimeout( function timer() &#123;</div><div class="line">        console.log( message );</div><div class="line">    &#125;, 1000 );</div><div class="line">&#125;</div><div class="line">wait( &quot;Hello, closure!&quot; );</div></pre></td></tr></table></figure></p>
-<h3 id="this全面解析"><a href="#this全面解析" class="headerlink" title="this全面解析"></a>this全面解析</h3><p><strong>关于this的误解</strong></p>
+<h2 id="作用域闭包"><a href="#作用域闭包" class="headerlink" title="作用域闭包"></a>作用域闭包</h2><p>当函数可以记住并访问所在的词法作用域时，就产生了闭包，即使函数是在当前词法作用域之外执行。</p>
+<p>函数执行可使用函数所在的词法作用域变量即视为闭包。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">// 常见闭包</div><div class="line">function foo() &#123;</div><div class="line">    var a = 2;</div><div class="line">    function bar() &#123;</div><div class="line">        console.log(a);</div><div class="line">    &#125;</div><div class="line">    return bar;</div><div class="line">&#125;</div><div class="line">var baz = foo();</div><div class="line">baz();</div><div class="line"></div><div class="line">//方式二</div><div class="line">function foo() &#123;</div><div class="line">    var a = 2;</div><div class="line">    function baz() &#123;</div><div class="line">        console.log( a ); // 2</div><div class="line">    &#125;</div><div class="line">    bar( baz );</div><div class="line">&#125;</div><div class="line">function bar(fn) &#123;</div><div class="line">    fn(); // 妈妈快看呀，这就是闭包！</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 方式三</div><div class="line">var fn;</div><div class="line">function foo() &#123;</div><div class="line">    var a = 2;</div><div class="line">    function baz() &#123;</div><div class="line">        console.log( a );</div><div class="line">    &#125;</div><div class="line">    fn = baz; // 将baz 分配给全局变量</div><div class="line">&#125;</div><div class="line">function bar() &#123;</div><div class="line">    fn(); // 妈妈快看呀，这就是闭包！</div><div class="line">&#125;</div><div class="line">foo();</div><div class="line">bar();</div><div class="line"></div><div class="line">// 方式四</div><div class="line">function wait(message) &#123;</div><div class="line">    setTimeout( function timer() &#123;</div><div class="line">        console.log( message );</div><div class="line">    &#125;, 1000 );</div><div class="line">&#125;</div><div class="line">wait( &quot;Hello, closure!&quot; );</div></pre></td></tr></table></figure></p>
+<h4 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h4><p>模块的原理利用闭包。<br>模块模式需要具备两个必要条件：</p>
+<ol>
+<li>必须有外部的封闭函数，该函数必须至少被调用一次（每次调用都会创建一个新的模块实例）。</li>
+<li>封闭函数必须返回至少一个内部函数，这样内部函数才能在私有作用域中形成闭包，并且可以访问或者修改私有的状态。</li>
+</ol>
+<blockquote>
+<p>ES6 的模块</p>
+</blockquote>
+<h2 id="关于this"><a href="#关于this" class="headerlink" title="关于this"></a>关于this</h2><p><strong>关于this的误解</strong></p>
 <p>学习this 的第一步是明白this 既不指向函数自身也不指向函数的词法作用域。</p>
 <p><strong>this到底是什么</strong></p>
 <p>this是在运行时进行绑定的，并不是在编写时绑定，它的上下文取决于函数调用时的各种条件。this 的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式。<br>当一个函数被调用时，会创建一个活动记录（有时候也称为执行上下文）。这个记录会包含函数在哪里被调用（调用栈）、函数的调用方法、传入的参数等信息。this 就是记录的其中一个属性，会在函数执行的过程中用到。</p>
@@ -165,7 +231,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/08/你不知道的JavaScript-上卷/" data-id="cj5x8tpwy0002cso0eqwilz0h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/08/09/你不知道的JavaScript-上卷/" data-id="cj63o3tqk0004z4o0dgovvvd6" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -211,7 +277,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/08/bootstrap学习笔记/" data-id="cj5x8tpwy0001cso096bcixl2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/08/08/bootstrap学习笔记/" data-id="cj63o3tqc0001z4o0i38vvsm6" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -269,7 +335,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/02/你不知道的JavaScript-中卷/" data-id="cj5x8tpzz0003cso0v5y89ahg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/08/02/你不知道的JavaScript-中卷/" data-id="cj63o3tqk0003z4o0c4h4xrp8" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -314,7 +380,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/12/hello-world/" data-id="cj5x8tpwi0000cso0bddm2mmp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/12/hello-world/" data-id="cj63o3tqg0002z4o0zmtws636" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -349,12 +415,16 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2017/08/08/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
+            <a href="/2017/08/09/Professional-JavaScript-fof-Web-Developers-3rd-Edition/">JavaScript高级程序设计（3rd Edition）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/09/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
           </li>
         
           <li>
@@ -382,7 +452,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
