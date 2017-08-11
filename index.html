@@ -61,10 +61,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Professional-JavaScript-fof-Web-Developers-3rd-Edition" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-日常小点记录" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/08/10/Professional-JavaScript-fof-Web-Developers-3rd-Edition/" class="article-date">
-  <time datetime="2017-08-10T14:58:38.276Z" itemprop="datePublished">2017-08-10</time>
+    <a href="/2017/08/11/日常小点记录/" class="article-date">
+  <time datetime="2017-08-11T08:09:43.578Z" itemprop="datePublished">2017-08-11</time>
 </a>
     
   </div>
@@ -75,7 +75,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/10/Professional-JavaScript-fof-Web-Developers-3rd-Edition/">JavaScript高级程序设计（3rd Edition）</a>
+      <a class="article-title" href="/2017/08/11/日常小点记录/">日常小点记录</a>
     </h1>
   
 
@@ -83,77 +83,62 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="第2章-在HTML中使用JavaScript"><a href="#第2章-在HTML中使用JavaScript" class="headerlink" title="第2章 在HTML中使用JavaScript"></a>第2章 在HTML中使用JavaScript</h2><h4 id="2-1-lt-script-gt-元素"><a href="#2-1-lt-script-gt-元素" class="headerlink" title="2.1 &lt;script&gt; 元素"></a>2.1 &lt;script&gt; 元素</h4><p>带有src属性的<code> &lt;script&gt;</code>不应该在标签之间再包含额外的JavaScript代码，嵌入的代码会被忽略</p>
-<p><code> &lt;script&gt;</code>标签打开defer或async属性，脚本就会异步加载。渲染引擎遇到这一行命令，就会开始下载外部脚本，但不会等它下载和执行，而是直接执行后面的命令。</p>
-<p>defer与async的区别是：前者要等到整个页面正常渲染结束，才会执行；后者一旦下载完，渲染引擎就会中断渲染，执行这个脚本以后，再继续渲染。一句话，defer是“渲染完再执行”，async是“下载完就执行”。另外，如果有多个defer脚本，会按照它们在页面出现的顺序加载，而多个async脚本是不能保证加载顺序的。</p>
-<h4 id="2-3-文档模式"><a href="#2-3-文档模式" class="headerlink" title="2.3 文档模式"></a>2.3 文档模式</h4><p>最初的两种文档模式：</p>
+        <h2 id="video兼容性处理"><a href="#video兼容性处理" class="headerlink" title="video兼容性处理"></a>video兼容性处理</h2><p>优酷视频在IE7以上(IE11的仿真模式下测试)及各个主流浏览器都能正常播放。<br>360极速模式（极速模式用的是谷歌内核，谷歌浏览器支持，所以很疑惑）和 360极速浏览器不支持。错误原因显示客户端无权播放 201.<br>百度查找答案显示为： flash插件的原因， 本地测试时更新了flash还是不能播放。</p>
+<p>所以把视频传到优酷上是解决视频兼容性的方法之一。</p>
+<table>
+<thead>
+<tr>
+<th>格式</th>
+<th>IE</th>
+<th style="text-align:center">Firefox</th>
+<th style="text-align:center">Opera</th>
+<th style="text-align:center">Chrome</th>
+<th style="text-align:right">Safari</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ogg</td>
+<td>No</td>
+<td style="text-align:center">3.5+</td>
+<td style="text-align:center">5.0+</td>
+<td style="text-align:center">No</td>
+<td style="text-align:right">No</td>
+</tr>
+<tr>
+<td>MPEG 4</td>
+<td>9.0+</td>
+<td style="text-align:center">No</td>
+<td style="text-align:center">No</td>
+<td style="text-align:center">5.0+</td>
+<td style="text-align:right">3.0+</td>
+</tr>
+<tr>
+<td>WebM</td>
+<td>No</td>
+<td style="text-align:center">4.0+</td>
+<td style="text-align:center">10.6+</td>
+<td style="text-align:center">6.0+</td>
+<td style="text-align:right">No</td>
+</tr>
+</tbody>
+</table>
+<p>Ogg = 带有 Theora 视频编码和 Vorbis 音频编码的 Ogg 文件<br>MPEG4 = 带有 H.264 视频编码和 AAC 音频编码的 MPEG 4 文件<br>WebM = 带有 VP8 视频编码和 Vorbis 音频编码的 WebM 文件</p>
+<p>综上所述： 只要提供ogg和mp4格式就能兼容IE9以上的主流浏览器。</p>
+<p>为了兼容IE8及以下浏览器的处理方法：</p>
 <ul>
-<li>混杂模式(quirks mode),让IE的行为与IE5相同。</li>
-<li>标准模式(standards mode),让IE的行为更接近标准行为。</li>
-</ul>
-<p>这两种模式主要影响CSS内容的呈现(盒模型等)，现在基本兼容IE8以上，所以文档模型都采用HTML 5声明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;!-- HTML 5 --&gt;</div><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line"></div><div class="line">// css样式怪异显示，先查看有没有此声明</div></pre></td></tr></table></figure></p>
-<h2 id="第3章-基本概念"><a href="#第3章-基本概念" class="headerlink" title="第3章 基本概念"></a>第3章 基本概念</h2><h4 id="3-4-数据类型"><a href="#3-4-数据类型" class="headerlink" title="3.4 数据类型"></a>3.4 数据类型</h4><p>typeof用来检测变量的数据类型。<br>数据类型：</p>
-<ul>
-<li>Undefined</li>
-<li>Null 空的对象指针，如果一个变量将来会用于保存对象，可设置为null</li>
-<li>Boolean</li>
-<li>Number 在进行算术计算时，所有八进制和十六进制表示的数值都将转换成十进制数值。<br>Infinity,NaN(常见任何数值除以非数值，常见number(“不包含有效数字字符的字符串”)  )<br>isNaN()判断是否“不是数值”，会先将传入值转换为数值。<br>Number(),parseInt(),parseFloat()把非数值转换为数值。<br>Number()用于任何数据类型，另两个则专门用于把字符串转换成数值。</li>
-<li>String<br>toString(),null和undefined没有此方法。<br>String()，如果有toString()方法，则调用该方法，如果是null,则返回null.如果是undefined，则返回undfined)</li>
-<li>Object</li>
-</ul>
-<h4 id="3-5-操作符"><a href="#3-5-操作符" class="headerlink" title="3.5 操作符"></a>3.5 操作符</h4><p>递增和递操作符<br>++i和i++的区别<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var num1 = 2;</div><div class="line">var num5 = 2;</div><div class="line">var num2 = 20;</div><div class="line">var num3 = --num1 + num2;   // 21</div><div class="line">var num4 = num5-- + num2;   // 22</div><div class="line"></div><div class="line">// 先计算后递减和先递减再计算的区别</div></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/10/Professional-JavaScript-fof-Web-Developers-3rd-Edition/" data-id="cj6775k3i0001dwo01pmwnmyr" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-bootstrap学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/08/09/bootstrap学习笔记/" class="article-date">
-  <time datetime="2017-08-09T08:00:18.599Z" itemprop="datePublished">2017-08-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/09/bootstrap学习笔记/">bootstrap学习笔记</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="tab-js"><a href="#tab-js" class="headerlink" title="tab.js"></a>tab.js</h3><p>Bootstrap: tab.js 内用$.Event()实现回调。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$previous.trigger(&#123;</div><div class="line">    type: &apos;hidden.bs.tab&apos;,</div><div class="line">    relatedTarget: $this[0]</div><div class="line">&#125;)</div><div class="line">$this.trigger(&#123;</div><div class="line">    type: &apos;shown.bs.tab&apos;,</div><div class="line">    relatedTarget: $previous[0]</div><div class="line">&#125;)</div><div class="line"></div><div class="line">// 利用事件冒泡，可将回调函数绑定在.nav-tabs a 的父元素。 例：</div><div class="line">$(&quot;.nav-tabs li a&quot;).on(&quot;shown.bs.tab&quot;,function (event) &#123;</div><div class="line">   console.log(event.relatedTarget);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<h3 id="affix-js"><a href="#affix-js" class="headerlink" title="affix.js"></a>affix.js</h3><p>$.proxy(this.checkPosition, this),返回一个新函数，并且这个函数始终保持了特定的作用域<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">this.$target = $(this.options.target)</div><div class="line">      .on(&apos;scroll.bs.affix.data-api&apos;, $.proxy(this.checkPosition, this))</div><div class="line">      .on(&apos;click.bs.affix.data-api&apos;,  $.proxy(this.checkPositionWithEventLoop, this))</div></pre></td></tr></table></figure></p>
-<h3 id="carousel-js"><a href="#carousel-js" class="headerlink" title="carousel.js"></a>carousel.js</h3><p>大图轮播列表循环实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var delta = direction == &apos;prev&apos; ? -1 : 1</div><div class="line">var itemIndex = (activeIndex + delta) % this.$items.length</div><div class="line">return this.$items.eq(itemIndex)</div><div class="line">// 技术点 求余得到下一位index</div><div class="line">// eq()负数则从集合中的最后一个元素往回计数。</div></pre></td></tr></table></figure></p>
-<h3 id="collapse-js"><a href="#collapse-js" class="headerlink" title="collapse.js"></a>collapse.js</h3><p>Accordion example,需固定的结构，子级trigger元素需包含data-parent=”#xx”,parent &gt; 子元素包含”.panel”类.<br>实现原理:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 要实现关联操作，如果一个元素需要执行show()方法，一定会有另一个元素执行hide()方法</div><div class="line">if (actives &amp;&amp; actives.length) &#123;</div><div class="line">    Plugin.call(actives, &apos;hide&apos;)</div><div class="line">    activesData || actives.data(&apos;bs.collapse&apos;, null)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="dropdown-js"><a href="#dropdown-js" class="headerlink" title="dropdown.js"></a>dropdown.js</h3><p>clearMenus(),用于复位初始状态。执行任何方法前先执行复位操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">//原理: </div><div class="line">Dropdown.prototype.toggle = function (e) &#123;</div><div class="line"></div><div class="line">    var isActive = $parent.hasClass(&apos;open&apos;);</div><div class="line">    clearMenus()；</div><div class="line">    if(!isActive)&#123;</div><div class="line">        // 执行状态</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;  </div><div class="line">$(document)</div><div class="line">  .on(&apos;click.bs.dropdown.data-api&apos;, clearMenus)</div><div class="line">  .on(&apos;click.bs.dropdown.data-api&apos;, &apos;.dropdown form&apos;, function (e) &#123; e.stopPropagation() &#125;)</div><div class="line">  .on(&apos;click.bs.dropdown.data-api&apos;, toggle, Dropdown.prototype.toggle)</div><div class="line">  .on(&apos;keydown.bs.dropdown.data-api&apos;, toggle, Dropdown.prototype.keydown)</div><div class="line">  .on(&apos;keydown.bs.dropdown.data-api&apos;, &apos;.dropdown-menu&apos;, Dropdown.prototype.keydown)</div></pre></td></tr></table></figure></p>
-<h3 id="modal-js"><a href="#modal-js" class="headerlink" title="modal.js"></a>modal.js</h3><ul>
-<li><code>window.innerWidth</code> IE8不支持的解决方案<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// getBoundingClientRect()取得的数值都是参照视口的左上角位置而言的。</div><div class="line">var fullWindowWidth = window.innerWidth</div><div class="line">if (!fullWindowWidth) &#123; // workaround for missing window.innerWidth in IE8</div><div class="line">  var documentElementRect = document.documentElement.getBoundingClientRect()</div><div class="line">  fullWindowWidth = documentElementRect.right - Math.abs(documentElementRect.left)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<li><p>准备flash文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;video width=&quot;800&quot; height=&quot;374&quot;&gt;</div><div class="line">    &lt;source src=&quot;my_video.mp4&quot; type=&quot;video/mp4&quot; /&gt;</div><div class="line">    &lt;source src=&quot;my_video.ogv&quot; type=&quot;video/ogg&quot; /&gt;</div><div class="line"></div><div class="line">    &lt;object width=&quot;800&quot; height=&quot;374&quot; type=&quot;application/x-shockwave-flash&quot; data=&quot;fallback.swf&quot;&gt;</div><div class="line">        &lt;param name=&quot;movie&quot; value=&quot;fallback.swf&quot; /&gt;</div><div class="line">        &lt;param name=&quot;flashvars&quot; value=&quot;autostart=true&amp;amp;file=video.flv&quot; /&gt;</div><div class="line">    &lt;/object&gt;</div><div class="line"></div><div class="line">&lt;/video&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用html5media.js（bootcdn上查找）,让不支持video的浏览器支持video。</p>
 </li>
 </ul>
-<p>扩展： <code>$(window).width()</code>获取的是return window.document.documentElement[ “clientWidth” ];<br>区别在于clientWidth获取可见区域宽（不包含滚动条宽度），window.innerWidth获取当前窗口的宽度（包含滚动条宽度），如果两数修值存在，相减得到滚动条宽度。</p>
-<h3 id="popover-js"><a href="#popover-js" class="headerlink" title="popover.js"></a>popover.js</h3><p>popover依赖于tooltip.js。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">// 初始化</div><div class="line">$(&apos;[data-toggle=&quot;popover&quot;]&apos;).popover(option);</div><div class="line"></div><div class="line">// 实现依赖原理</div><div class="line">Popover.prototype = $.extend(&#123;&#125;, $.fn.tooltip.Constructor.prototype)</div><div class="line">Popover.prototype.constructor = Popover</div><div class="line">Popover.prototype.重写方法 = function()&#123;</div><div class="line">    // 实现特殊化。</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 特殊属性 this.options.trigger：提供多个参数以空格分开</div><div class="line">var triggers = this.options.trigger.split(&apos; &apos;)</div><div class="line"></div><div class="line">for (var i = triggers.length; i--;) &#123;</div><div class="line">  var trigger = triggers[i]</div><div class="line"></div><div class="line">  if (trigger == &apos;click&apos;) &#123;</div><div class="line">    this.$element.on(&apos;click.&apos; + this.type, this.options.selector, $.proxy(this.toggle, this))</div><div class="line">  &#125; else if (trigger != &apos;manual&apos;) &#123;</div><div class="line">    var eventIn  = trigger == &apos;hover&apos; ? &apos;mouseenter&apos; : &apos;focusin&apos;</div><div class="line">    var eventOut = trigger == &apos;hover&apos; ? &apos;mouseleave&apos; : &apos;focusout&apos;</div><div class="line"></div><div class="line">    this.$element.on(eventIn  + &apos;.&apos; + this.type, this.options.selector, $.proxy(this.enter, this))</div><div class="line">    this.$element.on(eventOut + &apos;.&apos; + this.type, this.options.selector, $.proxy(this.leave, this))</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 特殊属性 this.options.placement：使用auto时空格分开的多个参数  “auto left”;</div><div class="line">var autoToken = /\s?auto?\s?/i</div><div class="line">var autoPlace = autoToken.test(placement)</div><div class="line">if (autoPlace) placement = placement.replace(autoToken, &apos;&apos;) || &apos;top&apos;</div><div class="line"></div><div class="line">var pos          = this.getPosition()       // 返回传入元素的位置信息</div><div class="line">var actualWidth  = $tip[0].offsetWidth      // tip弹出层可见宽度</div><div class="line">var actualHeight = $tip[0].offsetHeight     // tip弹出层可见高度</div><div class="line"></div><div class="line">if (autoPlace) &#123;</div><div class="line">    var orgPlacement = placement</div><div class="line">    var viewportDim = this.getPosition(this.$viewport)  // 参照物的位置信息</div><div class="line">    </div><div class="line">    // auto的实现原理：</div><div class="line">    placement = placement == &apos;bottom&apos; &amp;&amp; pos.bottom + actualHeight &gt; viewportDim.bottom ? &apos;top&apos;    :</div><div class="line">                placement == &apos;top&apos;    &amp;&amp; pos.top    - actualHeight &lt; viewportDim.top    ? &apos;bottom&apos; :</div><div class="line">                placement == &apos;right&apos;  &amp;&amp; pos.right  + actualWidth  &gt; viewportDim.width  ? &apos;left&apos;   :</div><div class="line">                placement == &apos;left&apos;   &amp;&amp; pos.left   - actualWidth  &lt; viewportDim.left   ? &apos;right&apos;  :</div><div class="line">                placement</div><div class="line">    </div><div class="line">    $tip</div><div class="line">      .removeClass(orgPlacement)</div><div class="line">      .addClass(placement)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;script src=&quot;https://cdn.bootcss.com/html5media/1.1.6/html5media.min.js&quot;&gt;&lt;/script&gt;</div><div class="line"></div><div class="line">&lt;video width=&quot;640&quot; height=&quot;360&quot; controls&gt;</div><div class="line">    &lt;source src=&quot;cat.mp4&quot;  type=&quot;video/mp4&quot; /&gt;</div><div class="line">    &lt;source src=&quot;http://www.w3school.com.cn/i/movie.ogg&quot; type=&quot;video/ogg&quot;&gt;</div><div class="line">    </div><div class="line">    &lt;object width=&quot;640&quot; height=&quot;264&quot; type=&quot;application/x-shockwave-flash&quot; &gt;</div><div class="line">        &lt;param name=&quot;movie&quot; /&gt;</div><div class="line">        &lt;param name=&quot;allowfullscreen&quot; value=&quot;true&quot; /&gt;</div><div class="line">        &lt;param value=&apos;config=&#123;&quot;playlist&quot;:[&quot;images/confident.jpg&quot;, &#123;&quot;url&quot;: &quot;cat.mp4&quot;,&quot;autoPlay&quot;:false,&quot;autoBuffering&quot;:true&#125;]&#125;&apos; /&gt;</div><div class="line">     &lt;/object&gt;</div><div class="line">    不支持video</div><div class="line">&lt;/video&gt;</div></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/09/bootstrap学习笔记/" data-id="cj6775k3i0000dwo0l263r5p1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/08/11/日常小点记录/" data-id="cj67agy7d0003xwo08b4ydf4h" class="article-share-link">Share</a>
       
       
     </footer>
@@ -165,8 +150,8 @@
   
     <article id="post-你不知道的JavaScript-上卷" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/08/09/你不知道的JavaScript-上卷/" class="article-date">
-  <time datetime="2017-08-09T04:19:51.663Z" itemprop="datePublished">2017-08-09</time>
+    <a href="/2017/08/11/你不知道的JavaScript-上卷/" class="article-date">
+  <time datetime="2017-08-11T01:49:49.927Z" itemprop="datePublished">2017-08-11</time>
 </a>
     
   </div>
@@ -177,7 +162,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/09/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
+      <a class="article-title" href="/2017/08/11/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
     </h1>
   
 
@@ -253,11 +238,11 @@
 <blockquote>
 <p>ES6 的模块</p>
 </blockquote>
-<h2 id="关于this"><a href="#关于this" class="headerlink" title="关于this"></a>关于this</h2><p><strong>关于this的误解</strong></p>
-<p>学习this 的第一步是明白this 既不指向函数自身也不指向函数的词法作用域。</p>
-<p><strong>this到底是什么</strong></p>
-<p>this是在运行时进行绑定的，并不是在编写时绑定，它的上下文取决于函数调用时的各种条件。this 的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式。<br>当一个函数被调用时，会创建一个活动记录（有时候也称为执行上下文）。这个记录会包含函数在哪里被调用（调用栈）、函数的调用方法、传入的参数等信息。this 就是记录的其中一个属性，会在函数执行的过程中用到。</p>
-<p><strong>常见错误：隐式丢失</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">    console.log( this.a );</div><div class="line">&#125;</div><div class="line">var obj = &#123;</div><div class="line">    a: 2,</div><div class="line">    foo: foo</div><div class="line">&#125;;</div><div class="line">var bar = obj.foo; // 函数别名！</div><div class="line">var a = &quot;oops, global&quot;; // a 是全局对象的属性</div><div class="line">bar(); // &quot;oops, global&quot;</div><div class="line">//虽然bar 是obj.foo 的一个引用，但是实际上，它引用的是foo 函数本身,因此此时的bar() 其实是一个不带任何修饰的函数调用，因此应用了默认绑定。</div><div class="line">//另一种情况是将函数传入回调函数中，doFoo(obj.foo).</div><div class="line">function doFoo(fn)&#123;</div><div class="line">    fn();//fn引用的是foo</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="关于this"><a href="#关于this" class="headerlink" title="关于this"></a>关于this</h2><h4 id="关于this的误解"><a href="#关于this的误解" class="headerlink" title="关于this的误解"></a>关于this的误解</h4><p>学习this 的第一步是明白this 既不指向函数自身也不指向函数的词法作用域。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">/* this 不指向函数自身 */</div><div class="line">function foo(num) &#123;</div><div class="line">    console.log( &quot;foo: &quot; + num );</div><div class="line">    // 记录foo 被调用的次数</div><div class="line">    this.count++;</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo.count = 0;</div><div class="line">var i;</div><div class="line"></div><div class="line">for (i=0; i&lt;10; i++) &#123;</div><div class="line">    if (i &gt; 5) &#123;</div><div class="line">    foo( i );</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">// foo: 6</div><div class="line">// foo: 7</div><div class="line">// foo: 8</div><div class="line">// foo: 9</div><div class="line"></div><div class="line">// foo 被调用了多少次？</div><div class="line">console.log( foo.count ); // 0 -- WTF?  this指向的window</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">/* this 不指向词法作用域 */ </div><div class="line">function foo() &#123;</div><div class="line">    var a = 2;</div><div class="line">    this.bar();</div><div class="line">&#125;</div><div class="line">function bar() &#123;</div><div class="line">    console.log( this.a );</div><div class="line">&#125;</div><div class="line">foo(); // ReferenceError: a is not defined</div></pre></td></tr></table></figure>
+<p><strong>每当你想要把this和词法作用域的查找混合使用时，一定要提醒自己，这是无法实现的。</strong></p>
+<h4 id="this到底是什么"><a href="#this到底是什么" class="headerlink" title="this到底是什么"></a>this到底是什么</h4><p>this是在运行时进行绑定的，并不是在编写时绑定，它的上下文取决于函数调用时的各种条件。this 的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式。<br>当一个函数被调用时，会创建一个活动记录（有时候也称为执行上下文）。这个记录会包含函数在哪里被调用（调用栈）、函数的调用方法、传入的参数等信息。this 就是记录的其中一个属性，会在函数执行的过程中用到。</p>
+<h2 id="this全面解析"><a href="#this全面解析" class="headerlink" title="this全面解析"></a>this全面解析</h2><p><strong>常见错误：隐式丢失</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">    console.log( this.a );</div><div class="line">&#125;</div><div class="line">var obj = &#123;</div><div class="line">    a: 2,</div><div class="line">    foo: foo</div><div class="line">&#125;;</div><div class="line">var bar = obj.foo; // 函数别名！</div><div class="line">var a = &quot;oops, global&quot;; // a 是全局对象的属性</div><div class="line">bar(); // &quot;oops, global&quot;</div><div class="line">//虽然bar 是obj.foo 的一个引用，但是实际上，它引用的是foo 函数本身,因此此时的bar() 其实是一个不带任何修饰的函数调用，因此应用了默认绑定。</div><div class="line">//另一种情况是将函数传入回调函数中，doFoo(obj.foo).</div><div class="line">function doFoo(fn)&#123;</div><div class="line">    fn();//fn引用的是foo</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p><strong>判断一个运行中函数的this 绑定</strong></p>
 <p>四条规则来判断this 的绑定对象：</p>
 <ol>
@@ -288,7 +273,109 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/09/你不知道的JavaScript-上卷/" data-id="cj6775k3y0004dwo0pds9h5if" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/08/11/你不知道的JavaScript-上卷/" data-id="cj67agy910005xwo017h83ar4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Professional-JavaScript-fof-Web-Developers-3rd-Edition" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/10/Professional-JavaScript-fof-Web-Developers-3rd-Edition/" class="article-date">
+  <time datetime="2017-08-10T14:58:38.276Z" itemprop="datePublished">2017-08-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/10/Professional-JavaScript-fof-Web-Developers-3rd-Edition/">JavaScript高级程序设计（3rd Edition）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="第2章-在HTML中使用JavaScript"><a href="#第2章-在HTML中使用JavaScript" class="headerlink" title="第2章 在HTML中使用JavaScript"></a>第2章 在HTML中使用JavaScript</h2><h4 id="2-1-lt-script-gt-元素"><a href="#2-1-lt-script-gt-元素" class="headerlink" title="2.1 &lt;script&gt; 元素"></a>2.1 &lt;script&gt; 元素</h4><p>带有src属性的<code> &lt;script&gt;</code>不应该在标签之间再包含额外的JavaScript代码，嵌入的代码会被忽略</p>
+<p><code> &lt;script&gt;</code>标签打开defer或async属性，脚本就会异步加载。渲染引擎遇到这一行命令，就会开始下载外部脚本，但不会等它下载和执行，而是直接执行后面的命令。</p>
+<p>defer与async的区别是：前者要等到整个页面正常渲染结束，才会执行；后者一旦下载完，渲染引擎就会中断渲染，执行这个脚本以后，再继续渲染。一句话，defer是“渲染完再执行”，async是“下载完就执行”。另外，如果有多个defer脚本，会按照它们在页面出现的顺序加载，而多个async脚本是不能保证加载顺序的。</p>
+<h4 id="2-3-文档模式"><a href="#2-3-文档模式" class="headerlink" title="2.3 文档模式"></a>2.3 文档模式</h4><p>最初的两种文档模式：</p>
+<ul>
+<li>混杂模式(quirks mode),让IE的行为与IE5相同。</li>
+<li>标准模式(standards mode),让IE的行为更接近标准行为。</li>
+</ul>
+<p>这两种模式主要影响CSS内容的呈现(盒模型等)，现在基本兼容IE8以上，所以文档模型都采用HTML 5声明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;!-- HTML 5 --&gt;</div><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line"></div><div class="line">// css样式怪异显示，先查看有没有此声明</div></pre></td></tr></table></figure></p>
+<h2 id="第3章-基本概念"><a href="#第3章-基本概念" class="headerlink" title="第3章 基本概念"></a>第3章 基本概念</h2><h4 id="3-4-数据类型"><a href="#3-4-数据类型" class="headerlink" title="3.4 数据类型"></a>3.4 数据类型</h4><p>typeof用来检测变量的数据类型。<br>数据类型：</p>
+<ul>
+<li>Undefined</li>
+<li>Null 空的对象指针，如果一个变量将来会用于保存对象，可设置为null</li>
+<li>Boolean</li>
+<li>Number 在进行算术计算时，所有八进制和十六进制表示的数值都将转换成十进制数值。<br>Infinity,NaN(常见任何数值除以非数值，常见number(“不包含有效数字字符的字符串”)  )<br>isNaN()判断是否“不是数值”，会先将传入值转换为数值。<br>Number(),parseInt(),parseFloat()把非数值转换为数值。<br>Number()用于任何数据类型，另两个则专门用于把字符串转换成数值。</li>
+<li>String<br>toString(),null和undefined没有此方法。<br>String()，如果有toString()方法，则调用该方法，如果是null,则返回null.如果是undefined，则返回undfined)</li>
+<li>Object</li>
+</ul>
+<h4 id="3-5-操作符"><a href="#3-5-操作符" class="headerlink" title="3.5 操作符"></a>3.5 操作符</h4><p>递增和递操作符<br>++i和i++的区别<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var num1 = 2;</div><div class="line">var num5 = 2;</div><div class="line">var num2 = 20;</div><div class="line">var num3 = --num1 + num2;   // 21</div><div class="line">var num4 = num5-- + num2;   // 22</div><div class="line"></div><div class="line">// 先计算后递减和先递减再计算的区别</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/10/Professional-JavaScript-fof-Web-Developers-3rd-Edition/" data-id="cj67agy740001xwo0zpcbq3jb" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-bootstrap学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/09/bootstrap学习笔记/" class="article-date">
+  <time datetime="2017-08-09T08:00:18.599Z" itemprop="datePublished">2017-08-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/09/bootstrap学习笔记/">bootstrap学习笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="tab-js"><a href="#tab-js" class="headerlink" title="tab.js"></a>tab.js</h3><p>Bootstrap: tab.js 内用$.Event()实现回调。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$previous.trigger(&#123;</div><div class="line">    type: &apos;hidden.bs.tab&apos;,</div><div class="line">    relatedTarget: $this[0]</div><div class="line">&#125;)</div><div class="line">$this.trigger(&#123;</div><div class="line">    type: &apos;shown.bs.tab&apos;,</div><div class="line">    relatedTarget: $previous[0]</div><div class="line">&#125;)</div><div class="line"></div><div class="line">// 利用事件冒泡，可将回调函数绑定在.nav-tabs a 的父元素。 例：</div><div class="line">$(&quot;.nav-tabs li a&quot;).on(&quot;shown.bs.tab&quot;,function (event) &#123;</div><div class="line">   console.log(event.relatedTarget);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h3 id="affix-js"><a href="#affix-js" class="headerlink" title="affix.js"></a>affix.js</h3><p>$.proxy(this.checkPosition, this),返回一个新函数，并且这个函数始终保持了特定的作用域<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">this.$target = $(this.options.target)</div><div class="line">      .on(&apos;scroll.bs.affix.data-api&apos;, $.proxy(this.checkPosition, this))</div><div class="line">      .on(&apos;click.bs.affix.data-api&apos;,  $.proxy(this.checkPositionWithEventLoop, this))</div></pre></td></tr></table></figure></p>
+<h3 id="carousel-js"><a href="#carousel-js" class="headerlink" title="carousel.js"></a>carousel.js</h3><p>大图轮播列表循环实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var delta = direction == &apos;prev&apos; ? -1 : 1</div><div class="line">var itemIndex = (activeIndex + delta) % this.$items.length</div><div class="line">return this.$items.eq(itemIndex)</div><div class="line">// 技术点 求余得到下一位index</div><div class="line">// eq()负数则从集合中的最后一个元素往回计数。</div></pre></td></tr></table></figure></p>
+<h3 id="collapse-js"><a href="#collapse-js" class="headerlink" title="collapse.js"></a>collapse.js</h3><p>Accordion example,需固定的结构，子级trigger元素需包含data-parent=”#xx”,parent &gt; 子元素包含”.panel”类.<br>实现原理:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 要实现关联操作，如果一个元素需要执行show()方法，一定会有另一个元素执行hide()方法</div><div class="line">if (actives &amp;&amp; actives.length) &#123;</div><div class="line">    Plugin.call(actives, &apos;hide&apos;)</div><div class="line">    activesData || actives.data(&apos;bs.collapse&apos;, null)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="dropdown-js"><a href="#dropdown-js" class="headerlink" title="dropdown.js"></a>dropdown.js</h3><p>clearMenus(),用于复位初始状态。执行任何方法前先执行复位操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">//原理: </div><div class="line">Dropdown.prototype.toggle = function (e) &#123;</div><div class="line"></div><div class="line">    var isActive = $parent.hasClass(&apos;open&apos;);</div><div class="line">    clearMenus()；</div><div class="line">    if(!isActive)&#123;</div><div class="line">        // 执行状态</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;  </div><div class="line">$(document)</div><div class="line">  .on(&apos;click.bs.dropdown.data-api&apos;, clearMenus)</div><div class="line">  .on(&apos;click.bs.dropdown.data-api&apos;, &apos;.dropdown form&apos;, function (e) &#123; e.stopPropagation() &#125;)</div><div class="line">  .on(&apos;click.bs.dropdown.data-api&apos;, toggle, Dropdown.prototype.toggle)</div><div class="line">  .on(&apos;keydown.bs.dropdown.data-api&apos;, toggle, Dropdown.prototype.keydown)</div><div class="line">  .on(&apos;keydown.bs.dropdown.data-api&apos;, &apos;.dropdown-menu&apos;, Dropdown.prototype.keydown)</div></pre></td></tr></table></figure></p>
+<h3 id="modal-js"><a href="#modal-js" class="headerlink" title="modal.js"></a>modal.js</h3><ul>
+<li><code>window.innerWidth</code> IE8不支持的解决方案<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// getBoundingClientRect()取得的数值都是参照视口的左上角位置而言的。</div><div class="line">var fullWindowWidth = window.innerWidth</div><div class="line">if (!fullWindowWidth) &#123; // workaround for missing window.innerWidth in IE8</div><div class="line">  var documentElementRect = document.documentElement.getBoundingClientRect()</div><div class="line">  fullWindowWidth = documentElementRect.right - Math.abs(documentElementRect.left)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>扩展： <code>$(window).width()</code>获取的是return window.document.documentElement[ “clientWidth” ];<br>区别在于clientWidth获取可见区域宽（不包含滚动条宽度），window.innerWidth获取当前窗口的宽度（包含滚动条宽度），如果两数修值存在，相减得到滚动条宽度。</p>
+<h3 id="popover-js"><a href="#popover-js" class="headerlink" title="popover.js"></a>popover.js</h3><p>popover依赖于tooltip.js。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">// 初始化</div><div class="line">$(&apos;[data-toggle=&quot;popover&quot;]&apos;).popover(option);</div><div class="line"></div><div class="line">// 实现依赖原理</div><div class="line">Popover.prototype = $.extend(&#123;&#125;, $.fn.tooltip.Constructor.prototype)</div><div class="line">Popover.prototype.constructor = Popover</div><div class="line">Popover.prototype.重写方法 = function()&#123;</div><div class="line">    // 实现特殊化。</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 特殊属性 this.options.trigger：提供多个参数以空格分开</div><div class="line">var triggers = this.options.trigger.split(&apos; &apos;)</div><div class="line"></div><div class="line">for (var i = triggers.length; i--;) &#123;</div><div class="line">  var trigger = triggers[i]</div><div class="line"></div><div class="line">  if (trigger == &apos;click&apos;) &#123;</div><div class="line">    this.$element.on(&apos;click.&apos; + this.type, this.options.selector, $.proxy(this.toggle, this))</div><div class="line">  &#125; else if (trigger != &apos;manual&apos;) &#123;</div><div class="line">    var eventIn  = trigger == &apos;hover&apos; ? &apos;mouseenter&apos; : &apos;focusin&apos;</div><div class="line">    var eventOut = trigger == &apos;hover&apos; ? &apos;mouseleave&apos; : &apos;focusout&apos;</div><div class="line"></div><div class="line">    this.$element.on(eventIn  + &apos;.&apos; + this.type, this.options.selector, $.proxy(this.enter, this))</div><div class="line">    this.$element.on(eventOut + &apos;.&apos; + this.type, this.options.selector, $.proxy(this.leave, this))</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 特殊属性 this.options.placement：使用auto时空格分开的多个参数  “auto left”;</div><div class="line">var autoToken = /\s?auto?\s?/i</div><div class="line">var autoPlace = autoToken.test(placement)</div><div class="line">if (autoPlace) placement = placement.replace(autoToken, &apos;&apos;) || &apos;top&apos;</div><div class="line"></div><div class="line">var pos          = this.getPosition()       // 返回传入元素的位置信息</div><div class="line">var actualWidth  = $tip[0].offsetWidth      // tip弹出层可见宽度</div><div class="line">var actualHeight = $tip[0].offsetHeight     // tip弹出层可见高度</div><div class="line"></div><div class="line">if (autoPlace) &#123;</div><div class="line">    var orgPlacement = placement</div><div class="line">    var viewportDim = this.getPosition(this.$viewport)  // 参照物的位置信息</div><div class="line">    </div><div class="line">    // auto的实现原理：</div><div class="line">    placement = placement == &apos;bottom&apos; &amp;&amp; pos.bottom + actualHeight &gt; viewportDim.bottom ? &apos;top&apos;    :</div><div class="line">                placement == &apos;top&apos;    &amp;&amp; pos.top    - actualHeight &lt; viewportDim.top    ? &apos;bottom&apos; :</div><div class="line">                placement == &apos;right&apos;  &amp;&amp; pos.right  + actualWidth  &gt; viewportDim.width  ? &apos;left&apos;   :</div><div class="line">                placement == &apos;left&apos;   &amp;&amp; pos.left   - actualWidth  &lt; viewportDim.left   ? &apos;right&apos;  :</div><div class="line">                placement</div><div class="line">    </div><div class="line">    $tip</div><div class="line">      .removeClass(orgPlacement)</div><div class="line">      .addClass(placement)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/09/bootstrap学习笔记/" data-id="cj67agy790002xwo06j87od0w" class="article-share-link">Share</a>
       
       
     </footer>
@@ -346,7 +433,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/02/你不知道的JavaScript-中卷/" data-id="cj6775k3y0003dwo0wvc6ytk8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/08/02/你不知道的JavaScript-中卷/" data-id="cj67agy7d0004xwo0irngiei0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -391,7 +478,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/12/hello-world/" data-id="cj6775k3y0002dwo0sutsc6xp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/12/hello-world/" data-id="cj67agy6x0000xwo0swtwaxdo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -431,6 +518,14 @@
       <ul>
         
           <li>
+            <a href="/2017/08/11/日常小点记录/">日常小点记录</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/11/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
+          </li>
+        
+          <li>
             <a href="/2017/08/10/Professional-JavaScript-fof-Web-Developers-3rd-Edition/">JavaScript高级程序设计（3rd Edition）</a>
           </li>
         
@@ -439,15 +534,7 @@
           </li>
         
           <li>
-            <a href="/2017/08/09/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
-          </li>
-        
-          <li>
             <a href="/2017/08/02/你不知道的JavaScript-中卷/">你不知道的JavaScript-中卷</a>
-          </li>
-        
-          <li>
-            <a href="/2017/07/12/hello-world/">Hello World</a>
           </li>
         
       </ul>
