@@ -50,7 +50,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -61,97 +61,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-日常小点记录" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/08/11/日常小点记录/" class="article-date">
-  <time datetime="2017-08-11T08:09:43.578Z" itemprop="datePublished">2017-08-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/11/日常小点记录/">日常小点记录</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="video兼容性处理"><a href="#video兼容性处理" class="headerlink" title="video兼容性处理"></a>video兼容性处理</h2><p>优酷视频在IE7以上(IE11的仿真模式下测试)及各个主流浏览器都能正常播放。<br>360极速模式（极速模式用的是谷歌内核，谷歌浏览器支持，所以很疑惑）和 360极速浏览器不支持。错误原因显示客户端无权播放 201.<br>百度查找答案显示为： flash插件的原因， 本地测试时更新了flash还是不能播放。</p>
-<p>所以把视频传到优酷上是解决视频兼容性的方法之一。</p>
-<table>
-<thead>
-<tr>
-<th>格式</th>
-<th>IE</th>
-<th style="text-align:center">Firefox</th>
-<th style="text-align:center">Opera</th>
-<th style="text-align:center">Chrome</th>
-<th style="text-align:right">Safari</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Ogg</td>
-<td>No</td>
-<td style="text-align:center">3.5+</td>
-<td style="text-align:center">5.0+</td>
-<td style="text-align:center">No</td>
-<td style="text-align:right">No</td>
-</tr>
-<tr>
-<td>MPEG 4</td>
-<td>9.0+</td>
-<td style="text-align:center">No</td>
-<td style="text-align:center">No</td>
-<td style="text-align:center">5.0+</td>
-<td style="text-align:right">3.0+</td>
-</tr>
-<tr>
-<td>WebM</td>
-<td>No</td>
-<td style="text-align:center">4.0+</td>
-<td style="text-align:center">10.6+</td>
-<td style="text-align:center">6.0+</td>
-<td style="text-align:right">No</td>
-</tr>
-</tbody>
-</table>
-<p>Ogg = 带有 Theora 视频编码和 Vorbis 音频编码的 Ogg 文件<br>MPEG4 = 带有 H.264 视频编码和 AAC 音频编码的 MPEG 4 文件<br>WebM = 带有 VP8 视频编码和 Vorbis 音频编码的 WebM 文件</p>
-<p>综上所述： 只要提供ogg和mp4格式就能兼容IE9以上的主流浏览器。</p>
-<p>为了兼容IE8及以下浏览器的处理方法：</p>
-<ul>
-<li><p>准备flash文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;video width=&quot;800&quot; height=&quot;374&quot;&gt;</div><div class="line">    &lt;source src=&quot;my_video.mp4&quot; type=&quot;video/mp4&quot; /&gt;</div><div class="line">    &lt;source src=&quot;my_video.ogv&quot; type=&quot;video/ogg&quot; /&gt;</div><div class="line"></div><div class="line">    &lt;object width=&quot;800&quot; height=&quot;374&quot; type=&quot;application/x-shockwave-flash&quot; data=&quot;fallback.swf&quot;&gt;</div><div class="line">        &lt;param name=&quot;movie&quot; value=&quot;fallback.swf&quot; /&gt;</div><div class="line">        &lt;param name=&quot;flashvars&quot; value=&quot;autostart=true&amp;amp;file=video.flv&quot; /&gt;</div><div class="line">    &lt;/object&gt;</div><div class="line"></div><div class="line">&lt;/video&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>使用html5media.js（bootcdn上查找）,让不支持video的浏览器支持video。</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;script src=&quot;https://cdn.bootcss.com/html5media/1.1.6/html5media.min.js&quot;&gt;&lt;/script&gt;</div><div class="line"></div><div class="line">&lt;video width=&quot;640&quot; height=&quot;360&quot; controls&gt;</div><div class="line">    &lt;source src=&quot;cat.mp4&quot;  type=&quot;video/mp4&quot; /&gt;</div><div class="line">    &lt;source src=&quot;http://www.w3school.com.cn/i/movie.ogg&quot; type=&quot;video/ogg&quot;&gt;</div><div class="line">    </div><div class="line">    &lt;object width=&quot;640&quot; height=&quot;264&quot; type=&quot;application/x-shockwave-flash&quot; &gt;</div><div class="line">        &lt;param name=&quot;movie&quot; /&gt;</div><div class="line">        &lt;param name=&quot;allowfullscreen&quot; value=&quot;true&quot; /&gt;</div><div class="line">        &lt;param value=&apos;config=&#123;&quot;playlist&quot;:[&quot;images/confident.jpg&quot;, &#123;&quot;url&quot;: &quot;cat.mp4&quot;,&quot;autoPlay&quot;:false,&quot;autoBuffering&quot;:true&#125;]&#125;&apos; /&gt;</div><div class="line">     &lt;/object&gt;</div><div class="line">    不支持video</div><div class="line">&lt;/video&gt;</div></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/11/日常小点记录/" data-id="cj67agy7d0003xwo08b4ydf4h" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-你不知道的JavaScript-上卷" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/08/11/你不知道的JavaScript-上卷/" class="article-date">
-  <time datetime="2017-08-11T01:49:49.927Z" itemprop="datePublished">2017-08-11</time>
+    <a href="/2017/08/14/你不知道的JavaScript-上卷/" class="article-date">
+  <time datetime="2017-08-14T08:34:03.142Z" itemprop="datePublished">2017-08-14</time>
 </a>
     
   </div>
@@ -162,7 +75,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/11/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
+      <a class="article-title" href="/2017/08/14/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
     </h1>
   
 
@@ -242,23 +155,25 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">/* this 不指向函数自身 */</div><div class="line">function foo(num) &#123;</div><div class="line">    console.log( &quot;foo: &quot; + num );</div><div class="line">    // 记录foo 被调用的次数</div><div class="line">    this.count++;</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo.count = 0;</div><div class="line">var i;</div><div class="line"></div><div class="line">for (i=0; i&lt;10; i++) &#123;</div><div class="line">    if (i &gt; 5) &#123;</div><div class="line">    foo( i );</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">// foo: 6</div><div class="line">// foo: 7</div><div class="line">// foo: 8</div><div class="line">// foo: 9</div><div class="line"></div><div class="line">// foo 被调用了多少次？</div><div class="line">console.log( foo.count ); // 0 -- WTF?  this指向的window</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">/* this 不指向词法作用域 */ </div><div class="line">function foo() &#123;</div><div class="line">    var a = 2;</div><div class="line">    this.bar();</div><div class="line">&#125;</div><div class="line">function bar() &#123;</div><div class="line">    console.log( this.a );</div><div class="line">&#125;</div><div class="line">foo(); // ReferenceError: a is not defined</div></pre></td></tr></table></figure>
 <p><strong>每当你想要把this和词法作用域的查找混合使用时，一定要提醒自己，这是无法实现的。</strong></p>
 <h4 id="this到底是什么"><a href="#this到底是什么" class="headerlink" title="this到底是什么"></a>this到底是什么</h4><p>this是在运行时进行绑定的，并不是在编写时绑定，它的上下文取决于函数调用时的各种条件。this 的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式。<br>当一个函数被调用时，会创建一个活动记录（有时候也称为执行上下文）。这个记录会包含函数在哪里被调用（调用栈）、函数的调用方法、传入的参数等信息。this 就是记录的其中一个属性，会在函数执行的过程中用到。</p>
-<h2 id="this全面解析"><a href="#this全面解析" class="headerlink" title="this全面解析"></a>this全面解析</h2><p><strong>常见错误：隐式丢失</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">    console.log( this.a );</div><div class="line">&#125;</div><div class="line">var obj = &#123;</div><div class="line">    a: 2,</div><div class="line">    foo: foo</div><div class="line">&#125;;</div><div class="line">var bar = obj.foo; // 函数别名！</div><div class="line">var a = &quot;oops, global&quot;; // a 是全局对象的属性</div><div class="line">bar(); // &quot;oops, global&quot;</div><div class="line">//虽然bar 是obj.foo 的一个引用，但是实际上，它引用的是foo 函数本身,因此此时的bar() 其实是一个不带任何修饰的函数调用，因此应用了默认绑定。</div><div class="line">//另一种情况是将函数传入回调函数中，doFoo(obj.foo).</div><div class="line">function doFoo(fn)&#123;</div><div class="line">    fn();//fn引用的是foo</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><strong>判断一个运行中函数的this 绑定</strong></p>
-<p>四条规则来判断this 的绑定对象：</p>
+<h2 id="this全面解析"><a href="#this全面解析" class="headerlink" title="this全面解析"></a>this全面解析</h2><p>四条规则来判断this 的绑定对象：</p>
 <ol>
 <li>由new 调用？绑定到新创建的对象。</li>
 <li>由call 或者apply（或者bind）调用？绑定到指定的对象。</li>
 <li>由上下文对象调用？绑定到那个上下文对象。</li>
 <li>默认：在严格模式下绑定到undefined，否则绑定到全局对象。</li>
 </ol>
-<p><strong>建议</strong></p>
-<p>如果你经常编写this风格的代码，但是绝大部分时候都会使用self = this 或者箭头函数来否定this 机制，那你或许应当：</p>
+<p><strong>重要小点</strong><br>对象属性引用链中只有最顶层或者说最后一层会影响调用位置。obj1.obj2.foo(); this指向obj2.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">// 常见错误：隐式丢失</div><div class="line">function foo() &#123;</div><div class="line">    console.log( this.a );</div><div class="line">&#125;</div><div class="line">var obj = &#123;</div><div class="line">    a: 2,</div><div class="line">    foo: foo</div><div class="line">&#125;;</div><div class="line">var bar = obj.foo; // 函数别名！</div><div class="line">var a = &quot;oops, global&quot;; // a 是全局对象的属性</div><div class="line">bar(); // &quot;oops, global&quot;</div><div class="line">//虽然bar 是obj.foo 的一个引用，但是实际上，它引用的是foo 函数本身,因此此时的bar() 其实是一个不带任何修饰的函数调用，因此应用了默认绑定。</div><div class="line">//另一种情况是将函数传入回调函数中，doFoo(obj.foo).</div><div class="line">function doFoo(fn)&#123;</div><div class="line">    fn();//fn引用的是foo</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果你把null 或者undefined 作为this 的绑定对象传入call、apply 或者bind，这些值在调用时会被忽略，实际应用的是默认绑定规则：</p>
+<p><strong>建议</strong><br>如果你经常编写this风格的代码，但是绝大部分时候都会使用self = this 或者箭头函数来否定this 机制，那你或许应当：</p>
 <ol>
 <li>只使用词法作用域并完全抛弃错误this 风格的代码；</li>
 <li>完全采用this 风格，在必要时使用bind(..)，尽量避免使用self = this 和箭头函数。</li>
 </ol>
 <p>当然，包含这两种代码风格的程序可以正常运行，但是在同一个函数或者同一个程序中混合使用这两种风格通常会使代码更难维护，并且可能也会更难编写。</p>
-<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><p><strong>设置对象的属性不可改变（都是浅不变形）</strong></p>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>如果你试图向数组添加一个属性，但是属性名“看起来”像一个数字，那它会变成一个数值下标（因此会修改数组的内容而不是添加一个属性）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var myArray = [ &quot;foo&quot;, 42, &quot;bar&quot; ];</div><div class="line">myArray[&quot;3&quot;] = &quot;baz&quot;;</div><div class="line">myArray.length; // 4</div><div class="line">myArray[3]; // &quot;baz&quot;</div></pre></td></tr></table></figure></p>
+<h4 id="属性描述符"><a href="#属性描述符" class="headerlink" title="属性描述符"></a>属性描述符</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var myObject = &#123;</div><div class="line">    a:2</div><div class="line">&#125;;</div><div class="line">Object.getOwnPropertyDescriptor( myObject, &quot;a&quot; );</div><div class="line">// &#123;</div><div class="line">// value: 2,</div><div class="line">// writable: true,          可写</div><div class="line">// enumerable: true,        可枚举</div><div class="line">// configurable: true       可配置</div><div class="line">// &#125;</div></pre></td></tr></table></figure>
+<p><strong>设置对象的属性不可改变（都是浅不变形）</strong></p>
 <p>4种方法：</p>
 <ol>
 <li>结合writable:false 和configurable:false 就可以创建一个真正的常量属性（不可修改、<br>重定义或者删除）:</li>
@@ -266,14 +181,129 @@
 <li>密封: Object.seal(..);</li>
 <li>冻结: Object.freeze(..)</li>
 </ol>
-<p><strong>存在性</strong></p>
-<p>in 和hasOwnProperty(..) 的区别在于是否查找[[Prototype]] 链，然而，Object.keys(..)和Object.getOwnPropertyNames(..) 都只会查找对象直接包含的属性。</p>
-<h3 id="行为委托"><a href="#行为委托" class="headerlink" title="行为委托"></a>行为委托</h3><p><strong>面向委托的设计 对象关联</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">Task = &#123;</div><div class="line">    setID: function(ID) &#123; this.id = ID; &#125;,</div><div class="line">    outputID: function() &#123; console.log( this.id ); &#125;</div><div class="line">&#125;;</div><div class="line">// 让XYZ 委托Task</div><div class="line">XYZ = Object.create( Task );</div><div class="line">XYZ.prepareTask = function(ID,Label) &#123;</div><div class="line">    this.setID( ID );</div><div class="line">    this.label = Label;</div><div class="line">&#125;;</div><div class="line">XYZ.outputTaskDetails = function() &#123;</div><div class="line">    this.outputID();</div><div class="line">    console.log( this.label );</div><div class="line">&#125;;</div><div class="line"></div><div class="line">XYZ.prepareTask(&quot;cc&quot;,&quot;test&quot;); //id = cc , label = test</div><div class="line">XYZ.outputTaskDetails();</div></pre></td></tr></table></figure></p>
+<p><strong>[[Put]]</strong><br>[[Put]] 被触发时，算法大致会检查下面这些内容。</p>
+<ol>
+<li>属性是否是访问描述符（参见3.3.9 节）？如果是并且存在setter 就调用setter。</li>
+<li>属性的数据描述符中writable 是否是false ？如果是，在非严格模式下静默失败，在严格模式下抛出TypeError 异常。</li>
+<li>如果都不是，将该值设置为属性的值。</li>
+</ol>
+<p><strong>存在性</strong><br>in 和hasOwnProperty(..) 的区别在于是否查找[[Prototype]] 链，然而，Object.keys(..)和Object.getOwnPropertyNames(..) 都只会查找对象直接包含的属性。</p>
+<p>forEach(..) 不能提前终止。<br>every(..) 和some(..)可像普通的for循环中的break语句类似，提前终止遍历。</p>
+<h2 id="混合对象“类”"><a href="#混合对象“类”" class="headerlink" title="混合对象“类”"></a>混合对象“类”</h2><p>面向类的设计模式：实例化（instantiation）、继承（inheritance）和（相对）多态（polymorphism）。</p>
+<h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><p><strong>误区</strong><br>大多数开发者都认为如果向[[Prototype]] 链上层已经存在的属性（[[Put]]）赋值，就一定会触发屏蔽，但是如你所见，三种情况中只有一种（第一种）是这样的。<br>在于原型链上层时myObject.foo = “bar” 会出现的三种情况。</p>
+<ol>
+<li>如果在[[Prototype]] 链上层存在名为foo 的普通数据访问属性（参见第3 章）并且没有被标记为只读（writable:false），那就会直接在myObject 中添加一个名为foo 的新属性，它是屏蔽属性。</li>
+<li>如果在[[Prototype]] 链上层存在foo，但是它被标记为只读（writable:false），那么无法修改已有属性或者在myObject 上创建屏蔽属性。如果运行在严格模式下，代码会抛出一个错误。否则，这条赋值语句会被忽略。总之，不会发生屏蔽。</li>
+<li>如果在[[Prototype]] 链上层存在foo 并且它是一个setter（参见第3 章），那就一定会调用这个setter。foo 不会被添加到（或者说屏蔽于）myObject，也不会重新定义foo 这个setter。</li>
+</ol>
+<p>如果你希望在第二种和第三种情况下也屏蔽foo，那就不能使用= 操作符来赋值，而是使用Object.defineProperty(..)（参见第3 章）来向myObject 添加foo。</p>
+<p>myObject.a++    // myObject.a = myObject.a + 1;  如果myObject.a存在于原型链上层，会造成隐式屏蔽。</p>
+<p>“原型继承”表述不正确，继承意味着复制操作，JavaScript（默认）并不会复制对象属性。相反，JavaScript 会在两个对象之间创建一个关联，这样一个对象就可以通过委托访问另一个对象的属性和函数。委托（参见第6 章）这个术语可以更加准确地描述JavaScript 中对象的关联机制。</p>
+<p><strong>典型的“原型风格”：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">function Foo(name) &#123;</div><div class="line">    this.name = name;</div><div class="line">&#125;</div><div class="line">Foo.prototype.myName = function() &#123;</div><div class="line">    return this.name;</div><div class="line">&#125;;</div><div class="line">function Bar(name,label) &#123;</div><div class="line">    Foo.call( this, name );</div><div class="line">    this.label = label;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 我们创建了一个新的Bar.prototype 对象并关联到Foo.prototype</div><div class="line">Bar.prototype = Object.create( Foo.prototype );</div><div class="line">// 注意！现在没有Bar.prototype.constructor 了</div><div class="line">// 如果你需要这个属性的话可能需要手动修复一下它</div><div class="line">Bar.prototype.myLabel = function() &#123;</div><div class="line">    return this.label;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">var a = new Bar( &quot;a&quot;, &quot;obj a&quot; );</div><div class="line">a.myName(); // &quot;a&quot;</div><div class="line">a.myLabel(); // &quot;obj a&quot;</div></pre></td></tr></table></figure></p>
+<p>重点重点重点 实现原理：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// ES6 之前需要抛弃默认的Bar.prototype</div><div class="line">Bar.ptototype = Object.create( Foo.prototype );</div><div class="line">// ES6 开始可以直接修改现有的Bar.prototype</div><div class="line">Object.setPrototypeOf( Bar.prototype, Foo.prototype );</div></pre></td></tr></table></figure></p>
+<p>instanceof 操作符的左操作数是一个普通的对象，右操作数是一个函数。<br>如果想判断两个对象（比如a 和b）之间是否通过[[Prototype]] 链关联呢？<br>方法：</p>
+<ul>
+<li>a.isPrototypeOf(b); //在b 的整条[[Prototype]] 链中是否出现过a [[Prototype]] ？</li>
+<li>Object.getPrototypeOf( b ) === a； //true</li>
+<li>b.<strong>proto</strong> === a;    //true  它不是标准，并没有得到所有浏览器支持</li>
+</ul>
+<h2 id="行为委托"><a href="#行为委托" class="headerlink" title="行为委托"></a>行为委托</h2><p><strong>面向委托的设计 对象关联</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">Task = &#123;</div><div class="line">    setID: function(ID) &#123; this.id = ID; &#125;,</div><div class="line">    outputID: function() &#123; console.log( this.id ); &#125;</div><div class="line">&#125;;</div><div class="line">// 让XYZ 委托Task</div><div class="line">XYZ = Object.create( Task );</div><div class="line">XYZ.prepareTask = function(ID,Label) &#123;</div><div class="line">    this.setID( ID );</div><div class="line">    this.label = Label;</div><div class="line">&#125;;</div><div class="line">XYZ.outputTaskDetails = function() &#123;</div><div class="line">    this.outputID();</div><div class="line">    console.log( this.label );</div><div class="line">&#125;;</div><div class="line"></div><div class="line">XYZ.prepareTask(&quot;cc&quot;,&quot;test&quot;); //id = cc , label = test</div><div class="line">XYZ.outputTaskDetails();</div></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/11/你不知道的JavaScript-上卷/" data-id="cj67agy910005xwo017h83ar4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/08/14/你不知道的JavaScript-上卷/" data-id="cj67lo0id0003hko017ula7vd" class="article-share-link">Delen</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-日常小点记录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/11/日常小点记录/" class="article-date">
+  <time datetime="2017-08-11T08:21:34.534Z" itemprop="datePublished">2017-08-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/11/日常小点记录/">日常小点记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="video兼容性处理"><a href="#video兼容性处理" class="headerlink" title="video兼容性处理"></a>video兼容性处理</h2><p>优酷视频在IE7以上(IE11的仿真模式下测试)及各个主流浏览器都能正常播放。<br>360极速模式（极速模式用的是谷歌内核，谷歌浏览器支持，所以很疑惑）和 360极速浏览器不支持。错误原因显示客户端无权播放 201.<br>百度查找答案显示为： flash插件的原因， 本地测试时更新了flash还是不能播放。</p>
+<p>所以把视频传到优酷上是解决视频兼容性的方法之一。</p>
+<table>
+<thead>
+<tr>
+<th>格式</th>
+<th>IE</th>
+<th style="text-align:center">Firefox</th>
+<th style="text-align:center">Opera</th>
+<th style="text-align:center">Chrome</th>
+<th style="text-align:right">Safari</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ogg</td>
+<td>No</td>
+<td style="text-align:center">3.5+</td>
+<td style="text-align:center">5.0+</td>
+<td style="text-align:center">No</td>
+<td style="text-align:right">No</td>
+</tr>
+<tr>
+<td>MPEG 4</td>
+<td>9.0+</td>
+<td style="text-align:center">No</td>
+<td style="text-align:center">No</td>
+<td style="text-align:center">5.0+</td>
+<td style="text-align:right">3.0+</td>
+</tr>
+<tr>
+<td>WebM</td>
+<td>No</td>
+<td style="text-align:center">4.0+</td>
+<td style="text-align:center">10.6+</td>
+<td style="text-align:center">6.0+</td>
+<td style="text-align:right">No</td>
+</tr>
+</tbody>
+</table>
+<p>Ogg = 带有 Theora 视频编码和 Vorbis 音频编码的 Ogg 文件<br>MPEG4 = 带有 <b>H.264</b> 视频编码和 AAC 音频编码的 MPEG 4 文件<br>WebM = 带有 <b>VP8</b> 视频编码和 Vorbis 音频编码的 WebM 文件</p>
+<p>视频编码很重要，如果编码不正确，有的浏览器会渲染为只有声音没有影像。</p>
+<p>综上所述： 只要提供ogg和mp4格式就能兼容IE9以上的主流浏览器。</p>
+<p>为了兼容IE8及以下浏览器的处理方法：</p>
+<ul>
+<li><p>准备flash文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;video width=&quot;800&quot; height=&quot;374&quot;&gt;</div><div class="line">    &lt;source src=&quot;my_video.mp4&quot; type=&quot;video/mp4&quot; /&gt;</div><div class="line">    &lt;source src=&quot;my_video.ogv&quot; type=&quot;video/ogg&quot; /&gt;</div><div class="line"></div><div class="line">    &lt;object width=&quot;800&quot; height=&quot;374&quot; type=&quot;application/x-shockwave-flash&quot; data=&quot;fallback.swf&quot;&gt;</div><div class="line">        &lt;param name=&quot;movie&quot; value=&quot;fallback.swf&quot; /&gt;</div><div class="line">        &lt;param name=&quot;flashvars&quot; value=&quot;autostart=true&amp;amp;file=video.flv&quot; /&gt;</div><div class="line">    &lt;/object&gt;</div><div class="line"></div><div class="line">&lt;/video&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用html5media.js（bootcdn上查找）,让不支持video的浏览器支持video。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;script src=&quot;https://cdn.bootcss.com/html5media/1.1.6/html5media.min.js&quot;&gt;&lt;/script&gt;</div><div class="line"></div><div class="line">&lt;video width=&quot;640&quot; height=&quot;360&quot; controls&gt;</div><div class="line">    &lt;source src=&quot;cat.mp4&quot;  type=&quot;video/mp4&quot; /&gt;</div><div class="line">    &lt;source src=&quot;http://www.w3school.com.cn/i/movie.ogg&quot; type=&quot;video/ogg&quot;&gt;</div><div class="line">    </div><div class="line">    &lt;object width=&quot;640&quot; height=&quot;264&quot; type=&quot;application/x-shockwave-flash&quot; &gt;</div><div class="line">        &lt;param name=&quot;movie&quot; /&gt;</div><div class="line">        &lt;param name=&quot;allowfullscreen&quot; value=&quot;true&quot; /&gt;</div><div class="line">        &lt;param value=&apos;config=&#123;&quot;playlist&quot;:[&quot;images/confident.jpg&quot;, &#123;&quot;url&quot;: &quot;cat.mp4&quot;,&quot;autoPlay&quot;:false,&quot;autoBuffering&quot;:true&#125;]&#125;&apos; /&gt;</div><div class="line">     &lt;/object&gt;</div><div class="line">    不支持video</div><div class="line">&lt;/video&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>videojs等插件库解决方案。（没有实际测试过，推荐前面两种方案）</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/11/日常小点记录/" data-id="cj67lo0im0005hko0zdx5c8x6" class="article-share-link">Delen</a>
       
       
     </footer>
@@ -328,7 +358,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/10/Professional-JavaScript-fof-Web-Developers-3rd-Edition/" data-id="cj67agy740001xwo0zpcbq3jb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/08/10/Professional-JavaScript-fof-Web-Developers-3rd-Edition/" data-id="cj67lo0hw0000hko0xr8twhc3" class="article-share-link">Delen</a>
       
       
     </footer>
@@ -375,7 +405,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/09/bootstrap学习笔记/" data-id="cj67agy790002xwo06j87od0w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/08/09/bootstrap学习笔记/" data-id="cj67lo0i60001hko0c24msmvx" class="article-share-link">Delen</a>
       
       
     </footer>
@@ -433,7 +463,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/02/你不知道的JavaScript-中卷/" data-id="cj67agy7d0004xwo0irngiei0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/08/02/你不知道的JavaScript-中卷/" data-id="cj67lo0if0004hko0y5mh5csb" class="article-share-link">Delen</a>
       
       
     </footer>
@@ -478,7 +508,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/12/hello-world/" data-id="cj67agy6x0000xwo0swtwaxdo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/12/hello-world/" data-id="cj67lo0ia0002hko0ykt8bfrg" class="article-share-link">Delen</a>
       
       
     </footer>
@@ -503,7 +533,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archieven</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
     </div>
@@ -513,16 +543,16 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Recente berichten</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2017/08/11/日常小点记录/">日常小点记录</a>
+            <a href="/2017/08/14/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
           </li>
         
           <li>
-            <a href="/2017/08/11/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
+            <a href="/2017/08/11/日常小点记录/">日常小点记录</a>
           </li>
         
           <li>

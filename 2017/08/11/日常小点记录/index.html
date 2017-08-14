@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/08/11/日常小点记录/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="video兼容性处理优酷视频在IE7以上(IE11的仿真模式下测试)及各个主流浏览器都能正常播放。360极速模式（极速模式用的是谷歌内核，谷歌浏览器支持，所以很疑惑）和 360极速浏览器不支持。错误原因显示客户端无权播放 201.百度查找答案显示为： flash插件的原因， 本地测试时更新了flash还是不能播放。 所以把视频传到优酷上是解决视频兼容性的方法之一。    格式 IE Firefox">
-<meta property="og:updated_time" content="2017-08-11T08:09:43.580Z">
+<meta property="og:updated_time" content="2017-08-11T08:21:34.536Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="日常小点记录">
 <meta name="twitter:description" content="video兼容性处理优酷视频在IE7以上(IE11的仿真模式下测试)及各个主流浏览器都能正常播放。360极速模式（极速模式用的是谷歌内核，谷歌浏览器支持，所以很疑惑）和 360极速浏览器不支持。错误原因显示客户端无权播放 201.百度查找答案显示为： flash插件的原因， 本地测试时更新了flash还是不能播放。 所以把视频传到优酷上是解决视频兼容性的方法之一。    格式 IE Firefox">
@@ -54,7 +54,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -66,7 +66,7 @@
         <section id="main"><article id="post-日常小点记录" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/08/11/日常小点记录/" class="article-date">
-  <time datetime="2017-08-11T08:09:43.578Z" itemprop="datePublished">2017-08-11</time>
+  <time datetime="2017-08-11T08:21:34.534Z" itemprop="datePublished">2017-08-11</time>
 </a>
     
   </div>
@@ -125,7 +125,8 @@
 </tr>
 </tbody>
 </table>
-<p>Ogg = 带有 Theora 视频编码和 Vorbis 音频编码的 Ogg 文件<br>MPEG4 = 带有 H.264 视频编码和 AAC 音频编码的 MPEG 4 文件<br>WebM = 带有 VP8 视频编码和 Vorbis 音频编码的 WebM 文件</p>
+<p>Ogg = 带有 Theora 视频编码和 Vorbis 音频编码的 Ogg 文件<br>MPEG4 = 带有 <b>H.264</b> 视频编码和 AAC 音频编码的 MPEG 4 文件<br>WebM = 带有 <b>VP8</b> 视频编码和 Vorbis 音频编码的 WebM 文件</p>
+<p>视频编码很重要，如果编码不正确，有的浏览器会渲染为只有声音没有影像。</p>
 <p>综上所述： 只要提供ogg和mp4格式就能兼容IE9以上的主流浏览器。</p>
 <p>为了兼容IE8及以下浏览器的处理方法：</p>
 <ul>
@@ -136,11 +137,14 @@
 </li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;script src=&quot;https://cdn.bootcss.com/html5media/1.1.6/html5media.min.js&quot;&gt;&lt;/script&gt;</div><div class="line"></div><div class="line">&lt;video width=&quot;640&quot; height=&quot;360&quot; controls&gt;</div><div class="line">    &lt;source src=&quot;cat.mp4&quot;  type=&quot;video/mp4&quot; /&gt;</div><div class="line">    &lt;source src=&quot;http://www.w3school.com.cn/i/movie.ogg&quot; type=&quot;video/ogg&quot;&gt;</div><div class="line">    </div><div class="line">    &lt;object width=&quot;640&quot; height=&quot;264&quot; type=&quot;application/x-shockwave-flash&quot; &gt;</div><div class="line">        &lt;param name=&quot;movie&quot; /&gt;</div><div class="line">        &lt;param name=&quot;allowfullscreen&quot; value=&quot;true&quot; /&gt;</div><div class="line">        &lt;param value=&apos;config=&#123;&quot;playlist&quot;:[&quot;images/confident.jpg&quot;, &#123;&quot;url&quot;: &quot;cat.mp4&quot;,&quot;autoPlay&quot;:false,&quot;autoBuffering&quot;:true&#125;]&#125;&apos; /&gt;</div><div class="line">     &lt;/object&gt;</div><div class="line">    不支持video</div><div class="line">&lt;/video&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>videojs等插件库解决方案。（没有实际测试过，推荐前面两种方案）</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/11/日常小点记录/" data-id="cj67agy7d0003xwo08b4ydf4h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/08/11/日常小点记录/" data-id="cj67lo0im0005hko0zdx5c8x6" class="article-share-link">Delen</a>
       
       
     </footer>
@@ -149,10 +153,19 @@
     
 <nav id="article-nav">
   
+    <a href="/2017/08/14/你不知道的JavaScript-上卷/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Nieuwer</strong>
+      <div class="article-nav-title">
+        
+          你不知道的JavaScript(上卷)
+        
+      </div>
+    </a>
   
-    <a href="/2017/08/11/你不知道的JavaScript-上卷/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">你不知道的JavaScript(上卷)</div>
+  
+    <a href="/2017/08/10/Professional-JavaScript-fof-Web-Developers-3rd-Edition/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ouder</strong>
+      <div class="article-nav-title">JavaScript高级程序设计（3rd Edition）</div>
     </a>
   
 </nav>
@@ -174,7 +187,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archieven</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
     </div>
@@ -184,16 +197,16 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Recente berichten</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2017/08/11/日常小点记录/">日常小点记录</a>
+            <a href="/2017/08/14/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
           </li>
         
           <li>
-            <a href="/2017/08/11/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
+            <a href="/2017/08/11/日常小点记录/">日常小点记录</a>
           </li>
         
           <li>
