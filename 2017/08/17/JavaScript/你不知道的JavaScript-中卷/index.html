@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>你不知道的JavaScript-中卷 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="类型typeof 运算符来查看值（变量的值，不是变量）的类型。特殊情况： typeof null === “object” // 空的指针对象。1234567891011121314151617 typeof b   // undefined 有可能两种情况： 1. b有声明没定义。 2. b没有声明 b没有声明 报错：b is not defined  undefined ， b is not">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="你不知道的JavaScript-中卷">
+<meta property="og:url" content="http://yoursite.com/2017/08/17/JavaScript/你不知道的JavaScript-中卷/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="类型typeof 运算符来查看值（变量的值，不是变量）的类型。特殊情况： typeof null === “object” // 空的指针对象。1234567891011121314151617 typeof b   // undefined 有可能两种情况： 1. b有声明没定义。 2. b没有声明 b没有声明 报错：b is not defined  undefined ， b is not">
+<meta property="og:updated_time" content="2017-08-17T02:31:31.358Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="你不知道的JavaScript-中卷">
+<meta name="twitter:description" content="类型typeof 运算符来查看值（变量的值，不是变量）的类型。特殊情况： typeof null === “object” // 空的指针对象。1234567891011121314151617 typeof b   // undefined 有可能两种情况： 1. b有声明没定义。 2. b没有声明 b没有声明 报错：b is not defined  undefined ， b is not">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JavaScript/你不知道的JavaScript-中卷" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/17/JavaScript/你不知道的JavaScript-中卷/" class="article-date">
+  <time datetime="2017-08-17T02:31:31.357Z" itemprop="datePublished">2017-08-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      你不知道的JavaScript-中卷
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><p>typeof 运算符来查看值（变量的值，不是变量）的类型。<br>特殊情况： typeof null === “object” // 空的指针对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"> typeof b   // undefined</div><div class="line"> 有可能两种情况：</div><div class="line"> 1. b有声明没定义。</div><div class="line"> 2. b没有声明</div><div class="line"> b没有声明 报错：b is not defined </div><div class="line"> undefined ， b is not defined 是不同的慨念</div><div class="line"></div><div class="line">可用typeof来避免变量未声明抛出错误</div><div class="line"> // 这样会抛出错误</div><div class="line"> if (DEBUG) &#123;</div><div class="line">     console.log( &quot;Debugging is starting&quot; );</div><div class="line"> &#125;</div><div class="line"> </div><div class="line"> // 这样是安全的</div><div class="line"> if (typeof DEBUG !== &quot;undefined&quot;) &#123;</div><div class="line">     console.log( &quot;Debugging is starting&quot; );</div><div class="line"> &#125;</div></pre></td></tr></table></figure></p>
+<h2 id="值"><a href="#值" class="headerlink" title="值"></a>值</h2><h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><p>将类数组转为数组的常用方法：</p>
+<ul>
+<li>Array.prototype.slice.call( 类数组 );</li>
+<li>ES6 Array.from(..);</li>
+</ul>
+<h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><p>不能“借用”数组的reverse方法。<br>Array.prototype.reverse.call( a );  // Uncaught TypeError: Cannot assign to read only property ‘0’ of <a href="…">object String</a><br>可以先将字符串转为数组，再执行reverse方法。<br>a = a.split(“”).reverse().join(“”);<br>如果字符串包含复杂字符（Unicode，如星号、多字节字符等），此方法不适用，可选择能够处理Unicode 的工具库</p>
+<h4 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h4><p>JavaScript采用二进制浮点数，二进制浮点数最大的问题会出现如下情况<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0.1 + 0.2 === 0.3; // false</div></pre></td></tr></table></figure></p>
+<p>所以处理整数时是绝对安全的，处理小数最常见的方法是设置一个误差范围值，通常称为“机器精度”（machine epsilon）， 对JavaScript 的数字来说，这个值通常是2^-52 (2.220446049250313e-16)。<br>从ES6 开始，该值定义在Number.EPSILON 中，我们可以直接拿来用，也可以为ES6 之前的版本写polyfill：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// polyfill</div><div class="line">if (!Number.EPSILON) &#123;</div><div class="line">    Number.EPSILON = Math.pow(2,-52);</div><div class="line">&#125;</div><div class="line">function numbersCloseEnoughToEqual(n1,n2) &#123;</div><div class="line">    return Math.abs( n1 - n2 ) &lt; Number.EPSILON;</div><div class="line">&#125;</div><div class="line">var a = 0.1 + 0.2;</div><div class="line">var b = 0.3;</div><div class="line">numbersCloseEnoughToEqual( a, b ); // true</div><div class="line">numbersCloseEnoughToEqual( 0.0000001, 0.0000002 ); // false</div></pre></td></tr></table></figure></p>
+<p>整数检测<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">if (!Number.isInteger) &#123;</div><div class="line">    Number.isInteger = function(num) &#123;</div><div class="line">        return typeof num == &quot;number&quot; &amp;&amp; num % 1 == 0;</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line">“32.3” % 1   //0.29999999999999716</div></pre></td></tr></table></figure></p>
+<h6 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h6><p>NaN 意指“不是一个数字”（not a number），这个名字容易引起误会,它仍是一个数字类型。<br>isNaN和ES6的Number.isNaN比较<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">var a = 2 / &quot;foo&quot;;</div><div class="line">var b = &quot;foo&quot;;</div><div class="line">a; // NaN</div><div class="line">b; &quot;foo&quot;</div><div class="line">window.isNaN( a ); // true</div><div class="line">window.isNaN( b ); // true——晕！</div><div class="line"></div><div class="line">if (!Number.isNaN) &#123;</div><div class="line">    Number.isNaN = function(n) &#123;</div><div class="line">        return (</div><div class="line">            typeof n === &quot;number&quot; &amp;&amp; window.isNaN( n )</div><div class="line">        );</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line">var a = 2 / &quot;foo&quot;;</div><div class="line">var b = &quot;foo&quot;;</div><div class="line">Number.isNaN( a ); // true</div><div class="line">Number.isNaN( b ); // false——好！</div></pre></td></tr></table></figure></p>
+<p><strong>尽量使用Number.isNaN(..)</strong></p>
+<p><strong>能使用== 和===时就尽量不要使用Object.is(..)，因为前者效率更高、更为通用。Object.is(..) 主要用来处理那些特殊的相等比较。</strong></p>
+<p>有些应用程序中的数据需要以级数形式来表示（比如动画帧的移动速度），数字的符号位（sign）用来代表其他信息（比如移动的方向）。此时如果一个值为0 的变量失去了它的符号位，它的方向信息就会丢失。所以保留0 值的符号位可以防止这类情况发生。</p>
+<p>####值和引用<br>简单值（即标量基本类型值，scalar primitive）总是通过值复制的方式来赋值/ 传递，包括null、undefined、字符串、数字、布尔和ES6 中的symbol。<br>复合值（compound value）——对象（包括数组和封装对象，参见第3 章）和函数，则总是通过引用复制的方式来赋值/ 传递。</p>
+<p>赋值/ 参数传递是通过引用还是值复制完全由值的类型来决定，所以使用哪种类型也间接决定了赋值/ 参数传递的方式。</p>
+<h2 id="原生函数"><a href="#原生函数" class="headerlink" title="原生函数"></a>原生函数</h2><h3 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h3><h4 id="显示强制类型转换"><a href="#显示强制类型转换" class="headerlink" title="显示强制类型转换"></a>显示强制类型转换</h4><p>根据ToPrimitive 抽象操作规则，a(Object) + “” 会对a 调用valueOf() 方法，然后通过ToString 抽象操作将返回值转换为字符串。而String(a) 则是直接调用ToString()。</p>
+<p><strong>== 允许在相等比较中进行强制类型转换，而=== 不允许。</strong><br><strong>建议不要使用 == true 和 == false。（Boolean类型会首先转换为数字）</strong><br><strong>安全运用隐式强制类型转换</strong></p>
+<ul>
+<li>如果两边的值中有true 或者false，千万不要使用==。</li>
+<li>如果两边的值中有[]、”” 或者0，尽量不要使用==。</li>
+</ul>
+<h2 id="第二部分-异步和性能"><a href="#第二部分-异步和性能" class="headerlink" title="第二部分 异步和性能"></a>第二部分 异步和性能</h2><h3 id="同步与异步"><a href="#同步与异步" class="headerlink" title="同步与异步"></a>同步与异步</h3><p>一般而言，操作分为：发出调用和得到结果两步。发出调用，立即得到结果是为同步。发出调用，但无法立即得到结果，需要额外的操作才能得到预期的结果是为异步。同步就是调用之后一直等待，直到返回结果。异步则是调用之后，不能直接拿到结果，通过一系列的手段才最终拿到结果（调用之后，拿到结果中间的时间可以介入其他任务）。<br>原理：【定时器并不是特例。到达时间点后，会形成一个事件（timeout事件）。不同的是一般事件是靠底层系统或者线程池之类的产生事件，但定时器事件是靠事件循环不停检查系统时间来判定是否到达时间点来产生事件】<br>原理：【ajax请求是在主线程里面执行，浏览器就会设置侦听来自网络的响应，ajax请求完成事件（异步）放入Event queue】</p>
+<h4 id="Deffered和Promise的差异"><a href="#Deffered和Promise的差异" class="headerlink" title="Deffered和Promise的差异"></a>Deffered和Promise的差异</h4><ul>
+<li>Deffered触发resolve或reject</li>
+<li>Promise中申明resolve或reject后应该做什么（回调）</li>
+</ul>
+<h3 id="生成器-Generator和Iterator"><a href="#生成器-Generator和Iterator" class="headerlink" title="生成器 (Generator和Iterator)"></a>生成器 (Generator和Iterator)</h3><p><strong>具体的用法，这个很乱，去找点视频来看。</strong></p>
+<p>异步迭代生成器用例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div></pre></td><td class="code"><pre><div class="line">// 常用异步回调方法</div><div class="line">function foo(x,y,cb) &#123;</div><div class="line">    ajax(</div><div class="line">    &quot;http://some.url.1/?x=&quot; + x + &quot;&amp;y=&quot; + y,</div><div class="line">    cb</div><div class="line">    );</div><div class="line">&#125;</div><div class="line">foo( 11, 31, function(err,text) &#123;</div><div class="line">    if (err) &#123;</div><div class="line">        console.error( err );</div><div class="line">    &#125;</div><div class="line">    else &#123;</div><div class="line">        console.log( text );</div><div class="line">    &#125;</div><div class="line">&#125; );</div><div class="line"></div><div class="line">// 生成器表达同样的任务流程控制</div><div class="line">function foo(x,y) &#123;</div><div class="line">    ajax(</div><div class="line">        &quot;http://some.url.1/?x=&quot; + x + &quot;&amp;y=&quot; + y,</div><div class="line">        function(err,data)&#123;</div><div class="line">            if (err) &#123;</div><div class="line">                // 向*main()抛出一个错误</div><div class="line">                it.throw( err );</div><div class="line">            &#125;</div><div class="line">            else &#123;</div><div class="line">                // 用收到的data恢复*main()</div><div class="line">                it.next( data );</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    );</div><div class="line">&#125;</div><div class="line"></div><div class="line">function *main() &#123;</div><div class="line">    try &#123;</div><div class="line">        var text = yield foo( 11, 31 );</div><div class="line">        console.log( text );</div><div class="line">    &#125;</div><div class="line">    catch (err) &#123;</div><div class="line">        console.error( err );</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var it = main();</div><div class="line">it.next();</div><div class="line"></div><div class="line"></div><div class="line">// 生成器+ Promise</div><div class="line">function foo(x,y) &#123;</div><div class="line">    return request(</div><div class="line">        &quot;http://some.url.1/?x=&quot; + x + &quot;&amp;y=&quot; + y</div><div class="line">    );</div><div class="line">&#125;</div><div class="line">function *main() &#123;</div><div class="line">    try &#123;</div><div class="line">        var text = yield foo( 11, 31 );</div><div class="line">        console.log( text );</div><div class="line">    &#125;</div><div class="line">    catch (err) &#123;</div><div class="line">        console.error( err );</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var it = main();</div><div class="line">var p = it.next().value;</div><div class="line"></div><div class="line">p.then(</div><div class="line">    function(text)&#123;</div><div class="line">        it.next( text );</div><div class="line">    &#125;,</div><div class="line">    function(err)&#123;</div><div class="line">        it.throw( err );</div><div class="line">    &#125;</div><div class="line">);</div></pre></td></tr></table></figure></p>
+<h3 id="性能测试与调优"><a href="#性能测试与调优" class="headerlink" title="性能测试与调优"></a>性能测试与调优</h3><p>工具：Benchmark.js</p>
+<h4 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h4><p>原理： 调用一个新的函数需要额外的一块预留内存来管理调用栈，称为栈帧。如果是在尾部调用一个新的函数，它就不需要创建一个新的栈帧，而是可以重用已有的bar(..) 的栈帧。这样不仅速度更快，也更节省内存。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">// 常用递归 factorial</div><div class="line">function factorial(num)&#123;</div><div class="line">      if (num &lt; 0) &#123; </div><div class="line">          return -1; </div><div class="line">      &#125; else if (num === 0 || num === 1) &#123; </div><div class="line">          return 1; </div><div class="line">      &#125; else &#123; </div><div class="line">          return (num * factorial(num - 1)); </div><div class="line">      &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 尾调用优化</div><div class="line">function factorial(num,sum)&#123;</div><div class="line">      if(num &lt; 2 ) &#123;</div><div class="line">          return sum;</div><div class="line">      &#125;else &#123;</div><div class="line">          return factorial(num-1,num*sum)</div><div class="line">      &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/17/JavaScript/你不知道的JavaScript-中卷/" data-id="cj6fv3dmg0007u4o0qxk2au4t" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/17/IOS-Input-Disabled默认样式问题/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          IOS Input Disabled默认样式问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/17/boostrap/bootstrap学习笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">bootstrap学习笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap tag">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/bootstrap/">bootstrap</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/css/移动端/">移动端</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bootstrap/">bootstrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动端/">移动端</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/移动端/" style="font-size: 10px;">移动端</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/17/IOS-Input-Disabled默认样式问题/">IOS Input Disabled默认样式问题</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/17/JavaScript/你不知道的JavaScript-中卷/">你不知道的JavaScript-中卷</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/17/boostrap/bootstrap学习笔记/">bootstrap学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/16/JavaScript/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/15/日常小点记录/">日常小点记录</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

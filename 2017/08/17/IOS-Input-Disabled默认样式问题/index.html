@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>IOS Input Disabled默认样式问题 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="IOS 移动端设置了readonly后仍然能被聚焦，后更改为disabled12345678910111213141516input[disabled],input:disabled,input[disabled=&amp;quot;disabled&amp;quot;] &amp;#123;   color: #000 !important;    background: #fff !important;&amp;#125;/">
+<meta name="keywords" content="css,移动端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IOS Input Disabled默认样式问题">
+<meta property="og:url" content="http://yoursite.com/2017/08/17/IOS-Input-Disabled默认样式问题/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="IOS 移动端设置了readonly后仍然能被聚焦，后更改为disabled12345678910111213141516input[disabled],input:disabled,input[disabled=&amp;quot;disabled&amp;quot;] &amp;#123;   color: #000 !important;    background: #fff !important;&amp;#125;/">
+<meta property="og:updated_time" content="2017-08-17T04:39:31.023Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IOS Input Disabled默认样式问题">
+<meta name="twitter:description" content="IOS 移动端设置了readonly后仍然能被聚焦，后更改为disabled12345678910111213141516input[disabled],input:disabled,input[disabled=&amp;quot;disabled&amp;quot;] &amp;#123;   color: #000 !important;    background: #fff !important;&amp;#125;/">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-IOS-Input-Disabled默认样式问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/17/IOS-Input-Disabled默认样式问题/" class="article-date">
+  <time datetime="2017-08-17T02:57:18.000Z" itemprop="datePublished">2017-08-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/css/">css</a>►<a class="article-category-link" href="/categories/css/移动端/">移动端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      IOS Input Disabled默认样式问题
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>IOS 移动端设置了<code>readonly</code>后仍然能被聚焦，后更改为<code>disabled</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">input[disabled],</div><div class="line">input:disabled,</div><div class="line">input[disabled=&quot;disabled&quot;] &#123;</div><div class="line">   color: #000 !important; </div><div class="line">   background: #fff !important;</div><div class="line">&#125;</div><div class="line">// 样式设置没有起作用</div><div class="line">// 正确样式设置 </div><div class="line">input[disabled], </div><div class="line">textarea[disabled],</div><div class="line">select[disabled=&apos;disabled&apos;]&#123;</div><div class="line">   -webkit-text-fill-color: rgba(0, 0, 0, 1);   // 用于改变字体color</div><div class="line">   opacity: 1;    // 浏览器默认为0.3，所以得改为1</div><div class="line">   color: rgba(0, 0, 0, 1); </div><div class="line">   background: white;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="扩展-浏览器输入框记住账号密码后的背景色处理"><a href="#扩展-浏览器输入框记住账号密码后的背景色处理" class="headerlink" title="扩展 - 浏览器输入框记住账号密码后的背景色处理"></a>扩展 - 浏览器输入框记住账号密码后的背景色处理</h4><p>谷歌浏览器、在记住密码后，通常会给用户密码输入框渲染上一个背景色（rgb(250, 255, 189)）<br>解决方案原理： 运用box-shadow，inset 设置覆盖默认的背景色。<br>-webkit-box-shadow: 0 0 0 1000px #fff inset;</p>
+<p>-webkit-text-fill-color: #ededed;  可改变字体颜色，后面扩展有提到。</p>
+<h4 id="扩展-关于-webkit-text-fill-color"><a href="#扩展-关于-webkit-text-fill-color" class="headerlink" title="扩展 - 关于-webkit-text-fill-color"></a>扩展 - 关于-webkit-text-fill-color</h4><p>表示文字颜色填充，实现的效果基本上与color一样。同时设置-webkit-text-fill-color和color，支持-webkit-text-fill-color浏览器会忽略color值。</p>
+<h4 id="扩展-webkit-text-stroke"><a href="#扩展-webkit-text-stroke" class="headerlink" title="扩展 - -webkit-text-stroke"></a>扩展 - -webkit-text-stroke</h4><p>-webkit-text-stroke:1px #000; -webkit-text-stroke第一个参数不会0，第二个参数为空，应用color颜色镂空字体。<br>-webkit-text-stroke第一个参数不会0，第二个参数不为空（颜色值），应用定义颜色值镂空字体。</p>
+<p>这个属性可用于镂空小图标颜色随文本颜色改变而改变</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/17/IOS-Input-Disabled默认样式问题/" data-id="cj6fv3dl50000u4o0aol171md" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/移动端/">移动端</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/08/17/JavaScript/你不知道的JavaScript-中卷/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">你不知道的JavaScript-中卷</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap tag">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/bootstrap/">bootstrap</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/css/移动端/">移动端</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bootstrap/">bootstrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动端/">移动端</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/移动端/" style="font-size: 10px;">移动端</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/17/IOS-Input-Disabled默认样式问题/">IOS Input Disabled默认样式问题</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/17/JavaScript/你不知道的JavaScript-中卷/">你不知道的JavaScript-中卷</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/17/boostrap/bootstrap学习笔记/">bootstrap学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/16/JavaScript/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/15/日常小点记录/">日常小点记录</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

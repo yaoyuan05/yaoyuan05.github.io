@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>bootstrap学习笔记 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="tab.jsBootstrap: tab.js 内用$.Event()实现回调。12345678910111213$previous.trigger(&amp;#123;    type: &amp;apos;hidden.bs.tab&amp;apos;,    relatedTarget: $this[0]&amp;#125;)$this.trigger(&amp;#123;    type: &amp;apos;shown.bs.tab&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bootstrap学习笔记">
+<meta property="og:url" content="http://yoursite.com/2017/08/16/bootstrap学习笔记/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="tab.jsBootstrap: tab.js 内用$.Event()实现回调。12345678910111213$previous.trigger(&amp;#123;    type: &amp;apos;hidden.bs.tab&amp;apos;,    relatedTarget: $this[0]&amp;#125;)$this.trigger(&amp;#123;    type: &amp;apos;shown.bs.tab&amp;">
+<meta property="og:updated_time" content="2017-08-16T08:38:38.006Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="bootstrap学习笔记">
+<meta name="twitter:description" content="tab.jsBootstrap: tab.js 内用$.Event()实现回调。12345678910111213$previous.trigger(&amp;#123;    type: &amp;apos;hidden.bs.tab&amp;apos;,    relatedTarget: $this[0]&amp;#125;)$this.trigger(&amp;#123;    type: &amp;apos;shown.bs.tab&amp;">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-bootstrap学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/16/bootstrap学习笔记/" class="article-date">
+  <time datetime="2017-08-16T08:38:38.005Z" itemprop="datePublished">2017-08-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      bootstrap学习笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="tab-js"><a href="#tab-js" class="headerlink" title="tab.js"></a>tab.js</h2><p>Bootstrap: tab.js 内用$.Event()实现回调。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$previous.trigger(&#123;</div><div class="line">    type: &apos;hidden.bs.tab&apos;,</div><div class="line">    relatedTarget: $this[0]</div><div class="line">&#125;)</div><div class="line">$this.trigger(&#123;</div><div class="line">    type: &apos;shown.bs.tab&apos;,</div><div class="line">    relatedTarget: $previous[0]</div><div class="line">&#125;)</div><div class="line"></div><div class="line">// 利用事件冒泡，可将回调函数绑定在.nav-tabs a 的父元素。 例：</div><div class="line">$(&quot;.nav-tabs li a&quot;).on(&quot;shown.bs.tab&quot;,function (event) &#123;</div><div class="line">   console.log(event.relatedTarget);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h2 id="affix-js"><a href="#affix-js" class="headerlink" title="affix.js"></a>affix.js</h2><p>$.proxy(this.checkPosition, this),返回一个新函数，并且这个函数始终保持了特定的作用域<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">this.$target = $(this.options.target)</div><div class="line">      .on(&apos;scroll.bs.affix.data-api&apos;, $.proxy(this.checkPosition, this))</div><div class="line">      .on(&apos;click.bs.affix.data-api&apos;,  $.proxy(this.checkPositionWithEventLoop, this))</div></pre></td></tr></table></figure></p>
+<h2 id="carousel-js"><a href="#carousel-js" class="headerlink" title="carousel.js"></a>carousel.js</h2><p>大图轮播列表循环实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var delta = direction == &apos;prev&apos; ? -1 : 1</div><div class="line">var itemIndex = (activeIndex + delta) % this.$items.length</div><div class="line">return this.$items.eq(itemIndex)</div><div class="line">// 技术点 求余得到下一位index</div><div class="line">// eq()负数则从集合中的最后一个元素往回计数。</div></pre></td></tr></table></figure></p>
+<h2 id="collapse-js"><a href="#collapse-js" class="headerlink" title="collapse.js"></a>collapse.js</h2><p>Accordion example,需固定的结构，子级trigger元素需包含data-parent=”#xx”,parent &gt; 子元素包含”.panel”类.<br>实现原理:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 要实现关联操作，如果一个元素需要执行show()方法，一定会有另一个元素执行hide()方法</div><div class="line">if (actives &amp;&amp; actives.length) &#123;</div><div class="line">    Plugin.call(actives, &apos;hide&apos;)</div><div class="line">    activesData || actives.data(&apos;bs.collapse&apos;, null)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="dropdown-js"><a href="#dropdown-js" class="headerlink" title="dropdown.js"></a>dropdown.js</h2><p>clearMenus(),用于复位初始状态。执行任何方法前先执行复位操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">//原理: </div><div class="line">Dropdown.prototype.toggle = function (e) &#123;</div><div class="line"></div><div class="line">    var isActive = $parent.hasClass(&apos;open&apos;);</div><div class="line">    clearMenus()；</div><div class="line">    if(!isActive)&#123;</div><div class="line">        // 执行状态</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;  </div><div class="line">$(document)</div><div class="line">  .on(&apos;click.bs.dropdown.data-api&apos;, clearMenus)</div><div class="line">  .on(&apos;click.bs.dropdown.data-api&apos;, &apos;.dropdown form&apos;, function (e) &#123; e.stopPropagation() &#125;)</div><div class="line">  .on(&apos;click.bs.dropdown.data-api&apos;, toggle, Dropdown.prototype.toggle)</div><div class="line">  .on(&apos;keydown.bs.dropdown.data-api&apos;, toggle, Dropdown.prototype.keydown)</div><div class="line">  .on(&apos;keydown.bs.dropdown.data-api&apos;, &apos;.dropdown-menu&apos;, Dropdown.prototype.keydown)</div></pre></td></tr></table></figure></p>
+<h2 id="modal-js"><a href="#modal-js" class="headerlink" title="modal.js"></a>modal.js</h2><ul>
+<li><code>window.innerWidth</code> IE8不支持的解决方案<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// getBoundingClientRect()取得的数值都是参照视口的左上角位置而言的。</div><div class="line">var fullWindowWidth = window.innerWidth</div><div class="line">if (!fullWindowWidth) &#123; // workaround for missing window.innerWidth in IE8</div><div class="line">  var documentElementRect = document.documentElement.getBoundingClientRect()</div><div class="line">  fullWindowWidth = documentElementRect.right - Math.abs(documentElementRect.left)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>扩展： <code>$(window).width()</code>获取的是return window.document.documentElement[ “clientWidth” ];<br>区别在于clientWidth获取可见区域宽（不包含滚动条宽度），window.innerWidth获取当前窗口的宽度（包含滚动条宽度），如果两数修值存在，相减得到滚动条宽度。</p>
+<h2 id="popover-js"><a href="#popover-js" class="headerlink" title="popover.js"></a>popover.js</h2><p>popover依赖于tooltip.js。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">// 初始化</div><div class="line">$(&apos;[data-toggle=&quot;popover&quot;]&apos;).popover(option);</div><div class="line"></div><div class="line">// 实现依赖原理</div><div class="line">Popover.prototype = $.extend(&#123;&#125;, $.fn.tooltip.Constructor.prototype)</div><div class="line">Popover.prototype.constructor = Popover</div><div class="line">Popover.prototype.重写方法 = function()&#123;</div><div class="line">    // 实现特殊化。多态</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 特殊属性 this.options.trigger：提供多个参数以空格分开</div><div class="line">var triggers = this.options.trigger.split(&apos; &apos;)</div><div class="line"></div><div class="line">for (var i = triggers.length; i--;) &#123;</div><div class="line">  var trigger = triggers[i]</div><div class="line"></div><div class="line">  if (trigger == &apos;click&apos;) &#123;</div><div class="line">    this.$element.on(&apos;click.&apos; + this.type, this.options.selector, $.proxy(this.toggle, this))</div><div class="line">  &#125; else if (trigger != &apos;manual&apos;) &#123;</div><div class="line">    var eventIn  = trigger == &apos;hover&apos; ? &apos;mouseenter&apos; : &apos;focusin&apos;</div><div class="line">    var eventOut = trigger == &apos;hover&apos; ? &apos;mouseleave&apos; : &apos;focusout&apos;</div><div class="line"></div><div class="line">    this.$element.on(eventIn  + &apos;.&apos; + this.type, this.options.selector, $.proxy(this.enter, this))</div><div class="line">    this.$element.on(eventOut + &apos;.&apos; + this.type, this.options.selector, $.proxy(this.leave, this))</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 特殊属性 this.options.placement：使用auto时空格分开的多个参数  “auto left”;</div><div class="line">var autoToken = /\s?auto?\s?/i</div><div class="line">var autoPlace = autoToken.test(placement)</div><div class="line">if (autoPlace) placement = placement.replace(autoToken, &apos;&apos;) || &apos;top&apos;</div><div class="line"></div><div class="line">var pos          = this.getPosition()       // 返回传入元素的位置信息</div><div class="line">var actualWidth  = $tip[0].offsetWidth      // tip弹出层可见宽度</div><div class="line">var actualHeight = $tip[0].offsetHeight     // tip弹出层可见高度</div><div class="line"></div><div class="line">if (autoPlace) &#123;</div><div class="line">    var orgPlacement = placement</div><div class="line">    var viewportDim = this.getPosition(this.$viewport)  // 参照物的位置信息</div><div class="line">    </div><div class="line">    // auto的实现原理：</div><div class="line">    placement = placement == &apos;bottom&apos; &amp;&amp; pos.bottom + actualHeight &gt; viewportDim.bottom ? &apos;top&apos;    :</div><div class="line">                placement == &apos;top&apos;    &amp;&amp; pos.top    - actualHeight &lt; viewportDim.top    ? &apos;bottom&apos; :</div><div class="line">                placement == &apos;right&apos;  &amp;&amp; pos.right  + actualWidth  &gt; viewportDim.width  ? &apos;left&apos;   :</div><div class="line">                placement == &apos;left&apos;   &amp;&amp; pos.left   - actualWidth  &lt; viewportDim.left   ? &apos;right&apos;  :</div><div class="line">                placement</div><div class="line">    </div><div class="line">    $tip</div><div class="line">      .removeClass(orgPlacement)</div><div class="line">      .addClass(placement)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="getBoundingClientRect方法"><a href="#getBoundingClientRect方法" class="headerlink" title="getBoundingClientRect方法"></a>getBoundingClientRect方法</h4><p>getBoundingClientRect()返回一个ClientRect对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">$(el)[0].getBoundingClientRect() </div><div class="line">// 各个浏览器都支持此方法</div><div class="line">ClientRect = &#123;</div><div class="line">    bottom: 419</div><div class="line">    height: 34</div><div class="line">    left: 0</div><div class="line">    right: 251.03125</div><div class="line">    top: 385</div><div class="line">    width: 251.03125</div><div class="line">&#125;</div><div class="line">width,height在ie8 以下包括ie 8没返回widtht和height，可通过以下方法实现width,height.</div><div class="line"></div><div class="line">// bootstrap内实现方法</div><div class="line">if (elRect.width == null) &#123;</div><div class="line">  // width and height are missing in IE8, so compute them manually; see https://github.com/twbs/bootstrap/issues/14093</div><div class="line">  elRect = $.extend(&#123;&#125;, elRect, &#123; width: elRect.right - elRect.left, height: elRect.bottom - elRect.top &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">ie7,默认坐标起始是(2,2)。ClientRect需要兼容写法，但现在都不兼容ie7所以不用处理。</div></pre></td></tr></table></figure></p>
+<p>var marginTop = parseInt($tip.css(‘margin-top’), 10)<br>var marginLeft = parseInt($tip.css(‘margin-left’), 10)<br>ie8 如果没有设置值，返回是auto。</p>
+<p>如果元素有margin,translate等值作用于位置，可使用$.offset.setOffset();设置定位信息.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$.offset.setOffset($tip[0],$.extend(&#123;</div><div class="line">   using: function (props) &#123;</div><div class="line">       $tip.css(&#123;</div><div class="line">           top: props.top,</div><div class="line">           left: props.left</div><div class="line">       &#125;)</div><div class="line">   &#125;</div><div class="line">&#125;,offset),0);</div></pre></td></tr></table></figure></p>
+<p>$.offset(options)实际是调用jQuery.offset.setOffset( this, options, i );</p>
+<p>// $.fn.offset doesn’t round pixel values   不能用Math.round(pixel value),所以用setOffset()<br>// so we use setOffset directly with our own function B-0<br>$.offset.setOffset($tip[0], $.extend({<br>        using: function (props) {<br>            $tip.css({<br>                top: Math.round(props.top),<br>                left: Math.round(props.left)<br>            })<br>        }<br>}, offset), 0)</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/16/bootstrap学习笔记/" data-id="cj6echz9z00010go014de7amn" class="article-share-link">Delen</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/08/16/你不知道的JavaScript-中卷/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ouder</strong>
+      <div class="article-nav-title">你不知道的JavaScript-中卷</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archieven</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recente berichten</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/16/bootstrap学习笔记/">bootstrap学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/16/你不知道的JavaScript-中卷/">你不知道的JavaScript-中卷</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/15/日常小点记录/">日常小点记录</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/15/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/10/Professional-JavaScript-fof-Web-Developers-3rd-Edition/">JavaScript高级程序设计（3rd Edition）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
