@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>产品演示页 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="产品演示页面要求，刚好一屏不出现滚动条，按指引点击显示内容。接下来会从这几个点展开讨化。  刚好一屏的实现原理。 项目中遇到的问题。 可扩展方向。  一屏的实现开始动手前先确定2个问题。  如何进行“页面切换”或者说是“图片的切换”?这种“单页面”(并不是真的单页面应用)让块的隐藏和显示来实现“页面切换”。  每个用户的浏览器宽高比是不确定的,如何完美的缩放图片比例?设计稿采用1920*1080的">
+<meta name="keywords" content="html,JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="产品演示页">
+<meta property="og:url" content="http://yoursite.com/2017/08/26/产品演示页/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="产品演示页面要求，刚好一屏不出现滚动条，按指引点击显示内容。接下来会从这几个点展开讨化。  刚好一屏的实现原理。 项目中遇到的问题。 可扩展方向。  一屏的实现开始动手前先确定2个问题。  如何进行“页面切换”或者说是“图片的切换”?这种“单页面”(并不是真的单页面应用)让块的隐藏和显示来实现“页面切换”。  每个用户的浏览器宽高比是不确定的,如何完美的缩放图片比例?设计稿采用1920*1080的">
+<meta property="og:updated_time" content="2017-08-26T06:20:25.049Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="产品演示页">
+<meta name="twitter:description" content="产品演示页面要求，刚好一屏不出现滚动条，按指引点击显示内容。接下来会从这几个点展开讨化。  刚好一屏的实现原理。 项目中遇到的问题。 可扩展方向。  一屏的实现开始动手前先确定2个问题。  如何进行“页面切换”或者说是“图片的切换”?这种“单页面”(并不是真的单页面应用)让块的隐藏和显示来实现“页面切换”。  每个用户的浏览器宽高比是不确定的,如何完美的缩放图片比例?设计稿采用1920*1080的">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-产品演示页" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/26/产品演示页/" class="article-date">
+  <time datetime="2017-08-26T06:20:25.048Z" itemprop="datePublished">2017-08-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/html/">html</a>►<a class="article-category-link" href="/categories/html/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      产品演示页
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>产品演示页面要求，刚好一屏不出现滚动条，按指引点击显示内容。<br>接下来会从这几个点展开讨化。</p>
+<ul>
+<li>刚好一屏的实现原理。</li>
+<li>项目中遇到的问题。</li>
+<li>可扩展方向。</li>
+</ul>
+<h2 id="一屏的实现"><a href="#一屏的实现" class="headerlink" title="一屏的实现"></a>一屏的实现</h2><p>开始动手前先确定2个问题。</p>
+<ol>
+<li><p>如何进行“页面切换”或者说是“图片的切换”?<br>这种“单页面”(并不是真的单页面应用)让块的隐藏和显示来实现“页面切换”。</p>
+</li>
+<li><p>每个用户的浏览器宽高比是不确定的,如何完美的缩放图片比例?<br>设计稿采用1920*1080的大小，16：9的比例，获取用户浏览器的宽高，宽度比(图片宽度 / 屏幕宽度)和高度比(图片高度 / 屏幕高度)来确定图片应该以宽度或高度来缩放图片。</p>
+</li>
+</ol>
+<p>html:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;page page-cover active&quot;&gt;</div><div class="line">    &lt;div class=&quot;page-main&quot;&gt;</div><div class="line">        &lt;img src=&quot;#&quot;&gt; </div><div class="line">        &lt;button class=&quot;page-cover-btn&quot; type=&quot;button&quot; data-marker data-pos-left=&quot;1214&quot; data-pos-top=&quot;365&quot;&gt;马上体验&lt;/button&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"> </div><div class="line">&lt;div class=&quot;page page-001&quot;&gt;...&lt;/div&gt;</div><div class="line"> </div><div class="line">&lt;div class=&quot;page page-002&quot;&gt;...&lt;/div&gt;</div><div class="line"> </div><div class="line">&lt;div class=&quot;page page-003&quot;&gt;...&lt;/div&gt;</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>css:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">html,body &#123;</div><div class="line">    height: 100%;</div><div class="line">&#125;</div><div class="line">.page &#123;</div><div class="line">    position: absolute;</div><div class="line">    left: 0;</div><div class="line">    top: 0;</div><div class="line">    right: 0;</div><div class="line">    bottom: 0;</div><div class="line">    margin: auto;</div><div class="line">    display: none;</div><div class="line">&#125;</div><div class="line">.page.active &#123;</div><div class="line">    display: block;</div><div class="line">&#125;</div><div class="line">.page-main &#123;</div><div class="line">    position: absolute;</div><div class="line">    top: 0;</div><div class="line">    left: 0;</div><div class="line">    right: 0;</div><div class="line">    bottom: 0;</div><div class="line">    margin: auto;</div><div class="line">    overflow: hidden;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>图片缩放实现原理：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line">replaceImage: function($el,callback) &#123;</div><div class="line">    var $img = $el.find(&quot;[data-resize=&apos;image&apos;]&quot;);</div><div class="line">    var $main = $el.find(&quot;.page-main&quot;);</div><div class="line">    var windowWidth = window.innerWidth;</div><div class="line">    var windowHeight = window.innerHeight;</div><div class="line">    var preloader = new Image();</div><div class="line"> </div><div class="line">    preloader.onload = function() &#123;</div><div class="line"> </div><div class="line">        $img.width(preloader.width);</div><div class="line">        $img.height(preloader.height);</div><div class="line"> </div><div class="line">       var imgWidth;</div><div class="line">       var imgHeight;</div><div class="line">       var maxImageWidth;</div><div class="line">       var maxImageHeight;</div><div class="line"> </div><div class="line">       maxImageWidth = windowWidth || document.documentElement.clientWidth || document.body.clientWidth;</div><div class="line">       maxImageHeight = windowHeight || document.documentElement.clientHeight || document.body.clientHeight;</div><div class="line"> </div><div class="line">       if ((preloader.width &gt; maxImageWidth) || (preloader.height &gt; maxImageHeight)) &#123;</div><div class="line"> </div><div class="line">           if((preloader.width / maxImageWidth) &gt; (preloader.height / maxImageHeight))&#123;</div><div class="line"> </div><div class="line">               imgWidth = maxImageWidth;</div><div class="line">               imgHeight = parseInt(preloader.height / (preloader.width / imgWidth),10);</div><div class="line"> </div><div class="line">               $img.width(imgWidth);</div><div class="line">               $img.height(imgHeight);</div><div class="line"> </div><div class="line">           &#125;else &#123;</div><div class="line">             imgHeight = maxImageHeight;</div><div class="line">             imgWidth = parseInt(preloader.width / (preloader.height / imgHeight), 10);</div><div class="line"> </div><div class="line">             $img.width(imgWidth);</div><div class="line">             $img.height(imgHeight);</div><div class="line"> </div><div class="line">           &#125;</div><div class="line"> </div><div class="line">       &#125;</div><div class="line"> </div><div class="line">       // 图片宽高没有超过最大值时，imgWidth,imgHeight设为原图宽高</div><div class="line">       $main.css(&#123;</div><div class="line">          &quot;width&quot;: imgWidth || preloader.width,</div><div class="line">          &quot;height&quot;: imgHeight || preloader.height</div><div class="line">       &#125;);</div><div class="line"> </div><div class="line">       callback&amp;&amp;callback(preloader);</div><div class="line"> </div><div class="line">   &#125;;</div><div class="line"> </div><div class="line">   preloader.src = $img.attr(&quot;src&quot;);</div><div class="line"> </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h2><ol>
+<li>图片上的marker(可点击区域)等比例缩放(scale)默认参照中心点去缩放，会造成定位对不准，应将参照点设为transform-origin:top left</li>
+<li>图片上的marker(可点击区域)如果内联元素也是绝对定位，自身与内联元素没有文本或背景等设置，在IE11以下无法触发事件。<br>bug条件：<br>– IE浏览器。<br>– 空白元素(没有内联元素，没有设置背景)定位与图片重叠， 重桑部分没法定焦触发事件。</li>
+</ol>
+<p>解决方案：<br>– background: rgba(0,0,0,0); // 推荐，扩展性比较好。<br>– background: …; opacity: 0; // 如果该元素内还有其它元素，会隐藏子元素。 此项目中刚好有小手动画元素。<br>– background: url(“#”); // 不推荐，浏览器会去请求是否有此图片。<br>以上方法都是从背景去考虑，还可以从内联元素去解决。</p>
+<h2 id="可扩展方向"><a href="#可扩展方向" class="headerlink" title="可扩展方向"></a>可扩展方向</h2><p>目前此版本兼容IE9及以上，谷歌等主流浏览器。主要是因为IE9以下scale不兼容。其实还有一个IE支持的属性zoom可缩放元素，不过zoom最大的坑在于缩放时依然受限于最小12像素中文大小限制，scale不受此限制。如果非要兼容IE7，8，就只能采用zoom方法了。</p>
+<p>项目中视频使用的是video标签，不支持IE9以下版本，另外各个浏览器原生的控制按钮宽高大小不一样，有时需要添加一个额外的播放按钮来控制，目前采用的方法是新建等高等宽透明层（大的播放按钮）覆盖在视频上，top: 0;bottom: 60px(没办法获取控制栏的高度);<br>可使用video.js等插件，它提供了可配置项。</p>
+<p>真的单页面应用SPA，可使用Backbone，Knockout，AngularJS，Avalon，VUE等开发框架来制作单页面应用， 以上开发框架都是我复制的，哈哈，有时间找些资料来试一下。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/26/产品演示页/" data-id="cj6swylf00000vco0s6jkebob" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/">html</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/30/日常小点记录/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          日常小点记录
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/17/JavaScript/Professional-JavaScript-fof-Web-Developers-3rd-Edition/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JavaScript高级程序设计（3rd Edition）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap tag">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/bootstrap/">bootstrap</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/css/移动端/">移动端</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/html/">html</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/html/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/html/JavaScript/css/">css</a></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bootstrap/">bootstrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动端/">移动端</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/html/" style="font-size: 15px;">html</a> <a href="/tags/移动端/" style="font-size: 10px;">移动端</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/09/04/JavaScript/你不知道的JavaScript-中卷/">你不知道的JavaScript-中卷</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/01/boostrap/bootstrap学习笔记/">bootstrap学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/01/JavaScript/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/30/日常小点记录/">日常小点记录</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/26/产品演示页/">产品演示页</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

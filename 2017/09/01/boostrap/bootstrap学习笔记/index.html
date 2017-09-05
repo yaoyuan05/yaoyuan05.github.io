@@ -9,10 +9,10 @@
 <meta name="keywords" content="bootstrap">
 <meta property="og:type" content="article">
 <meta property="og:title" content="bootstrap学习笔记">
-<meta property="og:url" content="http://yoursite.com/2017/08/17/boostrap/bootstrap学习笔记/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/09/01/boostrap/bootstrap学习笔记/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="tab.jsBootstrap: tab.js 内用$.Event()实现回调。12345678910111213$previous.trigger(&amp;#123;    type: &amp;apos;hidden.bs.tab&amp;apos;,    relatedTarget: $this[0]&amp;#125;)$this.trigger(&amp;#123;    type: &amp;apos;shown.bs.tab&amp;">
-<meta property="og:updated_time" content="2017-08-17T02:29:30.485Z">
+<meta property="og:updated_time" content="2017-09-01T07:41:11.024Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="bootstrap学习笔记">
 <meta name="twitter:description" content="tab.jsBootstrap: tab.js 内用$.Event()实现回调。12345678910111213$previous.trigger(&amp;#123;    type: &amp;apos;hidden.bs.tab&amp;apos;,    relatedTarget: $this[0]&amp;#125;)$this.trigger(&amp;#123;    type: &amp;apos;shown.bs.tab&amp;">
@@ -66,8 +66,8 @@
       <div class="outer">
         <section id="main"><article id="post-boostrap/bootstrap学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/08/17/boostrap/bootstrap学习笔记/" class="article-date">
-  <time datetime="2017-08-17T02:29:30.483Z" itemprop="datePublished">2017-08-17</time>
+    <a href="/2017/09/01/boostrap/bootstrap学习笔记/" class="article-date">
+  <time datetime="2017-09-01T07:41:11.023Z" itemprop="datePublished">2017-09-01</time>
 </a>
     
   <div class="article-category">
@@ -103,14 +103,19 @@
 <h2 id="popover-js"><a href="#popover-js" class="headerlink" title="popover.js"></a>popover.js</h2><p>popover依赖于tooltip.js。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">// 初始化</div><div class="line">$(&apos;[data-toggle=&quot;popover&quot;]&apos;).popover(option);</div><div class="line"></div><div class="line">// 实现依赖原理</div><div class="line">Popover.prototype = $.extend(&#123;&#125;, $.fn.tooltip.Constructor.prototype)</div><div class="line">Popover.prototype.constructor = Popover</div><div class="line">Popover.prototype.重写方法 = function()&#123;</div><div class="line">    // 实现特殊化。多态</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 特殊属性 this.options.trigger：提供多个参数以空格分开</div><div class="line">var triggers = this.options.trigger.split(&apos; &apos;)</div><div class="line"></div><div class="line">for (var i = triggers.length; i--;) &#123;</div><div class="line">  var trigger = triggers[i]</div><div class="line"></div><div class="line">  if (trigger == &apos;click&apos;) &#123;</div><div class="line">    this.$element.on(&apos;click.&apos; + this.type, this.options.selector, $.proxy(this.toggle, this))</div><div class="line">  &#125; else if (trigger != &apos;manual&apos;) &#123;</div><div class="line">    var eventIn  = trigger == &apos;hover&apos; ? &apos;mouseenter&apos; : &apos;focusin&apos;</div><div class="line">    var eventOut = trigger == &apos;hover&apos; ? &apos;mouseleave&apos; : &apos;focusout&apos;</div><div class="line"></div><div class="line">    this.$element.on(eventIn  + &apos;.&apos; + this.type, this.options.selector, $.proxy(this.enter, this))</div><div class="line">    this.$element.on(eventOut + &apos;.&apos; + this.type, this.options.selector, $.proxy(this.leave, this))</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 特殊属性 this.options.placement：使用auto时空格分开的多个参数  “auto left”;</div><div class="line">var autoToken = /\s?auto?\s?/i</div><div class="line">var autoPlace = autoToken.test(placement)</div><div class="line">if (autoPlace) placement = placement.replace(autoToken, &apos;&apos;) || &apos;top&apos;</div><div class="line"></div><div class="line">var pos          = this.getPosition()       // 返回传入元素的位置信息</div><div class="line">var actualWidth  = $tip[0].offsetWidth      // tip弹出层可见宽度</div><div class="line">var actualHeight = $tip[0].offsetHeight     // tip弹出层可见高度</div><div class="line"></div><div class="line">if (autoPlace) &#123;</div><div class="line">    var orgPlacement = placement</div><div class="line">    var viewportDim = this.getPosition(this.$viewport)  // 参照物的位置信息</div><div class="line">    </div><div class="line">    // auto的实现原理：</div><div class="line">    placement = placement == &apos;bottom&apos; &amp;&amp; pos.bottom + actualHeight &gt; viewportDim.bottom ? &apos;top&apos;    :</div><div class="line">                placement == &apos;top&apos;    &amp;&amp; pos.top    - actualHeight &lt; viewportDim.top    ? &apos;bottom&apos; :</div><div class="line">                placement == &apos;right&apos;  &amp;&amp; pos.right  + actualWidth  &gt; viewportDim.width  ? &apos;left&apos;   :</div><div class="line">                placement == &apos;left&apos;   &amp;&amp; pos.left   - actualWidth  &lt; viewportDim.left   ? &apos;right&apos;  :</div><div class="line">                placement</div><div class="line">    </div><div class="line">    $tip</div><div class="line">      .removeClass(orgPlacement)</div><div class="line">      .addClass(placement)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h4 id="getBoundingClientRect方法"><a href="#getBoundingClientRect方法" class="headerlink" title="getBoundingClientRect方法"></a>getBoundingClientRect方法</h4><p>getBoundingClientRect()返回一个ClientRect对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">$(el)[0].getBoundingClientRect() </div><div class="line">// 各个浏览器都支持此方法</div><div class="line">ClientRect = &#123;</div><div class="line">    bottom: 419</div><div class="line">    height: 34</div><div class="line">    left: 0</div><div class="line">    right: 251.03125</div><div class="line">    top: 385</div><div class="line">    width: 251.03125</div><div class="line">&#125;</div><div class="line">width,height在ie8 以下包括ie 8没返回widtht和height，可通过以下方法实现width,height.</div><div class="line"></div><div class="line">// bootstrap内实现方法</div><div class="line">if (elRect.width == null) &#123;</div><div class="line">  // width and height are missing in IE8, so compute them manually; see https://github.com/twbs/bootstrap/issues/14093</div><div class="line">  elRect = $.extend(&#123;&#125;, elRect, &#123; width: elRect.right - elRect.left, height: elRect.bottom - elRect.top &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">ie7,默认坐标起始是(2,2)。ClientRect需要兼容写法，但现在都不兼容ie7所以不用处理。</div></pre></td></tr></table></figure></p>
 <p>var marginTop = parseInt($tip.css(‘margin-top’), 10)<br>var marginLeft = parseInt($tip.css(‘margin-left’), 10)<br>ie8 如果没有设置值，返回是auto。</p>
-<p>如果元素有margin,translate等值作用于位置，可使用$.offset.setOffset();设置定位信息.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$.offset.setOffset($tip[0],$.extend(&#123;</div><div class="line">   using: function (props) &#123;</div><div class="line">       $tip.css(&#123;</div><div class="line">           top: props.top,</div><div class="line">           left: props.left</div><div class="line">       &#125;)</div><div class="line">   &#125;</div><div class="line">&#125;,offset),0);</div></pre></td></tr></table></figure></p>
-<p>$.offset(options)实际是调用jQuery.offset.setOffset( this, options, i );</p>
-<p>// $.fn.offset doesn’t round pixel values   不能用Math.round(pixel value),所以用setOffset()<br>// so we use setOffset directly with our own function B-0<br>$.offset.setOffset($tip[0], $.extend({<br>        using: function (props) {<br>            $tip.css({<br>                top: Math.round(props.top),<br>                left: Math.round(props.left)<br>            })<br>        }<br>}, offset), 0)</p>
+<p>如果元素有margin,translate等值作用于位置，可使用$.offset.setOffset();设置定位信息.</p>
+<p>$.offset(options)实际是调用jQuery.offset.setOffset( this, options, i );<br>为什么不直接$.css({top: .., left: ..});  ???<br>如果元素有margin,translate等值作用于位置,直接用css设置定位值，会有位置偏移。所以用offset(options);<br>如果还需要对值进行操作，可用下面方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// $.fn.offset doesn&apos;t round pixel values   不能用Math.round(pixel value),所以用setOffset()</div><div class="line">// so we use setOffset directly with our own function B-0</div><div class="line">$.offset.setOffset($tip[0], $.extend(&#123;</div><div class="line">        using: function (props) &#123;</div><div class="line">            $tip.css(&#123;</div><div class="line">                top: Math.round(props.top),</div><div class="line">                left: Math.round(props.left)</div><div class="line">            &#125;)</div><div class="line">        &#125;</div><div class="line">&#125;, offset), 0)</div></pre></td></tr></table></figure></p>
+<h2 id="scrollspy-js"><a href="#scrollspy-js" class="headerlink" title="scrollspy.js"></a>scrollspy.js</h2><p>第一步 获取所有目标元素相对父元素(position: 不是static)的偏移值和选择器，返回一个对象类似于[ [top,#test1]，[top,#test2] ];<br>第二步 包裹块发生滚动后，获取滚动scrollTop值，分别与上一步返回的数组中的top值比较，得到当前元素。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">var offsetMethod  = &apos;offset&apos;</div><div class="line">if (!$.isWindow(this.$scrollElement[0])) &#123;</div><div class="line">  offsetMethod = &apos;position&apos;</div><div class="line">  offsetBase   = this.$scrollElement.scrollTop()</div><div class="line">&#125;</div><div class="line">// offsetMethod 滚动发生在body还是元素，确定是用offset还是position。</div><div class="line"></div><div class="line">this.$body</div><div class="line">      .find(this.selector)</div><div class="line">      .map(function () &#123;</div><div class="line">        var $el   = $(this)</div><div class="line">        var href  = $el.data(&apos;target&apos;) || $el.attr(&apos;href&apos;)</div><div class="line">        var $href = /^#./.test(href) &amp;&amp; $(href)</div><div class="line"></div><div class="line">        return ($href</div><div class="line">          &amp;&amp; $href.length</div><div class="line">          &amp;&amp; $href.is(&apos;:visible&apos;)</div><div class="line">          &amp;&amp; [[$href[offsetMethod]().top + offsetBase, href]]) || null</div><div class="line">      &#125;)</div><div class="line">      .sort(function (a, b) &#123; return a[0] - b[0] &#125;)</div><div class="line">      .each(function () &#123;</div><div class="line">        that.offsets.push(this[0])</div><div class="line">        that.targets.push(this[1])</div><div class="line">      &#125;)</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// 判断当前元素的逻辑</div><div class="line">for (i = offsets.length; i--;) &#123;</div><div class="line">    activeTarget != targets[i]</div><div class="line">        &amp;&amp; scrollTop &gt;= offsets[i]</div><div class="line">        &amp;&amp; (offsets[i + 1] === undefined || scrollTop &lt; offsets[i + 1])</div><div class="line">        &amp;&amp; this.activate(targets[i])</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>不确定元素是用target还是href指定目标元素时:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var href  = $el.data(&apos;target&apos;) || $el.attr(&apos;href&apos;)；</div><div class="line"></div><div class="line">var selector = this.selector + &apos;[target=&quot;&apos; + target + &apos;&quot;]&apos;,this.selector + &apos;[href=&quot;&apos; + target + &apos;&quot;]&apos;;</div></pre></td></tr></table></figure></p>
+<p>parentsUntil的秒用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(this.selector).parentsUntil(this.options.target, &apos;.active&apos;)</div></pre></td></tr></table></figure></p>
+<h2 id="transition-js"><a href="#transition-js" class="headerlink" title="transition.js"></a>transition.js</h2><p>检查浏览器支持的属性名称<br>duration 等于setTimeout(callback,duration);<br>trigger(自定义事件)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$.event.special.bsTransitionEnd = &#123;</div><div class="line">   bindType: $.support.transition.end,</div><div class="line">   delegateType: $.support.transition.end,</div><div class="line">   handle: function (e) &#123;</div><div class="line">       if ($(e.target).is(this)) return e.handleObj.handler.apply(this, arguments)</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/17/boostrap/bootstrap学习笔记/" data-id="cj6fv3dmv000bu4o0vp1od8he" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/09/01/boostrap/bootstrap学习笔记/" data-id="cj6swylh4000pvco0ctlf328b" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bootstrap/">bootstrap</a></li></ul>
@@ -121,7 +126,7 @@
     
 <nav id="article-nav">
   
-    <a href="/2017/08/17/JavaScript/你不知道的JavaScript-中卷/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/09/04/JavaScript/你不知道的JavaScript-中卷/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
@@ -131,7 +136,7 @@
     </a>
   
   
-    <a href="/2017/08/16/JavaScript/你不知道的JavaScript-上卷/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/09/01/JavaScript/你不知道的JavaScript-上卷/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">你不知道的JavaScript(上卷)</div>
     </a>
@@ -149,7 +154,7 @@
   <div class="widget-wrap tag">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/bootstrap/">bootstrap</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/css/移动端/">移动端</a></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/bootstrap/">bootstrap</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/css/移动端/">移动端</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/html/">html</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/html/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/html/JavaScript/css/">css</a></li></ul></li></ul></li></ul>
     </div>
   </div>
 
@@ -159,7 +164,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bootstrap/">bootstrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动端/">移动端</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bootstrap/">bootstrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动端/">移动端</a></li></ul>
     </div>
   </div>
 
@@ -169,7 +174,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/移动端/" style="font-size: 10px;">移动端</a>
+      <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/html/" style="font-size: 15px;">html</a> <a href="/tags/移动端/" style="font-size: 10px;">移动端</a>
     </div>
   </div>
 
@@ -178,7 +183,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li></ul>
     </div>
   </div>
 
@@ -191,23 +196,23 @@
       <ul>
         
           <li>
-            <a href="/2017/08/17/IOS-Input-Disabled默认样式问题/">IOS Input Disabled默认样式问题</a>
+            <a href="/2017/09/04/JavaScript/你不知道的JavaScript-中卷/">你不知道的JavaScript-中卷</a>
           </li>
         
           <li>
-            <a href="/2017/08/17/JavaScript/你不知道的JavaScript-中卷/">你不知道的JavaScript-中卷</a>
+            <a href="/2017/09/01/boostrap/bootstrap学习笔记/">bootstrap学习笔记</a>
           </li>
         
           <li>
-            <a href="/2017/08/17/boostrap/bootstrap学习笔记/">bootstrap学习笔记</a>
+            <a href="/2017/09/01/JavaScript/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
           </li>
         
           <li>
-            <a href="/2017/08/16/JavaScript/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
+            <a href="/2017/08/30/日常小点记录/">日常小点记录</a>
           </li>
         
           <li>
-            <a href="/2017/08/15/日常小点记录/">日常小点记录</a>
+            <a href="/2017/08/26/产品演示页/">产品演示页</a>
           </li>
         
       </ul>
