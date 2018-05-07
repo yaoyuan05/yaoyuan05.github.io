@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/08/17/JavaScript变量名优秀示例/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="12345678910111213141516171819202122var $el = $(element);参数 option,extend()扩展之后 optionsvar orgPlacement = placement;  // 旧的&amp;quot;方向&amp;quot;placement = &amp;quot;新的&amp;quot;;$tip    .removeClass(orgPlacement)">
-<meta property="og:updated_time" content="2017-09-01T07:39:40.484Z">
+<meta property="og:updated_time" content="2018-01-09T02:23:37.407Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript变量名优秀示例">
 <meta name="twitter:description" content="12345678910111213141516171819202122var $el = $(element);参数 option,extend()扩展之后 optionsvar orgPlacement = placement;  // 旧的&amp;quot;方向&amp;quot;placement = &amp;quot;新的&amp;quot;;$tip    .removeClass(orgPlacement)">
@@ -91,7 +91,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">var $el = $(element);</div><div class="line"></div><div class="line">参数 option,extend()扩展之后 options</div><div class="line"></div><div class="line">var orgPlacement = placement;  // 旧的&quot;方向&quot;</div><div class="line">placement = &quot;新的&quot;;</div><div class="line">$tip</div><div class="line">    .removeClass(orgPlacement)</div><div class="line">    .addClass(placement);</div><div class="line"></div><div class="line">var enabled;  //可能</div><div class="line">var timeout   //计时器</div><div class="line">var state     //状态</div><div class="line">var trigger   //触发方式</div><div class="line">var template</div><div class="line">var viewport  // </div><div class="line">var complete,</div><div class="line"></div><div class="line">var isVertical,</div><div class="line">calculatedOffset     // 计算定位信息</div><div class="line">AdjustedDelta  // 调整差量</div><div class="line">var offsetMethod  // &apos;position or offset&apos;</div></pre></td></tr></table></figure>
-<p>函数名用动词<br>判断状态用 is… 例 isInStateTrue。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">getOptions,</div><div class="line">setContent,</div><div class="line">apply..  例applyPlacement 应向定位方向</div><div class="line">enter,</div><div class="line">leave,</div><div class="line">show,</div><div class="line">hide,</div><div class="line">toggle,</div><div class="line">destroy,</div><div class="line">enable,</div><div class="line">arrow,</div><div class="line">hasContent,</div><div class="line">replaceArrow     // 重置</div><div class="line">activate</div></pre></td></tr></table></figure></p>
+<p>函数名用动词<br>判断状态用 is… 例 isInStateTrue。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">getOptions,</div><div class="line">setContent,</div><div class="line">apply..  例applyPlacement 应向定位方向</div><div class="line">enter,</div><div class="line">leave,</div><div class="line">show,</div><div class="line">hide,</div><div class="line">toggle,</div><div class="line">destroy,</div><div class="line">enable,</div><div class="line">arrow,</div><div class="line">hasContent,</div><div class="line">replaceArrow     // 重置</div><div class="line">activate</div><div class="line">tidy    // Remove all traces</div><div class="line"></div><div class="line">postResize  //post</div><div class="line">previewer</div></pre></td></tr></table></figure></p>
 <p>ps.<br>$(“..”)返回的是类数组。无论是id,class,element,如果返回是多个元素的类数组，读取操作（attr,data，position等）只返回匹配第一个元素匹配值。设置操作匹配的全部元素。</p>
 <p>$(document)[0] instanceof document.constructor  // true</p>
 <p>$.position(),获取匹配元素相对父元素(position: 不是static)的偏移。<br>匹配元素的margin值不能影响top值，如果兄弟元素也有margin值，重叠结果会影响top值。<br>translateY,top(position: relative)会影响取值。<br>$.offset()获取匹配元素在当前视口的相对偏移。</p>
@@ -101,7 +101,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/17/JavaScript变量名优秀示例/" data-id="cj6swylfp0005vco0h574kv8n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/08/17/JavaScript变量名优秀示例/" data-id="cjgwhdbxy000s7oo07jbq2e5w" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
@@ -112,17 +112,17 @@
     
 <nav id="article-nav">
   
-    <a href="/2017/08/17/JavaScript/Professional-JavaScript-fof-Web-Developers-3rd-Edition/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/26/产品演示页/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          JavaScript高级程序设计（3rd Edition）
+          产品演示页
         
       </div>
     </a>
   
   
-    <a href="/2017/08/17/IOS-Input-Disabled默认样式问题/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/08/17/css/IOS-Input-Disabled默认样式问题/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">IOS Input Disabled默认样式问题</div>
     </a>
@@ -140,7 +140,7 @@
   <div class="widget-wrap tag">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/bootstrap/">bootstrap</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/css/移动端/">移动端</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/html/">html</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/html/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/html/JavaScript/css/">css</a></li></ul></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/bootstrap/">bootstrap</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/css/html/">html</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/mobile/">mobile</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/移动端/">移动端</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/html/">html</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/html/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/html/JavaScript/css/">css</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/html/css/">css</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/html/mobile/">mobile</a></li></ul></li></ul>
     </div>
   </div>
 
@@ -150,7 +150,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bootstrap/">bootstrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动端/">移动端</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bootstrap/">bootstrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mobile/">mobile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动端/">移动端</a></li></ul>
     </div>
   </div>
 
@@ -160,7 +160,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/html/" style="font-size: 15px;">html</a> <a href="/tags/移动端/" style="font-size: 10px;">移动端</a>
+      <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/html/" style="font-size: 15px;">html</a> <a href="/tags/mobile/" style="font-size: 12.5px;">mobile</a> <a href="/tags/移动端/" style="font-size: 10px;">移动端</a>
     </div>
   </div>
 
@@ -169,7 +169,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li></ul>
     </div>
   </div>
 
@@ -182,23 +182,23 @@
       <ul>
         
           <li>
-            <a href="/2017/09/04/JavaScript/你不知道的JavaScript-中卷/">你不知道的JavaScript-中卷</a>
+            <a href="/2018/05/08/日常小点记录/">日常小点记录</a>
           </li>
         
           <li>
-            <a href="/2017/09/01/boostrap/bootstrap学习笔记/">bootstrap学习笔记</a>
+            <a href="/2018/01/16/jQuery源码学习笔记/">jQuery源码学习笔记</a>
           </li>
         
           <li>
-            <a href="/2017/09/01/JavaScript/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
+            <a href="/2018/01/16/css/css揭秘/">CSS揭秘</a>
           </li>
         
           <li>
-            <a href="/2017/08/30/日常小点记录/">日常小点记录</a>
+            <a href="/2017/10/30/JavaScript/Professional-JavaScript-fof-Web-Developers-3rd-Edition/">JavaScript高级程序设计（3rd Edition）</a>
           </li>
         
           <li>
-            <a href="/2017/08/26/产品演示页/">产品演示页</a>
+            <a href="/2017/09/11/css/column多栏布局实现水平滑页翻页交互-实例/">column多栏布局实现水平滑页翻页交互-实例</a>
           </li>
         
       </ul>
@@ -213,7 +213,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 John Doe<br>
+      &copy; 2018 John Doe<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

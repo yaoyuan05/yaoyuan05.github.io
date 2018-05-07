@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-JavaScript/你不知道的JavaScript-上卷" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/01/JavaScript/你不知道的JavaScript-上卷/" class="article-date">
+  <time datetime="2017-09-01T01:37:54.535Z" itemprop="datePublished">2017-09-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/01/JavaScript/你不知道的JavaScript-上卷/">你不知道的JavaScript(上卷)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="作用域是什么"><a href="#作用域是什么" class="headerlink" title="作用域是什么"></a>作用域是什么</h2><p>两个问题：</p>
+<ul>
+<li>变量存储在那里？</li>
+<li>程序如何找到它？</li>
+</ul>
+<p>作用域是一套规则，用于确定在何处以及如何查找变量（标识符）。</p>
+<p>任何JavaScript 代码片段都要经过两个阶段，编译阶段和执行阶段。</p>
+<p>遍历嵌套作用域链的规则很简单：引擎从当前的执行作用域开始查找变量，如果找不到，就向上一级继续查找。当抵达最外层的全局作用域时，无论找到还是没找到，查找过程都会停止。</p>
+<p>小tip: ReferenceError 同作用域判别失败相关，而TypeError 则代表作用域判别成功了，但是对结果的操作是非法或不合理的。</p>
+<h2 id="词法作用域"><a href="#词法作用域" class="headerlink" title="词法作用域"></a>词法作用域</h2><p>作用域共有两种主要的工作模型。第一种是最为普遍的，被大多数编程语言所采用的词法作用域，另外一种叫作动态作用域(参见附录)，仍有一些编程语言在使用（比如Bash 脚本、Perl 中的一些模式等）。<br>作用域查找始终从运行时所处的最内部作用域开始，逐级向外或者说向上进行，直到遇见第一个匹配的标识符为止。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var a = 0;</div><div class="line">function foo()&#123;</div><div class="line">    var a = &quot;test&quot;         // 会形成“遮蔽效应”（内部的标识符“遮蔽”了外部的标识符）</div><div class="line">    console.log(a);</div><div class="line">    console.log(window.a)  // 间接访问那些被同名变量所遮蔽的全局变量</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>无论函数在哪里被调用，也无论它如何被调用，它的词法作用域都只由函数被声明时所处的位置决定。</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">    console.log( a ); // 2</div><div class="line">&#125;</div><div class="line">function bar() &#123;</div><div class="line">    var a = 3;</div><div class="line">    foo();</div><div class="line">&#125;</div><div class="line">var a = 2;</div><div class="line">bar();</div></pre></td></tr></table></figure></p>
+<h4 id="欺骗词法作用域"><a href="#欺骗词法作用域" class="headerlink" title="欺骗词法作用域"></a>欺骗词法作用域</h4><p>怎样才能在运行时来“修改”（也可以说欺骗）词法作用域呢？欺骗作用域的两种方法分别是：</p>
+<ul>
+<li>eval(..)</li>
+</ul>
+<p>new Function(..) 函数的行为也很类似，最后一个参数可以接受代码字符串，并将其转化为动态生成的函数（前面的参数是这个新生成的函数的形参）。这种构建函数的语法比eval(..) 略微安全一些，但也要尽量避免使用。<br>严格模式下，eval()无法修改所在的作用域。</p>
+<ul>
+<li>with(..)</li>
+</ul>
+<p>尽管with块可以将一个对象处理为词法作用域，但是这个块内部正常的var声明并不会被限制在这个块的作用域中，而是被添加到with 所处的函数作用域中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">with (obj) &#123;</div><div class="line">    a = 2;</div><div class="line">&#125;</div><div class="line">// obj.a如果存在，值会修改为“2”.如果a不存在会在全局变量新增window.a = &quot;2&quot;.</div></pre></td></tr></table></figure></p>
+<p><strong>欺骗词法作用域会导致性能下降，所以不推荐使用，还有一个原因是会被严格模式所影响（限制）。</strong></p>
+<blockquote>
+<p>扩展 严格模式 IE10包括IE10以上支持</p>
+</blockquote>
+<ul>
+<li>消除javascript语法的一些不合理、不严谨之处，减少一些怪异行为;</li>
+<li>消除代码运行的一些不安全之处，保证代码运行的安全；</li>
+<li>提高编译器效率，增加运行速度；</li>
+<li>为未来新版本的Javascript做好铺垫。</li>
+</ul>
+<p>严格模式带来的语法和行为改变</p>
+<ul>
+<li>禁止this关键字指向全局对象</li>
+<li>禁止使用arguments.callee</li>
+<li>函数必须声明在顶层<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&quot;use strict&quot;;</div><div class="line">// 函数必须声明在顶层</div><div class="line">if (true) &#123;</div><div class="line">    function f() &#123; &#125; // 语法错误</div><div class="line">&#125;</div><div class="line">for (var i = 0; i &lt; 5; i++) &#123;</div><div class="line">    function f2() &#123; &#125; // 语法错误</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="附录-动态作用域"><a href="#附录-动态作用域" class="headerlink" title="附录 动态作用域"></a>附录 动态作用域</h4><p>主要区别：词法作用域是在写代码或者说定义时确定的，而动态作用域是在运行时确定的。（this 也是！）词法作用域关注函数在何处声明，而动态作用域关注函数从何处调用。</p>
+<h2 id="函数作用域和块作用域"><a href="#函数作用域和块作用域" class="headerlink" title="函数作用域和块作用域"></a>函数作用域和块作用域</h2><p>函数作用域的含义是指，属于这个函数的全部变量都可以在整个函数的范围内使用及复用（事实上在嵌套的作用域中也可以使用）。这种设计方案是非常有用的，能充分利用JavaScript 变量可以根据需要改变值类型的“动态”特性。</p>
+<p>为了避免暴露过多的变量和函数和规避冲突，我们可以用以下两种解决方案：</p>
+<ul>
+<li>立即执行函数(IIFE)</li>
+<li>除JavaScript外的很多编程语言都支持块作用域。ES6提出了let关键字,const关键字绑定到所在的任意作用域中（通常是{ .. } 内部）。</li>
+</ul>
+<p>JavaScript 的ES3 规范中规定try/catch 的catch 分句会创建一个块作用域，其中声明的变量仅在catch 内部有效。</p>
+<p>编码建议： 始终给函数表达式命名是一个最佳实践。</p>
+<h4 id="附录-块作用域的替代方案"><a href="#附录-块作用域的替代方案" class="headerlink" title="附录 块作用域的替代方案"></a>附录 块作用域的替代方案</h4><p>使用代码转换工具来对ES6 代码进行处理，生成兼容ES5的代码。</p>
+<ol>
+<li>Traceur</li>
+</ol>
+<h2 id="提升"><a href="#提升" class="headerlink" title="提升"></a>提升</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 说明变量提升的例子</div><div class="line">a = 2;</div><div class="line">var a;</div><div class="line">console.log( a );  // 2</div></pre></td></tr></table></figure>
+<p>注意两个提升细节：</p>
+<ul>
+<li>函数表达式不会提升。</li>
+<li>编辑阶段，函数声明会优先于变量声明优先提升。</li>
+</ul>
+<p>编码建议：避免以下代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">foo(); // &quot;b&quot; 旧的谷歌浏览器</div><div class="line">var a = true;</div><div class="line">if (a) &#123;</div><div class="line">    function foo() &#123; console.log(&quot;a&quot;); &#125;</div><div class="line">&#125;</div><div class="line">else &#123;</div><div class="line">    function foo() &#123; console.log(&quot;b&quot;); &#125;</div><div class="line">&#125;</div><div class="line">// 经测试，新的谷歌浏览器反馈是Uncaught TypeError。一个博客主分析是因为foo()被认为是函数表达式了，foo变量名提升了。</div></pre></td></tr></table></figure></p>
+<p><strong>好的代码习惯： 避免重复声明,先声明后执行。</strong></p>
+<h2 id="作用域闭包"><a href="#作用域闭包" class="headerlink" title="作用域闭包"></a>作用域闭包</h2><p>当函数可以记住并访问所在的词法作用域时，就产生了闭包，即使函数是在当前词法作用域之外执行。</p>
+<p>函数执行可使用函数所在的词法作用域变量即视为闭包。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">// 常见闭包</div><div class="line">function foo() &#123;</div><div class="line">    var a = 2;</div><div class="line">    function bar() &#123;</div><div class="line">        console.log(a);</div><div class="line">    &#125;</div><div class="line">    return bar;</div><div class="line">&#125;</div><div class="line">var baz = foo();</div><div class="line">baz();</div><div class="line"></div><div class="line">//方式二</div><div class="line">function foo() &#123;</div><div class="line">    var a = 2;</div><div class="line">    function baz() &#123;</div><div class="line">        console.log( a ); // 2</div><div class="line">    &#125;</div><div class="line">    bar( baz );</div><div class="line">&#125;</div><div class="line">function bar(fn) &#123;</div><div class="line">    fn(); // 妈妈快看呀，这就是闭包！</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 方式三</div><div class="line">var fn;</div><div class="line">function foo() &#123;</div><div class="line">    var a = 2;</div><div class="line">    function baz() &#123;</div><div class="line">        console.log( a );</div><div class="line">    &#125;</div><div class="line">    fn = baz; // 将baz 分配给全局变量</div><div class="line">&#125;</div><div class="line">function bar() &#123;</div><div class="line">    fn(); // 妈妈快看呀，这就是闭包！</div><div class="line">&#125;</div><div class="line">foo();</div><div class="line">bar();</div><div class="line"></div><div class="line">// 方式四</div><div class="line">function wait(message) &#123;</div><div class="line">    setTimeout( function timer() &#123;</div><div class="line">        console.log( message );</div><div class="line">    &#125;, 1000 );</div><div class="line">&#125;</div><div class="line">wait( &quot;Hello, closure!&quot; );</div></pre></td></tr></table></figure></p>
+<h4 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h4><p>模块的原理利用闭包。<br>模块模式需要具备两个必要条件：</p>
+<ol>
+<li>必须有外部的封闭函数，该函数必须至少被调用一次（每次调用都会创建一个新的模块实例）。</li>
+<li>封闭函数必须返回至少一个内部函数，这样内部函数才能在私有作用域中形成闭包，并且可以访问或者修改私有的状态。</li>
+</ol>
+<blockquote>
+<p>ES6 的模块</p>
+</blockquote>
+<h2 id="关于this"><a href="#关于this" class="headerlink" title="关于this"></a>关于this</h2><h4 id="关于this的误解"><a href="#关于this的误解" class="headerlink" title="关于this的误解"></a>关于this的误解</h4><p>学习this 的第一步是明白this 既不指向函数自身也不指向函数的词法作用域。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">/* this 不指向函数自身 */</div><div class="line">function foo(num) &#123;</div><div class="line">    console.log( &quot;foo: &quot; + num );</div><div class="line">    // 记录foo 被调用的次数</div><div class="line">    this.count++;</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo.count = 0;</div><div class="line">var i;</div><div class="line"></div><div class="line">for (i=0; i&lt;10; i++) &#123;</div><div class="line">    if (i &gt; 5) &#123;</div><div class="line">    foo( i );</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">// foo: 6</div><div class="line">// foo: 7</div><div class="line">// foo: 8</div><div class="line">// foo: 9</div><div class="line"></div><div class="line">// foo 被调用了多少次？</div><div class="line">console.log( foo.count ); // 0 -- WTF?  this指向的window</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">/* this 不指向词法作用域 */ </div><div class="line">function foo() &#123;</div><div class="line">    var a = 2;</div><div class="line">    this.bar();</div><div class="line">&#125;</div><div class="line">function bar() &#123;</div><div class="line">    console.log( this.a );</div><div class="line">&#125;</div><div class="line">foo(); // ReferenceError: a is not defined</div></pre></td></tr></table></figure>
+<p><strong>每当你想要把this和词法作用域的查找混合使用时，一定要提醒自己，这是无法实现的。</strong></p>
+<h4 id="this到底是什么"><a href="#this到底是什么" class="headerlink" title="this到底是什么"></a>this到底是什么</h4><p>this是在运行时进行绑定的，并不是在编写时绑定，它的上下文取决于函数调用时的各种条件。this 的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式。<br>当一个函数被调用时，会创建一个活动记录（有时候也称为执行上下文）。这个记录会包含函数在哪里被调用（调用栈）、函数的调用方法、传入的参数等信息。this 就是记录的其中一个属性，会在函数执行的过程中用到。</p>
+<h2 id="this全面解析"><a href="#this全面解析" class="headerlink" title="this全面解析"></a>this全面解析</h2><p>四条规则来判断this 的绑定对象：</p>
+<ol>
+<li>由new 调用？绑定到新创建的对象。</li>
+<li>由call 或者apply（或者bind）调用？绑定到指定的对象。</li>
+<li>由上下文对象调用？绑定到那个上下文对象。</li>
+<li>默认：在严格模式下绑定到undefined，否则绑定到全局对象。</li>
+</ol>
+<p><strong>重要小点</strong><br>对象属性引用链中只有最顶层或者说最后一层会影响调用位置。obj1.obj2.foo(); this指向obj2.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">// 常见错误：隐式丢失</div><div class="line">function foo() &#123;</div><div class="line">    console.log( this.a );</div><div class="line">&#125;</div><div class="line">var obj = &#123;</div><div class="line">    a: 2,</div><div class="line">    foo: foo</div><div class="line">&#125;;</div><div class="line">var bar = obj.foo; // 函数别名！</div><div class="line">var a = &quot;oops, global&quot;; // a 是全局对象的属性</div><div class="line">bar(); // &quot;oops, global&quot;</div><div class="line">//虽然bar 是obj.foo 的一个引用，但是实际上，它引用的是foo 函数本身,因此此时的bar() 其实是一个不带任何修饰的函数调用，因此应用了默认绑定。</div><div class="line">//另一种情况是将函数传入回调函数中，doFoo(obj.foo).</div><div class="line">function doFoo(fn)&#123;</div><div class="line">    fn();//fn引用的是foo</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果你把null 或者undefined 作为this 的绑定对象传入call、apply 或者bind，这些值在调用时会被忽略，实际应用的是默认绑定规则：</p>
+<p><strong>建议</strong><br>如果你经常编写this风格的代码，但是绝大部分时候都会使用self = this 或者箭头函数来否定this 机制，那你或许应当：</p>
+<ol>
+<li>只使用词法作用域并完全抛弃错误this 风格的代码；</li>
+<li>完全采用this 风格，在必要时使用bind(..)，尽量避免使用self = this 和箭头函数。</li>
+</ol>
+<p>当然，包含这两种代码风格的程序可以正常运行，但是在同一个函数或者同一个程序中混合使用这两种风格通常会使代码更难维护，并且可能也会更难编写。</p>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>如果你试图向数组添加一个属性，但是属性名“看起来”像一个数字，那它会变成一个数值下标（因此会修改数组的内容而不是添加一个属性）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var myArray = [ &quot;foo&quot;, 42, &quot;bar&quot; ];</div><div class="line">myArray[&quot;3&quot;] = &quot;baz&quot;;</div><div class="line">myArray.length; // 4</div><div class="line">myArray[3]; // &quot;baz&quot;</div></pre></td></tr></table></figure></p>
+<h4 id="属性描述符"><a href="#属性描述符" class="headerlink" title="属性描述符"></a>属性描述符</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var myObject = &#123;</div><div class="line">    a:2</div><div class="line">&#125;;</div><div class="line">Object.getOwnPropertyDescriptor( myObject, &quot;a&quot; );</div><div class="line">// &#123;</div><div class="line">// value: 2,</div><div class="line">// writable: true,          可写</div><div class="line">// enumerable: true,        可枚举</div><div class="line">// configurable: true       可配置</div><div class="line">// &#125;</div></pre></td></tr></table></figure>
+<p><strong>设置对象的属性不可改变（都是浅不变形）</strong></p>
+<p>4种方法：</p>
+<ol>
+<li>结合writable:false 和configurable:false 就可以创建一个真正的常量属性（不可修改、重定义或者删除）:</li>
+<li>禁止扩展：Object.preventExtensions( myObject );</li>
+<li>密封: Object.seal(..);</li>
+<li>冻结: Object.freeze(..)</li>
+</ol>
+<p><strong>[[Put]]</strong><br>[[Put]] 被触发时，算法大致会检查下面这些内容。</p>
+<ol>
+<li>属性是否是访问描述符（参见3.3.9 节）？如果是并且存在setter 就调用setter。</li>
+<li>属性的数据描述符中writable 是否是false ？如果是，在非严格模式下静默失败，在严格模式下抛出TypeError 异常。</li>
+<li>如果都不是，将该值设置为属性的值。</li>
+</ol>
+<p><strong>存在性</strong><br>in 和hasOwnProperty(..) 的区别在于是否查找[[Prototype]] 链，然而，Object.keys(..)和Object.getOwnPropertyNames(..) 都只会查找对象直接包含的属性。</p>
+<p>forEach(..) 不能提前终止。<br>every(..) 和some(..)可像普通的for循环中的break语句类似，提前终止遍历。</p>
+<h2 id="混合对象“类”"><a href="#混合对象“类”" class="headerlink" title="混合对象“类”"></a>混合对象“类”</h2><p>面向类的设计模式：实例化（instantiation）、继承（inheritance）和（相对）多态（polymorphism）。</p>
+<h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><p><strong>误区</strong><br>大多数开发者都认为如果向[[Prototype]] 链上层已经存在的属性（[[Put]]）赋值，就一定会触发屏蔽，但是如你所见，三种情况中只有一种（第一种）是这样的。<br>在于原型链上层时myObject.foo = “bar” 会出现的三种情况。</p>
+<ol>
+<li>如果在[[Prototype]] 链上层存在名为foo 的普通数据访问属性（参见第3 章）并且没有被标记为只读（writable:false），那就会直接在myObject 中添加一个名为foo 的新属性，它是屏蔽属性。</li>
+<li>如果在[[Prototype]] 链上层存在foo，但是它被标记为只读（writable:false），那么无法修改已有属性或者在myObject 上创建屏蔽属性。如果运行在严格模式下，代码会抛出一个错误。否则，这条赋值语句会被忽略。总之，不会发生屏蔽。</li>
+<li>如果在[[Prototype]] 链上层存在foo 并且它是一个setter（参见第3 章），那就一定会调用这个setter。foo 不会被添加到（或者说屏蔽于）myObject，也不会重新定义foo 这个setter。</li>
+</ol>
+<p>如果你希望在第二种和第三种情况下也屏蔽foo，那就不能使用= 操作符来赋值，而是使用Object.defineProperty(..)（参见第3 章）来向myObject 添加foo。</p>
+<p>myObject.a++    // myObject.a = myObject.a + 1;  如果myObject.a存在于原型链上层，会造成隐式屏蔽。</p>
+<p>“原型继承”表述不正确，继承意味着复制操作，JavaScript（默认）并不会复制对象属性。相反，JavaScript 会在两个对象之间创建一个关联，这样一个对象就可以通过委托访问另一个对象的属性和函数。委托（参见第6 章）这个术语可以更加准确地描述JavaScript 中对象的关联机制。</p>
+<p><strong>典型的“原型风格”：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">function Foo(name) &#123;</div><div class="line">    this.name = name;</div><div class="line">&#125;</div><div class="line">Foo.prototype.myName = function() &#123;</div><div class="line">    return this.name;</div><div class="line">&#125;;</div><div class="line">function Bar(name,label) &#123;</div><div class="line">    Foo.call( this, name );</div><div class="line">    this.label = label;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 我们创建了一个新的Bar.prototype 对象并关联到Foo.prototype</div><div class="line">Bar.prototype = Object.create( Foo.prototype );</div><div class="line">// 注意！现在没有Bar.prototype.constructor 了</div><div class="line">// 如果你需要这个属性的话可能需要手动修复一下它</div><div class="line">Bar.prototype.myLabel = function() &#123;</div><div class="line">    return this.label;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">var a = new Bar( &quot;a&quot;, &quot;obj a&quot; );</div><div class="line">a.myName(); // &quot;a&quot;</div><div class="line">a.myLabel(); // &quot;obj a&quot;</div></pre></td></tr></table></figure></p>
+<p>重点重点重点 实现原理：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// ES6 之前需要抛弃默认的Bar.prototype</div><div class="line">Bar.ptototype = Object.create( Foo.prototype );</div><div class="line">// ES6 开始可以直接修改现有的Bar.prototype</div><div class="line">Object.setPrototypeOf( Bar.prototype, Foo.prototype );</div></pre></td></tr></table></figure></p>
+<p>instanceof 操作符的左操作数是一个普通的对象，右操作数是一个函数。<br>如果想判断两个对象（比如a 和b）之间是否通过[[Prototype]] 链关联呢？<br>方法：</p>
+<ul>
+<li>a.isPrototypeOf(b); //在b 的整条[[Prototype]] 链中是否出现过a [[Prototype]] ？</li>
+<li>Object.getPrototypeOf( b ) === a； //true</li>
+<li>b.&#95;&#95;proto&#95;&#95; === a;    //true  它不是标准，并没有得到所有浏览器支持</li>
+</ul>
+<h2 id="行为委托"><a href="#行为委托" class="headerlink" title="行为委托"></a>行为委托</h2><p><strong>面向委托的设计 对象关联</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">Task = &#123;</div><div class="line">    setID: function(ID) &#123; this.id = ID; &#125;,</div><div class="line">    outputID: function() &#123; console.log( this.id ); &#125;</div><div class="line">&#125;;</div><div class="line">// 让XYZ 委托Task</div><div class="line">XYZ = Object.create( Task );</div><div class="line">XYZ.prepareTask = function(ID,Label) &#123;</div><div class="line">    this.setID( ID );</div><div class="line">    this.label = Label;</div><div class="line">&#125;;</div><div class="line">XYZ.outputTaskDetails = function() &#123;</div><div class="line">    this.outputID();</div><div class="line">    console.log( this.label );</div><div class="line">&#125;;</div><div class="line"></div><div class="line">XYZ.prepareTask(&quot;cc&quot;,&quot;test&quot;); //id = cc , label = test</div><div class="line">XYZ.outputTaskDetails();</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/09/01/JavaScript/你不知道的JavaScript-上卷/" data-id="cjgwhdbz000127oo0mn663rcg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-产品演示页" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/26/产品演示页/" class="article-date">
+  <time datetime="2017-08-26T06:20:25.048Z" itemprop="datePublished">2017-08-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/html/">html</a>►<a class="article-category-link" href="/categories/html/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/26/产品演示页/">产品演示页</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>产品演示页面要求，刚好一屏不出现滚动条，按指引点击显示内容。<br>接下来会从这几个点展开讨化。</p>
+<ul>
+<li>刚好一屏的实现原理。</li>
+<li>项目中遇到的问题。</li>
+<li>可扩展方向。</li>
+</ul>
+<h2 id="一屏的实现"><a href="#一屏的实现" class="headerlink" title="一屏的实现"></a>一屏的实现</h2><p>开始动手前先确定2个问题。</p>
+<ol>
+<li><p>如何进行“页面切换”或者说是“图片的切换”?<br>这种“单页面”(并不是真的单页面应用)让块的隐藏和显示来实现“页面切换”。</p>
+</li>
+<li><p>每个用户的浏览器宽高比是不确定的,如何完美的缩放图片比例?<br>设计稿采用1920*1080的大小，16：9的比例，获取用户浏览器的宽高，宽度比(图片宽度 / 屏幕宽度)和高度比(图片高度 / 屏幕高度)来确定图片应该以宽度或高度来缩放图片。</p>
+</li>
+</ol>
+<p>html:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;page page-cover active&quot;&gt;</div><div class="line">    &lt;div class=&quot;page-main&quot;&gt;</div><div class="line">        &lt;img src=&quot;#&quot;&gt; </div><div class="line">        &lt;button class=&quot;page-cover-btn&quot; type=&quot;button&quot; data-marker data-pos-left=&quot;1214&quot; data-pos-top=&quot;365&quot;&gt;马上体验&lt;/button&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"> </div><div class="line">&lt;div class=&quot;page page-001&quot;&gt;...&lt;/div&gt;</div><div class="line"> </div><div class="line">&lt;div class=&quot;page page-002&quot;&gt;...&lt;/div&gt;</div><div class="line"> </div><div class="line">&lt;div class=&quot;page page-003&quot;&gt;...&lt;/div&gt;</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>css:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">html,body &#123;</div><div class="line">    height: 100%;</div><div class="line">&#125;</div><div class="line">.page &#123;</div><div class="line">    position: absolute;</div><div class="line">    left: 0;</div><div class="line">    top: 0;</div><div class="line">    right: 0;</div><div class="line">    bottom: 0;</div><div class="line">    margin: auto;</div><div class="line">    display: none;</div><div class="line">&#125;</div><div class="line">.page.active &#123;</div><div class="line">    display: block;</div><div class="line">&#125;</div><div class="line">.page-main &#123;</div><div class="line">    position: absolute;</div><div class="line">    top: 0;</div><div class="line">    left: 0;</div><div class="line">    right: 0;</div><div class="line">    bottom: 0;</div><div class="line">    margin: auto;</div><div class="line">    overflow: hidden;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>图片缩放实现原理：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line">replaceImage: function($el,callback) &#123;</div><div class="line">    var $img = $el.find(&quot;[data-resize=&apos;image&apos;]&quot;);</div><div class="line">    var $main = $el.find(&quot;.page-main&quot;);</div><div class="line">    var windowWidth = window.innerWidth;</div><div class="line">    var windowHeight = window.innerHeight;</div><div class="line">    var preloader = new Image();</div><div class="line"> </div><div class="line">    preloader.onload = function() &#123;</div><div class="line"> </div><div class="line">        $img.width(preloader.width);</div><div class="line">        $img.height(preloader.height);</div><div class="line"> </div><div class="line">       var imgWidth;</div><div class="line">       var imgHeight;</div><div class="line">       var maxImageWidth;</div><div class="line">       var maxImageHeight;</div><div class="line"> </div><div class="line">       maxImageWidth = windowWidth || document.documentElement.clientWidth || document.body.clientWidth;</div><div class="line">       maxImageHeight = windowHeight || document.documentElement.clientHeight || document.body.clientHeight;</div><div class="line"> </div><div class="line">       if ((preloader.width &gt; maxImageWidth) || (preloader.height &gt; maxImageHeight)) &#123;</div><div class="line"> </div><div class="line">           if((preloader.width / maxImageWidth) &gt; (preloader.height / maxImageHeight))&#123;</div><div class="line"> </div><div class="line">               imgWidth = maxImageWidth;</div><div class="line">               imgHeight = parseInt(preloader.height / (preloader.width / imgWidth),10);</div><div class="line"> </div><div class="line">               $img.width(imgWidth);</div><div class="line">               $img.height(imgHeight);</div><div class="line"> </div><div class="line">           &#125;else &#123;</div><div class="line">             imgHeight = maxImageHeight;</div><div class="line">             imgWidth = parseInt(preloader.width / (preloader.height / imgHeight), 10);</div><div class="line"> </div><div class="line">             $img.width(imgWidth);</div><div class="line">             $img.height(imgHeight);</div><div class="line"> </div><div class="line">           &#125;</div><div class="line"> </div><div class="line">       &#125;</div><div class="line"> </div><div class="line">       // 图片宽高没有超过最大值时，imgWidth,imgHeight设为原图宽高</div><div class="line">       $main.css(&#123;</div><div class="line">          &quot;width&quot;: imgWidth || preloader.width,</div><div class="line">          &quot;height&quot;: imgHeight || preloader.height</div><div class="line">       &#125;);</div><div class="line"> </div><div class="line">       callback&amp;&amp;callback(preloader);</div><div class="line"> </div><div class="line">   &#125;;</div><div class="line"> </div><div class="line">   preloader.src = $img.attr(&quot;src&quot;);</div><div class="line"> </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h2><ol>
+<li>图片上的marker(可点击区域)等比例缩放(scale)默认参照中心点去缩放，会造成定位对不准，应将参照点设为transform-origin:top left</li>
+<li>图片上的marker(可点击区域)如果内联元素也是绝对定位，自身与内联元素没有文本或背景等设置，在IE11以下无法触发事件。<br>bug条件：<br>– IE浏览器。<br>– 空白元素(没有内联元素，没有设置背景)定位与图片重叠， 重桑部分没法定焦触发事件。</li>
+</ol>
+<p>解决方案：<br>– background: rgba(0,0,0,0); // 推荐，扩展性比较好。<br>– background: …; opacity: 0; // 如果该元素内还有其它元素，会隐藏子元素。 此项目中刚好有小手动画元素。<br>– background: url(“#”); // 不推荐，浏览器会去请求是否有此图片。<br>以上方法都是从背景去考虑，还可以从内联元素去解决。</p>
+<h2 id="可扩展方向"><a href="#可扩展方向" class="headerlink" title="可扩展方向"></a>可扩展方向</h2><p>目前此版本兼容IE9及以上，谷歌等主流浏览器。主要是因为IE9以下scale不兼容。其实还有一个IE支持的属性zoom可缩放元素，不过zoom最大的坑在于缩放时依然受限于最小12像素中文大小限制，scale不受此限制。如果非要兼容IE7，8，就只能采用zoom方法了。</p>
+<p>项目中视频使用的是video标签，不支持IE9以下版本，另外各个浏览器原生的控制按钮宽高大小不一样，有时需要添加一个额外的播放按钮来控制，目前采用的方法是新建等高等宽透明层（大的播放按钮）覆盖在视频上，top: 0;bottom: 60px(没办法获取控制栏的高度);<br>可使用video.js等插件，它提供了可配置项。</p>
+<p>真的单页面应用SPA，可使用Backbone，Knockout，AngularJS，Avalon，VUE等开发框架来制作单页面应用， 以上开发框架都是我复制的，哈哈，有时间找些资料来试一下。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/26/产品演示页/" data-id="cjgwhdbwa00047oo02vwdfj7y" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/">html</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-JavaScript变量名优秀示例" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/17/JavaScript变量名优秀示例/" class="article-date">
+  <time datetime="2017-08-17T06:20:33.000Z" itemprop="datePublished">2017-08-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/17/JavaScript变量名优秀示例/">JavaScript变量名优秀示例</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">var $el = $(element);</div><div class="line"></div><div class="line">参数 option,extend()扩展之后 options</div><div class="line"></div><div class="line">var orgPlacement = placement;  // 旧的&quot;方向&quot;</div><div class="line">placement = &quot;新的&quot;;</div><div class="line">$tip</div><div class="line">    .removeClass(orgPlacement)</div><div class="line">    .addClass(placement);</div><div class="line"></div><div class="line">var enabled;  //可能</div><div class="line">var timeout   //计时器</div><div class="line">var state     //状态</div><div class="line">var trigger   //触发方式</div><div class="line">var template</div><div class="line">var viewport  // </div><div class="line">var complete,</div><div class="line"></div><div class="line">var isVertical,</div><div class="line">calculatedOffset     // 计算定位信息</div><div class="line">AdjustedDelta  // 调整差量</div><div class="line">var offsetMethod  // &apos;position or offset&apos;</div></pre></td></tr></table></figure>
+<p>函数名用动词<br>判断状态用 is… 例 isInStateTrue。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">getOptions,</div><div class="line">setContent,</div><div class="line">apply..  例applyPlacement 应向定位方向</div><div class="line">enter,</div><div class="line">leave,</div><div class="line">show,</div><div class="line">hide,</div><div class="line">toggle,</div><div class="line">destroy,</div><div class="line">enable,</div><div class="line">arrow,</div><div class="line">hasContent,</div><div class="line">replaceArrow     // 重置</div><div class="line">activate</div><div class="line">tidy    // Remove all traces</div><div class="line"></div><div class="line">postResize  //post</div><div class="line">previewer</div></pre></td></tr></table></figure></p>
+<p>ps.<br>$(“..”)返回的是类数组。无论是id,class,element,如果返回是多个元素的类数组，读取操作（attr,data，position等）只返回匹配第一个元素匹配值。设置操作匹配的全部元素。</p>
+<p>$(document)[0] instanceof document.constructor  // true</p>
+<p>$.position(),获取匹配元素相对父元素(position: 不是static)的偏移。<br>匹配元素的margin值不能影响top值，如果兄弟元素也有margin值，重叠结果会影响top值。<br>translateY,top(position: relative)会影响取值。<br>$.offset()获取匹配元素在当前视口的相对偏移。</p>
+<p>字符串(非json字符串)转为对象<br>var obj = (new Function (“return “ + str))(str);</p>
+<p>$.get(index)返回的是DOM对象，eq(index)返回的是jQuery对象。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/17/JavaScript变量名优秀示例/" data-id="cjgwhdbxy000s7oo07jbq2e5w" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-css/IOS-Input-Disabled默认样式问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/17/css/IOS-Input-Disabled默认样式问题/" class="article-date">
+  <time datetime="2017-08-17T02:57:18.000Z" itemprop="datePublished">2017-08-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/css/">css</a>►<a class="article-category-link" href="/categories/css/移动端/">移动端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/17/css/IOS-Input-Disabled默认样式问题/">IOS Input Disabled默认样式问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>IOS 移动端设置了<code>readonly</code>后仍然能被聚焦，后更改为<code>disabled</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">input[disabled],</div><div class="line">input:disabled,</div><div class="line">input[disabled=&quot;disabled&quot;] &#123;</div><div class="line">   color: #000 !important; </div><div class="line">   background: #fff !important;</div><div class="line">&#125;</div><div class="line">// 样式设置没有起作用</div><div class="line">// 正确样式设置 </div><div class="line">input[disabled], </div><div class="line">textarea[disabled],</div><div class="line">select[disabled=&apos;disabled&apos;]&#123;</div><div class="line">   -webkit-text-fill-color: rgba(0, 0, 0, 1);   // 用于改变字体color</div><div class="line">   opacity: 1;    // 浏览器默认为0.3，所以得改为1</div><div class="line">   color: rgba(0, 0, 0, 1); </div><div class="line">   background: white;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="扩展-浏览器输入框记住账号密码后的背景色处理"><a href="#扩展-浏览器输入框记住账号密码后的背景色处理" class="headerlink" title="扩展 - 浏览器输入框记住账号密码后的背景色处理"></a>扩展 - 浏览器输入框记住账号密码后的背景色处理</h4><p>谷歌浏览器、在记住密码后，通常会给用户密码输入框渲染上一个背景色（rgb(250, 255, 189)）<br>解决方案原理： 运用box-shadow，inset 设置覆盖默认的背景色。<br>-webkit-box-shadow: 0 0 0 1000px #fff inset;</p>
+<p>box-shadow可覆盖背景色。<br>-webkit-text-fill-color: #ededed;  可改变字体颜色，后面扩展有提到。</p>
+<h4 id="扩展-关于-webkit-text-fill-color"><a href="#扩展-关于-webkit-text-fill-color" class="headerlink" title="扩展 - 关于-webkit-text-fill-color"></a>扩展 - 关于-webkit-text-fill-color</h4><p>表示文字颜色填充，实现的效果基本上与color一样。同时设置-webkit-text-fill-color和color，支持-webkit-text-fill-color浏览器会忽略color值。</p>
+<h4 id="扩展-webkit-text-stroke"><a href="#扩展-webkit-text-stroke" class="headerlink" title="扩展 - -webkit-text-stroke"></a>扩展 - -webkit-text-stroke</h4><p>-webkit-text-stroke:1px #000; -webkit-text-stroke第一个参数不为0，第二个参数为空，应用color颜色镂空字体。<br>-webkit-text-stroke第一个参数不会0，第二个参数不为空（颜色值），应用定义颜色值镂空字体。</p>
+<p>这个属性可用于镂空小图标颜色随文本颜色改变而改变（了解一下，毕竟现在可以用iconfont等字体图标）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/17/css/IOS-Input-Disabled默认样式问题/" data-id="cjgwhdbz800177oo0odckxvs6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/移动端/">移动端</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap tag">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/bootstrap/">bootstrap</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/css/html/">html</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/mobile/">mobile</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/移动端/">移动端</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/html/">html</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/html/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/html/JavaScript/css/">css</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/html/css/">css</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/html/mobile/">mobile</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bootstrap/">bootstrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mobile/">mobile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动端/">移动端</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/html/" style="font-size: 15px;">html</a> <a href="/tags/mobile/" style="font-size: 12.5px;">mobile</a> <a href="/tags/移动端/" style="font-size: 10px;">移动端</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/05/08/日常小点记录/">日常小点记录</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/16/jQuery源码学习笔记/">jQuery源码学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/16/css/css揭秘/">CSS揭秘</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/30/JavaScript/Professional-JavaScript-fof-Web-Developers-3rd-Edition/">JavaScript高级程序设计（3rd Edition）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/11/css/column多栏布局实现水平滑页翻页交互-实例/">column多栏布局实现水平滑页翻页交互-实例</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
