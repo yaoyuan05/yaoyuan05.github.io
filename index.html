@@ -63,8 +63,8 @@
   
     <article id="post-日常小点记录" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/05/08/日常小点记录/" class="article-date">
-  <time datetime="2018-05-07T16:26:56.992Z" itemprop="datePublished">2018-05-08</time>
+    <a href="/2018/05/13/日常小点记录/" class="article-date">
+  <time datetime="2018-05-13T13:07:36.983Z" itemprop="datePublished">2018-05-13</time>
 </a>
     
   <div class="article-category">
@@ -79,7 +79,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/08/日常小点记录/">日常小点记录</a>
+      <a class="article-title" href="/2018/05/13/日常小点记录/">日常小点记录</a>
     </h1>
   
 
@@ -320,6 +320,10 @@
 <p>为什么balls要设为5个？<br>为什么这么用<code>translate3d(0,${y}px,0)</code></p>
 <p>了解vue-router ==》 完成<br>了解vuex  ==》 完成<br>了解proxyTable  ==》完成<br>learn axios来替换vue-resource。  ==》完成<br>learn es2015<br>learn scss  ==》完成</p>
 <p>loffter项目改进点<br>1.小图标没有分为2x和3x图。<br>2.公告滚动使用了marquee标签。<br>3.轮播逻辑太复杂了</p>
+<p>疑问解决点</p>
+<ul>
+<li>组件内有router-link,嵌套路由,router设置为children: [{path: ‘’,name: ‘’,component:’’}],</li>
+</ul>
 <h2 id="EChart加载马来的的地图"><a href="#EChart加载马来的的地图" class="headerlink" title="EChart加载马来的的地图"></a>EChart加载马来的的地图</h2><p>EChart使用了百度地图工具，可以加载地图，目前百度地图只支持中国的地图。另一个Highcharts工具可支持世界地图。<br>方案1：更换工具为Highcharts。<br>方案2(目前采用)：根据百度的china.js的配置项，把Highcharts工具中的马来地图配置项重新整理，整合出一个malay.js。</p>
 <p>配置项说明（china.js）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;type&quot;: &quot;FeatureCollection&quot;,</div><div class="line">    &quot;features&quot;: [</div><div class="line">        &#123;</div><div class="line">            &quot;id&quot;: &quot;710000&quot;,</div><div class="line">            &quot;type&quot;: &quot;Feature&quot;,</div><div class="line">            &quot;geometry&quot;: &#123;</div><div class="line">                &quot;type&quot;: &quot;MultiPolygon&quot;,         // MultiPolygon or Polygon</div><div class="line">                &quot;coordinates&quot;: [                // 集合长度对应着childNum</div><div class="line">                    [],</div><div class="line">                    [],</div><div class="line">                    []</div><div class="line">                ]</div><div class="line">            &#125;,</div><div class="line">            &quot;properties&quot;: &#123;</div><div class="line">                &quot;cp&quot;: [</div><div class="line">                    121.509062,</div><div class="line">                    25.044332</div><div class="line">                ],</div><div class="line">                &quot;name&quot;: &quot;台湾&quot;,</div><div class="line">                &quot;childNum&quot;: 6</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;</div><div class="line">myChart.setOption(option);</div></pre></td></tr></table></figure></p>
 <ul>
@@ -332,14 +336,79 @@
 <h2 id="面试总结"><a href="#面试总结" class="headerlink" title="面试总结"></a>面试总结</h2><p>1.[data-id=’test’]选择器，jQuery的实现原理，通过querySelectorAll方法获取返回NodeList.<br>扩展: 兼容IE8及以上，需兼容IE6,7的原理是，通过样式css选择器设置样式时可以抓取到当前元素。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">style.styleSheet.cssText = selectors + &apos;&#123;x-qsa:expression(document._qsa &amp;&amp; document._qsa.push(this))&#125;&apos;;</div></pre></td></tr></table></figure></p>
 <p>同理getElementsByClassName的兼容实现一样<br>2.jQuery.ajax方法的实理原理？<br>(1)通过XMLHttpRequest.send()发送HTTP请求，每当readyState改变时，就会触发 onreadystatechange 事件。在onreadystatechange回调函数中<br>判断readyState的返回值，但它等于4时且status等于200表式响应成功，$.deferred延迟对象指定执行状态，再通过$.callbacks执行回调函数。</p>
 <p>3.对于面向对象的理解。<br>4.对于继承的理解。<br>5.对于双向绑定的实现原理。<br>6.谈一谈this.<br>7.闭包。</p>
+<p>第二天的面试题<br>1.说一说vue的生命周期流程<br>create, mounted,updated,destroyed.<br>2.考查cookie，如何在cookie上存放一个大的数据。(每一个Web Server 记录20个cookie、而每一个cookie 最大为4KB，而当cookie 个数超过时，后来写入的cookie 会盖掉前面的cookie。)<br>先将数据切分成多个小的结构，再进行存储，确保不超过4KB的限制。<br>3.Ios8和Ios10的兼容问题及解决方法？<br>todo，没找到资料<br>4.前端有什么性能优化的方法?<br>减少Http请求，通过合并js代码，合并小图片雪碧图。<br>使用cdn布署静态文件<br>缓存ajax<br>样式表放头部，js放底部。<br>减少dom访问，减少作用域链上的查找。</p>
+<p>第三天面试题<br>1.如果一个请求需要很长的时间才会有结果，有没有什么好的处理方法。<br>每隔一段时间去请求看状态是什么样的</p>
+<h2 id="移动端问题如何定位？"><a href="#移动端问题如何定位？" class="headerlink" title="移动端问题如何定位？"></a>移动端问题如何定位？</h2><h4 id="AlloyLever源码解读"><a href="#AlloyLever源码解读" class="headerlink" title="AlloyLever源码解读"></a>AlloyLever源码解读</h4><p>1KB代码搞定开发调试发布，错误监控上报，用户问题定位 <a href="https://alloyteam.github.io/AlloyLever/" target="_blank" rel="external">https://alloyteam.github.io/AlloyLever/</a></p>
+<p>核心原理:  new Image().src = src  //reportUrl错误上报地址</p>
+<p>小的知识点</p>
+<ol>
+<li>为什么要用encodeURIComponent？因为(：;/?:@&amp;=+$,# 这些用于分隔 URI 组件的标点符号)字符串数据传递后台无法被识别。<br>它们的主要区别在于，encodeURI()不会对本身属于URI的特殊字符进行编码，例如冒号、正斜杠、问号和井字号；而encodeURIComponent()则会对它发现的任何非标准字符进行编码。<br>提示：如果 URI 组件中含有分隔符，比如 ? 和 #，则应当使用 encodeURIComponent() 方法分别对各组件进行编码。</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/08/日常小点记录/" data-id="cjgwhdbvv00007oo0pbpr7ggo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/13/日常小点记录/" data-id="cjh5n13nh0004dco081idvmmu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/">html</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-移动端兼容问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/13/移动端兼容问题/" class="article-date">
+  <time datetime="2018-05-13T06:34:10.382Z" itemprop="datePublished">2018-05-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/css/">css</a>►<a class="article-category-link" href="/categories/css/mobile/">mobile</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/13/移动端兼容问题/">移动端兼容问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="disabled样式覆盖问题"><a href="#disabled样式覆盖问题" class="headerlink" title="disabled样式覆盖问题"></a>disabled样式覆盖问题</h3><p>IOS 移动端 input设置了<code>readonly</code>后仍然能被聚焦，后更改为<code>disabled</code>.<br>延伸了一个新问题,禁用状态下字体颜色设置无效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">input[disabled],</div><div class="line">input:disabled,</div><div class="line">input[disabled=&quot;disabled&quot;] &#123;</div><div class="line">   color: #000 !important; </div><div class="line">   background: #fff !important;</div><div class="line">&#125;</div><div class="line">// 样式设置没有起作用</div><div class="line">// 正确样式设置 </div><div class="line">input[disabled], </div><div class="line">textarea[disabled],</div><div class="line">select[disabled=&apos;disabled&apos;]&#123;</div><div class="line">   -webkit-text-fill-color: rgba(0, 0, 0, 1);   // 用于改变字体color</div><div class="line">   opacity: 1;    // 浏览器默认为0.3，所以得改为1</div><div class="line">   color: rgba(0, 0, 0, 1); </div><div class="line">   background: white;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="300ms点击延迟"><a href="#300ms点击延迟" class="headerlink" title="300ms点击延迟"></a>300ms点击延迟</h3><p>300ms点击延迟，用FastClick.js<br>扩展：FastClick.js实现原理，在document上绑定touchstart,touchstart,记录当前信息，阻止默认行为，创建一个自定义鼠标事件对象(type: click)，并触发该事事件，执行click的回调函数。</p>
+<h3 id="1px的边框处理"><a href="#1px的边框处理" class="headerlink" title="1px的边框处理"></a>1px的边框处理</h3><p>1px的边框处理，在最小dpr为2的情况下，缩放0.5倍</p>
+<h3 id="Web移动端Fixed布局的解决方案"><a href="#Web移动端Fixed布局的解决方案" class="headerlink" title="Web移动端Fixed布局的解决方案"></a>Web移动端Fixed布局的解决方案</h3><p>iOS 下经常会有 fixed 元素和输入框(input 元素)同时存在的情况。 但是 fixed 元素在有软键盘唤起的情况下， fixed 定位好的元素跟随页面滚动了起来。(参考另一篇文章)<br>Web移动端Fixed布局的解决方案</p>
+<h3 id="input有placeholder情况下不要设置行高，否则会偏上。"><a href="#input有placeholder情况下不要设置行高，否则会偏上。" class="headerlink" title="input有placeholder情况下不要设置行高，否则会偏上。"></a>input有placeholder情况下不要设置行高，否则会偏上。</h3><p>input有placeholder情况下不要设置行高，否则会偏上</p>
+<h3 id="伪类-active-生效"><a href="#伪类-active-生效" class="headerlink" title="伪类 :active 生效"></a>伪类 :active 生效</h3><p>要CSS伪类<code>:active</code>生效，只需要给 document 绑定<code>touchstart</code>或<code>touchend</code>事件.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;style&gt;</div><div class="line">a &#123;</div><div class="line">  color: #000;</div><div class="line">&#125;</div><div class="line">a:active &#123;</div><div class="line">  color: #fff;</div><div class="line">&#125;</div><div class="line">&lt;/style&gt;</div><div class="line">&lt;a herf=foo &gt;bar&lt;/a&gt;</div><div class="line">&lt;script&gt;</div><div class="line">  document.addEventListener(&apos;touchstart&apos;,function()&#123;&#125;,false);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<p>###消除 transition 闪屏<br>两个方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-webkit-transform-style: preserve-3d;</div><div class="line">/*设置内嵌的元素在 3D 空间如何呈现：保留 3D*/</div><div class="line">-webkit-backface-visibility: hidden;</div><div class="line">/*（设置进行转换的元素的背面在面对用户时是否可见：隐藏）*/</div></pre></td></tr></table></figure></p>
+<p>扩展：如何启用GPU硬件加速<br>如，overflow-scrolling,will-change，transform</p>
+<h3 id="iOS浏览器横竖屏会出现字体加粗不一致"><a href="#iOS浏览器横竖屏会出现字体加粗不一致" class="headerlink" title="iOS浏览器横竖屏会出现字体加粗不一致"></a>iOS浏览器横竖屏会出现字体加粗不一致</h3><p>因此最佳方案是将<code>text-size-adjust</code> 为 <code>100%</code> 。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-webkit-text-size-adjust: 100%;</div><div class="line">-ms-text-size-adjust: 100%;</div><div class="line">text-size-adjust: 100%;</div></pre></td></tr></table></figure></p>
+<h3 id="iOS-系统中，中文输入法输入英文时，字母之间可能会出现一个六分之一空格"><a href="#iOS-系统中，中文输入法输入英文时，字母之间可能会出现一个六分之一空格" class="headerlink" title="iOS 系统中，中文输入法输入英文时，字母之间可能会出现一个六分之一空格"></a>iOS 系统中，中文输入法输入英文时，字母之间可能会出现一个六分之一空格</h3><p>可以通过正则去掉<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">this.value = this.value.replace(/\u2006/g, &apos;&apos;);</div></pre></td></tr></table></figure></p>
+<h3 id="移动端-HTML5-audio-autoplay-失效问题"><a href="#移动端-HTML5-audio-autoplay-失效问题" class="headerlink" title="移动端 HTML5 audio autoplay 失效问题"></a>移动端 HTML5 audio autoplay 失效问题</h3><p>解决方法思路：先通过用户 touchstart 触碰，触发播放并暂停（音频开始加载，后面用 JS 再操作就没问题了）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">document.addEventListener(&apos;touchstart&apos;, function () &#123;</div><div class="line">    document.getElementsByTagName(&apos;audio&apos;)[0].play();</div><div class="line">    document.getElementsByTagName(&apos;audio&apos;)[0].pause();</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="IOS-Safari-支持localstorage但是setItem异常"><a href="#IOS-Safari-支持localstorage但是setItem异常" class="headerlink" title="IOS Safari 支持localstorage但是setItem异常"></a>IOS Safari 支持localstorage但是setItem异常</h3><p>出现条件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">平台：IOS8.1</div><div class="line">browser：Safari600.1.4</div></pre></td></tr></table></figure></p>
+<p>问题源自于项目需要在浏览器中遮罩提示,点击关闭状态存储在localstorage中。Safari浏览器关闭后刷新页面层依旧存在 bug issue 简单的存储状态可以使用cookie的方式替代。</p>
+<h3 id="Chrome-地址栏自动隐藏交互行为对于fixed-顶部的元素遮挡"><a href="#Chrome-地址栏自动隐藏交互行为对于fixed-顶部的元素遮挡" class="headerlink" title="Chrome 地址栏自动隐藏交互行为对于fixed 顶部的元素遮挡"></a>Chrome 地址栏自动隐藏交互行为对于fixed 顶部的元素遮挡</h3><p>页面包含fixed顶部的tip element，当页面向下滑动的时候Chrome地址栏自动隐藏，当向上滑动的时候地址栏自动出现。这种交互行为本身的好处会增大用户可视、交互区域。但是在Chrome 26这个版本这个浏览器UI布局使用adjustPan的方式，以至于向上滑动以后fixed的元素没有被自动向下移动（没有重绘）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.header &#123;</div><div class="line">  -webkit-transform: translateZ(0)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>###Android平台遮罩层下的input、select、a等元素可以被点击和focus(点击穿透)<br>问题发现于三星手机，这个在特定需求下才会有，因此如果没有类似问题的可以不看。首先需求是浮层操作，在三星上被遮罩的元素依然可以获取focus、click、change.在查看bug报告list以后，找到了两种解决方案，第一是通过层显示以后加入对应的class名控制，第二是通过将可获取焦点元素加入的disabled属性，也可以利用属性加dom锁定的方式（disabled的一种变换方式）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/05/13/移动端兼容问题/" data-id="cjh5n13p7000wdco0knc556j9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mobile/">mobile</a></li></ul>
 
     </footer>
   </div>
@@ -389,7 +458,7 @@ if ( isSuccess ) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/16/jQuery源码学习笔记/" data-id="cjgwhdbw100017oo0da1athxy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/16/jQuery源码学习笔记/" data-id="cjh5n13mm0001dco03af5gc2e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
@@ -465,7 +534,7 @@ if ( isSuccess ) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/16/css/css揭秘/" data-id="cjgwhdc0900257oo0ys1vfjct" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/16/css/css揭秘/" data-id="cjh5n13qi001pdco0reir35mk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/">html</a></li></ul>
@@ -543,7 +612,7 @@ if ( isSuccess ) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/30/JavaScript/Professional-JavaScript-fof-Web-Developers-3rd-Edition/" data-id="cjgwhdbyu00117oo0obxmmv6h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/10/30/JavaScript/Professional-JavaScript-fof-Web-Developers-3rd-Edition/" data-id="cjh5n13qi001gdco0c4e0wq4p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
@@ -591,7 +660,7 @@ if ( isSuccess ) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/09/11/css/column多栏布局实现水平滑页翻页交互-实例/" data-id="cjgwhdbzs001u7oo0cntx7nuc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/09/11/css/column多栏布局实现水平滑页翻页交互-实例/" data-id="cjh5n13qy001wdco053utuvyw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/">html</a></li></ul>
@@ -653,7 +722,7 @@ if ( isSuccess ) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/09/11/css/Web移动端Fixed布局的解决方案/" data-id="cjgwhdbzt001v7oo08e1q8zu1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/09/11/css/Web移动端Fixed布局的解决方案/" data-id="cjh5n13qy001tdco0qkwxudgv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mobile/">mobile</a></li></ul>
@@ -704,7 +773,7 @@ if ( isSuccess ) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/09/11/css/CSS技巧：逐帧动画抖动解决方案/" data-id="cjgwhdbzc001e7oo0ydh0jp42" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/09/11/css/CSS技巧：逐帧动画抖动解决方案/" data-id="cjh5n13qi001jdco0d1nnz1v2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mobile/">mobile</a></li></ul>
@@ -765,7 +834,7 @@ if ( isSuccess ) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/09/11/移动端页面适配新思路/" data-id="cjgwhdbxs000r7oo0sg6f3b6r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/09/11/移动端页面适配新思路/" data-id="cjh5n13p7000vdco0tk4jplki" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/">html</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mobile/">mobile</a></li></ul>
@@ -857,73 +926,10 @@ if ( isSuccess ) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/09/06/JavaScript/你不知道的JavaScript-中卷/" data-id="cjgwhdbz300147oo06u46rhkr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/09/06/JavaScript/你不知道的JavaScript-中卷/" data-id="cjh5n13q3001bdco0psouuf2g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-boostrap/bootstrap学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/09/01/boostrap/bootstrap学习笔记/" class="article-date">
-  <time datetime="2017-09-01T07:41:11.023Z" itemprop="datePublished">2017-09-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/bootstrap/">bootstrap</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/01/boostrap/bootstrap学习笔记/">bootstrap学习笔记</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="tab-js"><a href="#tab-js" class="headerlink" title="tab.js"></a>tab.js</h2><p>Bootstrap: tab.js 内用$.Event()实现回调。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$previous.trigger(&#123;</div><div class="line">    type: &apos;hidden.bs.tab&apos;,</div><div class="line">    relatedTarget: $this[0]</div><div class="line">&#125;)</div><div class="line">$this.trigger(&#123;</div><div class="line">    type: &apos;shown.bs.tab&apos;,</div><div class="line">    relatedTarget: $previous[0]</div><div class="line">&#125;)</div><div class="line"></div><div class="line">// 利用事件冒泡，可将回调函数绑定在.nav-tabs a 的父元素。 例：</div><div class="line">$(&quot;.nav-tabs li a&quot;).on(&quot;shown.bs.tab&quot;,function (event) &#123;</div><div class="line">   console.log(event.relatedTarget);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<h2 id="affix-js"><a href="#affix-js" class="headerlink" title="affix.js"></a>affix.js</h2><p>$.proxy(this.checkPosition, this),返回一个新函数，并且这个函数始终保持了特定的作用域<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">this.$target = $(this.options.target)</div><div class="line">      .on(&apos;scroll.bs.affix.data-api&apos;, $.proxy(this.checkPosition, this))</div><div class="line">      .on(&apos;click.bs.affix.data-api&apos;,  $.proxy(this.checkPositionWithEventLoop, this))</div></pre></td></tr></table></figure></p>
-<h2 id="carousel-js"><a href="#carousel-js" class="headerlink" title="carousel.js"></a>carousel.js</h2><p>大图轮播列表循环实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var delta = direction == &apos;prev&apos; ? -1 : 1</div><div class="line">var itemIndex = (activeIndex + delta) % this.$items.length</div><div class="line">return this.$items.eq(itemIndex)</div><div class="line">// 技术点 求余得到下一位index</div><div class="line">// eq()负数则从集合中的最后一个元素往回计数。</div></pre></td></tr></table></figure></p>
-<h2 id="collapse-js"><a href="#collapse-js" class="headerlink" title="collapse.js"></a>collapse.js</h2><p>Accordion example,需固定的结构，子级trigger元素需包含data-parent=”#xx”,parent &gt; 子元素包含”.panel”类.<br>实现原理:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 要实现关联操作，如果一个元素需要执行show()方法，一定会有另一个元素执行hide()方法</div><div class="line">if (actives &amp;&amp; actives.length) &#123;</div><div class="line">    Plugin.call(actives, &apos;hide&apos;)</div><div class="line">    activesData || actives.data(&apos;bs.collapse&apos;, null)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="dropdown-js"><a href="#dropdown-js" class="headerlink" title="dropdown.js"></a>dropdown.js</h2><p>clearMenus(),用于复位初始状态。执行任何方法前先执行复位操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">//原理: </div><div class="line">Dropdown.prototype.toggle = function (e) &#123;</div><div class="line"></div><div class="line">    var isActive = $parent.hasClass(&apos;open&apos;);</div><div class="line">    clearMenus()；</div><div class="line">    if(!isActive)&#123;</div><div class="line">        // 执行状态</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;  </div><div class="line">$(document)</div><div class="line">  .on(&apos;click.bs.dropdown.data-api&apos;, clearMenus)</div><div class="line">  .on(&apos;click.bs.dropdown.data-api&apos;, &apos;.dropdown form&apos;, function (e) &#123; e.stopPropagation() &#125;)</div><div class="line">  .on(&apos;click.bs.dropdown.data-api&apos;, toggle, Dropdown.prototype.toggle)</div><div class="line">  .on(&apos;keydown.bs.dropdown.data-api&apos;, toggle, Dropdown.prototype.keydown)</div><div class="line">  .on(&apos;keydown.bs.dropdown.data-api&apos;, &apos;.dropdown-menu&apos;, Dropdown.prototype.keydown)</div></pre></td></tr></table></figure></p>
-<h2 id="modal-js"><a href="#modal-js" class="headerlink" title="modal.js"></a>modal.js</h2><ul>
-<li><code>window.innerWidth</code> IE8不支持的解决方案<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// getBoundingClientRect()取得的数值都是参照视口的左上角位置而言的。</div><div class="line">var fullWindowWidth = window.innerWidth</div><div class="line">if (!fullWindowWidth) &#123; // workaround for missing window.innerWidth in IE8</div><div class="line">  var documentElementRect = document.documentElement.getBoundingClientRect()</div><div class="line">  fullWindowWidth = documentElementRect.right - Math.abs(documentElementRect.left)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>扩展： <code>$(window).width()</code>获取的是return window.document.documentElement[ “clientWidth” ];<br>区别在于clientWidth获取可见区域宽（不包含滚动条宽度），window.innerWidth获取当前窗口的宽度（包含滚动条宽度），如果两数修值存在，相减得到滚动条宽度。</p>
-<h2 id="popover-js"><a href="#popover-js" class="headerlink" title="popover.js"></a>popover.js</h2><p>popover依赖于tooltip.js。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">// 初始化</div><div class="line">$(&apos;[data-toggle=&quot;popover&quot;]&apos;).popover(option);</div><div class="line"></div><div class="line">// 实现依赖原理</div><div class="line">Popover.prototype = $.extend(&#123;&#125;, $.fn.tooltip.Constructor.prototype)</div><div class="line">Popover.prototype.constructor = Popover</div><div class="line">Popover.prototype.重写方法 = function()&#123;</div><div class="line">    // 实现特殊化。多态</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 特殊属性 this.options.trigger：提供多个参数以空格分开</div><div class="line">var triggers = this.options.trigger.split(&apos; &apos;)</div><div class="line"></div><div class="line">for (var i = triggers.length; i--;) &#123;</div><div class="line">  var trigger = triggers[i]</div><div class="line"></div><div class="line">  if (trigger == &apos;click&apos;) &#123;</div><div class="line">    this.$element.on(&apos;click.&apos; + this.type, this.options.selector, $.proxy(this.toggle, this))</div><div class="line">  &#125; else if (trigger != &apos;manual&apos;) &#123;</div><div class="line">    var eventIn  = trigger == &apos;hover&apos; ? &apos;mouseenter&apos; : &apos;focusin&apos;</div><div class="line">    var eventOut = trigger == &apos;hover&apos; ? &apos;mouseleave&apos; : &apos;focusout&apos;</div><div class="line"></div><div class="line">    this.$element.on(eventIn  + &apos;.&apos; + this.type, this.options.selector, $.proxy(this.enter, this))</div><div class="line">    this.$element.on(eventOut + &apos;.&apos; + this.type, this.options.selector, $.proxy(this.leave, this))</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 特殊属性 this.options.placement：使用auto时空格分开的多个参数  “auto left”;</div><div class="line">var autoToken = /\s?auto?\s?/i</div><div class="line">var autoPlace = autoToken.test(placement)</div><div class="line">if (autoPlace) placement = placement.replace(autoToken, &apos;&apos;) || &apos;top&apos;</div><div class="line"></div><div class="line">var pos          = this.getPosition()       // 返回传入元素的位置信息</div><div class="line">var actualWidth  = $tip[0].offsetWidth      // tip弹出层可见宽度</div><div class="line">var actualHeight = $tip[0].offsetHeight     // tip弹出层可见高度</div><div class="line"></div><div class="line">if (autoPlace) &#123;</div><div class="line">    var orgPlacement = placement</div><div class="line">    var viewportDim = this.getPosition(this.$viewport)  // 参照物的位置信息</div><div class="line">    </div><div class="line">    // auto的实现原理：</div><div class="line">    placement = placement == &apos;bottom&apos; &amp;&amp; pos.bottom + actualHeight &gt; viewportDim.bottom ? &apos;top&apos;    :</div><div class="line">                placement == &apos;top&apos;    &amp;&amp; pos.top    - actualHeight &lt; viewportDim.top    ? &apos;bottom&apos; :</div><div class="line">                placement == &apos;right&apos;  &amp;&amp; pos.right  + actualWidth  &gt; viewportDim.width  ? &apos;left&apos;   :</div><div class="line">                placement == &apos;left&apos;   &amp;&amp; pos.left   - actualWidth  &lt; viewportDim.left   ? &apos;right&apos;  :</div><div class="line">                placement</div><div class="line">    </div><div class="line">    $tip</div><div class="line">      .removeClass(orgPlacement)</div><div class="line">      .addClass(placement)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h4 id="getBoundingClientRect方法"><a href="#getBoundingClientRect方法" class="headerlink" title="getBoundingClientRect方法"></a>getBoundingClientRect方法</h4><p>getBoundingClientRect()返回一个ClientRect对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">$(el)[0].getBoundingClientRect() </div><div class="line">// 各个浏览器都支持此方法</div><div class="line">ClientRect = &#123;</div><div class="line">    bottom: 419</div><div class="line">    height: 34</div><div class="line">    left: 0</div><div class="line">    right: 251.03125</div><div class="line">    top: 385</div><div class="line">    width: 251.03125</div><div class="line">&#125;</div><div class="line">width,height在ie8 以下包括ie 8没返回widtht和height，可通过以下方法实现width,height.</div><div class="line"></div><div class="line">// bootstrap内实现方法</div><div class="line">if (elRect.width == null) &#123;</div><div class="line">  // width and height are missing in IE8, so compute them manually; see https://github.com/twbs/bootstrap/issues/14093</div><div class="line">  elRect = $.extend(&#123;&#125;, elRect, &#123; width: elRect.right - elRect.left, height: elRect.bottom - elRect.top &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">ie7,默认坐标起始是(2,2)。ClientRect需要兼容写法，但现在都不兼容ie7所以不用处理。</div></pre></td></tr></table></figure></p>
-<p>var marginTop = parseInt($tip.css(‘margin-top’), 10)<br>var marginLeft = parseInt($tip.css(‘margin-left’), 10)<br>ie8 如果没有设置值，返回是auto。</p>
-<p>如果元素有margin,translate等值作用于位置，可使用$.offset.setOffset();设置定位信息.</p>
-<p>$.offset(options)实际是调用jQuery.offset.setOffset( this, options, i );<br>为什么不直接$.css({top: .., left: ..});  ???<br>如果元素有margin,translate等值作用于位置,直接用css设置定位值，会有位置偏移。所以用offset(options);<br>如果还需要对值进行操作，可用下面方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// $.fn.offset doesn&apos;t round pixel values   不能用Math.round(pixel value),所以用setOffset()</div><div class="line">// so we use setOffset directly with our own function B-0</div><div class="line">$.offset.setOffset($tip[0], $.extend(&#123;</div><div class="line">        using: function (props) &#123;</div><div class="line">            $tip.css(&#123;</div><div class="line">                top: Math.round(props.top),</div><div class="line">                left: Math.round(props.left)</div><div class="line">            &#125;)</div><div class="line">        &#125;</div><div class="line">&#125;, offset), 0)</div></pre></td></tr></table></figure></p>
-<h2 id="scrollspy-js"><a href="#scrollspy-js" class="headerlink" title="scrollspy.js"></a>scrollspy.js</h2><p>第一步 获取所有目标元素相对父元素(position: 不是static)的偏移值和选择器，返回一个对象类似于[ [top,#test1]，[top,#test2] ];<br>第二步 包裹块发生滚动后，获取滚动scrollTop值，分别与上一步返回的数组中的top值比较，得到当前元素。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">var offsetMethod  = &apos;offset&apos;</div><div class="line">if (!$.isWindow(this.$scrollElement[0])) &#123;</div><div class="line">  offsetMethod = &apos;position&apos;</div><div class="line">  offsetBase   = this.$scrollElement.scrollTop()</div><div class="line">&#125;</div><div class="line">// offsetMethod 滚动发生在body还是元素，确定是用offset还是position。</div><div class="line"></div><div class="line">this.$body</div><div class="line">      .find(this.selector)</div><div class="line">      .map(function () &#123;</div><div class="line">        var $el   = $(this)</div><div class="line">        var href  = $el.data(&apos;target&apos;) || $el.attr(&apos;href&apos;)</div><div class="line">        var $href = /^#./.test(href) &amp;&amp; $(href)</div><div class="line"></div><div class="line">        return ($href</div><div class="line">          &amp;&amp; $href.length</div><div class="line">          &amp;&amp; $href.is(&apos;:visible&apos;)</div><div class="line">          &amp;&amp; [[$href[offsetMethod]().top + offsetBase, href]]) || null</div><div class="line">      &#125;)</div><div class="line">      .sort(function (a, b) &#123; return a[0] - b[0] &#125;)</div><div class="line">      .each(function () &#123;</div><div class="line">        that.offsets.push(this[0])</div><div class="line">        that.targets.push(this[1])</div><div class="line">      &#125;)</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// 判断当前元素的逻辑</div><div class="line">for (i = offsets.length; i--;) &#123;</div><div class="line">    activeTarget != targets[i]</div><div class="line">        &amp;&amp; scrollTop &gt;= offsets[i]</div><div class="line">        &amp;&amp; (offsets[i + 1] === undefined || scrollTop &lt; offsets[i + 1])</div><div class="line">        &amp;&amp; this.activate(targets[i])</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>不确定元素是用target还是href指定目标元素时:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var href  = $el.data(&apos;target&apos;) || $el.attr(&apos;href&apos;)；</div><div class="line"></div><div class="line">var selector = this.selector + &apos;[target=&quot;&apos; + target + &apos;&quot;]&apos;,this.selector + &apos;[href=&quot;&apos; + target + &apos;&quot;]&apos;;</div></pre></td></tr></table></figure></p>
-<p>parentsUntil的秒用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(this.selector).parentsUntil(this.options.target, &apos;.active&apos;)</div></pre></td></tr></table></figure></p>
-<h2 id="transition-js"><a href="#transition-js" class="headerlink" title="transition.js"></a>transition.js</h2><p>检查浏览器支持的属性名称<br>duration 等于setTimeout(callback,duration);<br>trigger(自定义事件)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$.event.special.bsTransitionEnd = &#123;</div><div class="line">   bindType: $.support.transition.end,</div><div class="line">   delegateType: $.support.transition.end,</div><div class="line">   handle: function (e) &#123;</div><div class="line">       if ($(e.target).is(this)) return e.handleObj.handler.apply(this, arguments)</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/09/01/boostrap/bootstrap学习笔记/" data-id="cjgwhdbza001a7oo08qkg77ct" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bootstrap/">bootstrap</a></li></ul>
 
     </footer>
   </div>
@@ -965,7 +971,7 @@ if ( isSuccess ) {
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/html/" style="font-size: 15px;">html</a> <a href="/tags/mobile/" style="font-size: 12.5px;">mobile</a> <a href="/tags/移动端/" style="font-size: 10px;">移动端</a>
+      <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/css/" style="font-size: 20px;">css</a> <a href="/tags/html/" style="font-size: 16.67px;">html</a> <a href="/tags/mobile/" style="font-size: 13.33px;">mobile</a> <a href="/tags/移动端/" style="font-size: 10px;">移动端</a>
     </div>
   </div>
 
@@ -987,7 +993,11 @@ if ( isSuccess ) {
       <ul>
         
           <li>
-            <a href="/2018/05/08/日常小点记录/">日常小点记录</a>
+            <a href="/2018/05/13/日常小点记录/">日常小点记录</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/13/移动端兼容问题/">移动端兼容问题</a>
           </li>
         
           <li>
@@ -1000,10 +1010,6 @@ if ( isSuccess ) {
         
           <li>
             <a href="/2017/10/30/JavaScript/Professional-JavaScript-fof-Web-Developers-3rd-Edition/">JavaScript高级程序设计（3rd Edition）</a>
-          </li>
-        
-          <li>
-            <a href="/2017/09/11/css/column多栏布局实现水平滑页翻页交互-实例/">column多栏布局实现水平滑页翻页交互-实例</a>
           </li>
         
       </ul>

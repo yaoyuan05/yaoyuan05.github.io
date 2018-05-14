@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>移动端兼容问题 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="disabled样式覆盖问题IOS 移动端 input设置了readonly后仍然能被聚焦，后更改为disabled.延伸了一个新问题,禁用状态下字体颜色设置无效12345678910111213141516input[disabled],input:disabled,input[disabled=&amp;quot;disabled&amp;quot;] &amp;#123;   color: #000 !import">
+<meta name="keywords" content="css,mobile">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端兼容问题">
+<meta property="og:url" content="http://yoursite.com/2018/05/13/移动端兼容问题/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="disabled样式覆盖问题IOS 移动端 input设置了readonly后仍然能被聚焦，后更改为disabled.延伸了一个新问题,禁用状态下字体颜色设置无效12345678910111213141516input[disabled],input:disabled,input[disabled=&amp;quot;disabled&amp;quot;] &amp;#123;   color: #000 !import">
+<meta property="og:updated_time" content="2018-05-13T06:34:10.383Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端兼容问题">
+<meta name="twitter:description" content="disabled样式覆盖问题IOS 移动端 input设置了readonly后仍然能被聚焦，后更改为disabled.延伸了一个新问题,禁用状态下字体颜色设置无效12345678910111213141516input[disabled],input:disabled,input[disabled=&amp;quot;disabled&amp;quot;] &amp;#123;   color: #000 !import">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-移动端兼容问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/13/移动端兼容问题/" class="article-date">
+  <time datetime="2018-05-13T06:34:10.382Z" itemprop="datePublished">2018-05-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/css/">css</a>►<a class="article-category-link" href="/categories/css/mobile/">mobile</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      移动端兼容问题
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="disabled样式覆盖问题"><a href="#disabled样式覆盖问题" class="headerlink" title="disabled样式覆盖问题"></a>disabled样式覆盖问题</h3><p>IOS 移动端 input设置了<code>readonly</code>后仍然能被聚焦，后更改为<code>disabled</code>.<br>延伸了一个新问题,禁用状态下字体颜色设置无效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">input[disabled],</div><div class="line">input:disabled,</div><div class="line">input[disabled=&quot;disabled&quot;] &#123;</div><div class="line">   color: #000 !important; </div><div class="line">   background: #fff !important;</div><div class="line">&#125;</div><div class="line">// 样式设置没有起作用</div><div class="line">// 正确样式设置 </div><div class="line">input[disabled], </div><div class="line">textarea[disabled],</div><div class="line">select[disabled=&apos;disabled&apos;]&#123;</div><div class="line">   -webkit-text-fill-color: rgba(0, 0, 0, 1);   // 用于改变字体color</div><div class="line">   opacity: 1;    // 浏览器默认为0.3，所以得改为1</div><div class="line">   color: rgba(0, 0, 0, 1); </div><div class="line">   background: white;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="300ms点击延迟"><a href="#300ms点击延迟" class="headerlink" title="300ms点击延迟"></a>300ms点击延迟</h3><p>300ms点击延迟，用FastClick.js<br>扩展：FastClick.js实现原理，在document上绑定touchstart,touchstart,记录当前信息，阻止默认行为，创建一个自定义鼠标事件对象(type: click)，并触发该事事件，执行click的回调函数。</p>
+<h3 id="1px的边框处理"><a href="#1px的边框处理" class="headerlink" title="1px的边框处理"></a>1px的边框处理</h3><p>1px的边框处理，在最小dpr为2的情况下，缩放0.5倍</p>
+<h3 id="Web移动端Fixed布局的解决方案"><a href="#Web移动端Fixed布局的解决方案" class="headerlink" title="Web移动端Fixed布局的解决方案"></a>Web移动端Fixed布局的解决方案</h3><p>iOS 下经常会有 fixed 元素和输入框(input 元素)同时存在的情况。 但是 fixed 元素在有软键盘唤起的情况下， fixed 定位好的元素跟随页面滚动了起来。(参考另一篇文章)<br>Web移动端Fixed布局的解决方案</p>
+<h3 id="input有placeholder情况下不要设置行高，否则会偏上。"><a href="#input有placeholder情况下不要设置行高，否则会偏上。" class="headerlink" title="input有placeholder情况下不要设置行高，否则会偏上。"></a>input有placeholder情况下不要设置行高，否则会偏上。</h3><p>input有placeholder情况下不要设置行高，否则会偏上</p>
+<h3 id="伪类-active-生效"><a href="#伪类-active-生效" class="headerlink" title="伪类 :active 生效"></a>伪类 :active 生效</h3><p>要CSS伪类<code>:active</code>生效，只需要给 document 绑定<code>touchstart</code>或<code>touchend</code>事件.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;style&gt;</div><div class="line">a &#123;</div><div class="line">  color: #000;</div><div class="line">&#125;</div><div class="line">a:active &#123;</div><div class="line">  color: #fff;</div><div class="line">&#125;</div><div class="line">&lt;/style&gt;</div><div class="line">&lt;a herf=foo &gt;bar&lt;/a&gt;</div><div class="line">&lt;script&gt;</div><div class="line">  document.addEventListener(&apos;touchstart&apos;,function()&#123;&#125;,false);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<p>###消除 transition 闪屏<br>两个方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-webkit-transform-style: preserve-3d;</div><div class="line">/*设置内嵌的元素在 3D 空间如何呈现：保留 3D*/</div><div class="line">-webkit-backface-visibility: hidden;</div><div class="line">/*（设置进行转换的元素的背面在面对用户时是否可见：隐藏）*/</div></pre></td></tr></table></figure></p>
+<p>扩展：如何启用GPU硬件加速<br>如，overflow-scrolling,will-change，transform</p>
+<h3 id="iOS浏览器横竖屏会出现字体加粗不一致"><a href="#iOS浏览器横竖屏会出现字体加粗不一致" class="headerlink" title="iOS浏览器横竖屏会出现字体加粗不一致"></a>iOS浏览器横竖屏会出现字体加粗不一致</h3><p>因此最佳方案是将<code>text-size-adjust</code> 为 <code>100%</code> 。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-webkit-text-size-adjust: 100%;</div><div class="line">-ms-text-size-adjust: 100%;</div><div class="line">text-size-adjust: 100%;</div></pre></td></tr></table></figure></p>
+<h3 id="iOS-系统中，中文输入法输入英文时，字母之间可能会出现一个六分之一空格"><a href="#iOS-系统中，中文输入法输入英文时，字母之间可能会出现一个六分之一空格" class="headerlink" title="iOS 系统中，中文输入法输入英文时，字母之间可能会出现一个六分之一空格"></a>iOS 系统中，中文输入法输入英文时，字母之间可能会出现一个六分之一空格</h3><p>可以通过正则去掉<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">this.value = this.value.replace(/\u2006/g, &apos;&apos;);</div></pre></td></tr></table></figure></p>
+<h3 id="移动端-HTML5-audio-autoplay-失效问题"><a href="#移动端-HTML5-audio-autoplay-失效问题" class="headerlink" title="移动端 HTML5 audio autoplay 失效问题"></a>移动端 HTML5 audio autoplay 失效问题</h3><p>解决方法思路：先通过用户 touchstart 触碰，触发播放并暂停（音频开始加载，后面用 JS 再操作就没问题了）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">document.addEventListener(&apos;touchstart&apos;, function () &#123;</div><div class="line">    document.getElementsByTagName(&apos;audio&apos;)[0].play();</div><div class="line">    document.getElementsByTagName(&apos;audio&apos;)[0].pause();</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="IOS-Safari-支持localstorage但是setItem异常"><a href="#IOS-Safari-支持localstorage但是setItem异常" class="headerlink" title="IOS Safari 支持localstorage但是setItem异常"></a>IOS Safari 支持localstorage但是setItem异常</h3><p>出现条件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">平台：IOS8.1</div><div class="line">browser：Safari600.1.4</div></pre></td></tr></table></figure></p>
+<p>问题源自于项目需要在浏览器中遮罩提示,点击关闭状态存储在localstorage中。Safari浏览器关闭后刷新页面层依旧存在 bug issue 简单的存储状态可以使用cookie的方式替代。</p>
+<h3 id="Chrome-地址栏自动隐藏交互行为对于fixed-顶部的元素遮挡"><a href="#Chrome-地址栏自动隐藏交互行为对于fixed-顶部的元素遮挡" class="headerlink" title="Chrome 地址栏自动隐藏交互行为对于fixed 顶部的元素遮挡"></a>Chrome 地址栏自动隐藏交互行为对于fixed 顶部的元素遮挡</h3><p>页面包含fixed顶部的tip element，当页面向下滑动的时候Chrome地址栏自动隐藏，当向上滑动的时候地址栏自动出现。这种交互行为本身的好处会增大用户可视、交互区域。但是在Chrome 26这个版本这个浏览器UI布局使用adjustPan的方式，以至于向上滑动以后fixed的元素没有被自动向下移动（没有重绘）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.header &#123;</div><div class="line">  -webkit-transform: translateZ(0)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>###Android平台遮罩层下的input、select、a等元素可以被点击和focus(点击穿透)<br>问题发现于三星手机，这个在特定需求下才会有，因此如果没有类似问题的可以不看。首先需求是浮层操作，在三星上被遮罩的元素依然可以获取focus、click、change.在查看bug报告list以后，找到了两种解决方案，第一是通过层显示以后加入对应的class名控制，第二是通过将可获取焦点元素加入的disabled属性，也可以利用属性加dom锁定的方式（disabled的一种变换方式）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/05/13/移动端兼容问题/" data-id="cjh5n13p7000wdco0knc556j9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mobile/">mobile</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/05/13/日常小点记录/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          日常小点记录
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/16/jQuery源码学习笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">jQuery源码学习笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap tag">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/bootstrap/">bootstrap</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/css/html/">html</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/mobile/">mobile</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/移动端/">移动端</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/html/">html</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/html/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/html/JavaScript/css/">css</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/html/css/">css</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/html/mobile/">mobile</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bootstrap/">bootstrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mobile/">mobile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动端/">移动端</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/css/" style="font-size: 20px;">css</a> <a href="/tags/html/" style="font-size: 16.67px;">html</a> <a href="/tags/mobile/" style="font-size: 13.33px;">mobile</a> <a href="/tags/移动端/" style="font-size: 10px;">移动端</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/05/13/日常小点记录/">日常小点记录</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/13/移动端兼容问题/">移动端兼容问题</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/16/jQuery源码学习笔记/">jQuery源码学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/16/css/css揭秘/">CSS揭秘</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/30/JavaScript/Professional-JavaScript-fof-Web-Developers-3rd-Edition/">JavaScript高级程序设计（3rd Edition）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
